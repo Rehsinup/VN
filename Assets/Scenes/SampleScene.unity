@@ -424,8 +424,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1126719897}
-        m_TargetAssemblyTypeName: BlackjackColor, Assembly-CSharp
+      - m_Target: {fileID: 1473857721}
+        m_TargetAssemblyTypeName: RouletteColor, Assembly-CSharp
         m_MethodName: OnButtonClick
         m_Mode: 1
         m_Arguments:
@@ -734,7 +734,7 @@ GameObject:
   - component: {fileID: 1473857722}
   - component: {fileID: 1473857721}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: GameManagerRoulette
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
