@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI; // Ajout pour utiliser les boutons UI
 
 public class CameraSwitcher : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class CameraSwitcher : MonoBehaviour
     public Camera camera2;
     public GameObject player1;
     public GameObject player2;
+    public Button switchButton; // Bouton pour changer de caméra
 
     private void Start()
     {
@@ -21,6 +23,10 @@ public class CameraSwitcher : MonoBehaviour
             EnablePlayer(player1, true);
             EnablePlayer(player2, false);
         }
+        if (switchButton != null)
+        {
+            switchButton.onClick.AddListener(SwitchCamera); // Ajout du listener sur le bouton
+        }
     }
 
     private void Update()
@@ -31,7 +37,7 @@ public class CameraSwitcher : MonoBehaviour
         }
     }
 
-    void SwitchCamera() 
+    void SwitchCamera()
     {
         if (camera1 != null && camera2 != null && player1 != null && player2 != null)
         {
@@ -44,13 +50,12 @@ public class CameraSwitcher : MonoBehaviour
         }
     }
 
-    void EnablePlayer(GameObject player, bool isActive) 
+    void EnablePlayer(GameObject player, bool isActive)
     {
-        PlayerMovement movement = player.GetComponent<PlayerMovement>(); 
+        PlayerMovement movement = player.GetComponent<PlayerMovement>();
         if (movement != null)
         {
             movement.enabled = isActive;
         }
     }
 }
-

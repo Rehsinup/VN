@@ -4,30 +4,39 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private Rigidbody rb;
+
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.D)) // vérifier si la touche A est enfoncée
+        Vector3 moveDirection = Vector3.zero;
+
+        if (Input.GetKey(KeyCode.W))
         {
-            GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, 0, 1000f) * Time.deltaTime);
+            moveDirection += new Vector3(0, 10, 0);
         }
-        if (Input.GetKey(KeyCode.A)) // vérifier si la touche D est enfoncée
+        if (Input.GetKey(KeyCode.S))
         {
-            GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, 0, -1000f) * Time.deltaTime); ;
+            moveDirection += new Vector3(0, -10, 0);
         }
-        if (Input.GetKey(KeyCode.S)) // vérifier si la touche W est enfoncée
+        if (Input.GetKey(KeyCode.D))
         {
-            GetComponent<Rigidbody>().AddRelativeForce(new Vector3(1000f, 0, 0) * Time.deltaTime);
+            moveDirection += new Vector3(10, 0, 0);
         }
-        if (Input.GetKey(KeyCode.W)) // vérifier si la touche S est enfoncée
+        if (Input.GetKey(KeyCode.A))
         {
-            GetComponent<Rigidbody>().AddRelativeForce(new Vector3(-1000f, 0, 0) * Time.deltaTime);
+            moveDirection += new Vector3(-10, 0, 0);
+        }
+
+        rb.velocity = moveDirection * 10f; // Applique la vitesse
+
+        if (moveDirection == Vector3.zero)
+        {
+            rb.velocity = Vector3.zero; // Stop net quand aucune touche n'est pressée
         }
     }
 }
