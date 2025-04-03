@@ -9,15 +9,23 @@ public class PressurePlate : MonoBehaviour
 
     private int objectsOnPlate = 0; // Gère plusieurs objets sur la plaque
 
-    private static bool endPlate1Active = false;
-    private static bool endPlate2Active = false;
+    private bool endPlate1Active = false;
+    private bool endPlate2Active = false;
+    private MovingWalls Wall;
+
+
+    private void Start()
+    {
+        Wall = controlledWall.GetComponent<MovingWalls>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player")) // Vérifie si un joueur marche sur la plaque
         {
             objectsOnPlate++;
-            controlledWall.SetActive(false); // Désactive le mur
+            //controlledWall.SetActive(false); // Désactive le mur
+            Wall.Move();
 
             if (isEndPlate) // Vérifie si cette plaque est une plaque de fin
             {
@@ -35,8 +43,8 @@ public class PressurePlate : MonoBehaviour
             objectsOnPlate--;
             if (objectsOnPlate <= 0)
             {
-                controlledWall.SetActive(true); // Réactive le mur si plus personne dessus
-
+               // controlledWall.SetActive(true); // Réactive le mur si plus personne dessus
+               Wall.Move();
                 if (isEndPlate) // Si c'est une plaque de fin, reset son état
                 {
                     if (endPlate2Active) endPlate2Active = false;

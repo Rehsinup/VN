@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; // Ajout pour utiliser les boutons UI
+using DG.Tweening;
 
 public class CameraSwitcher : MonoBehaviour
 {
@@ -10,7 +11,8 @@ public class CameraSwitcher : MonoBehaviour
     public GameObject player1;
     public GameObject player2;
     public Button switchButton; // Bouton pour changer de caméra
-
+    [SerializeField] Transform puzzleTransforms;
+    private bool rotated = false;
     private void Start()
     {
         if (camera1 != null && camera2 != null)
@@ -33,7 +35,7 @@ public class CameraSwitcher : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.C)) // Change "C" si tu veux une autre touche
         {
-            SwitchCamera();
+            SwitchPuzzle();
         }
     }
 
@@ -57,5 +59,27 @@ public class CameraSwitcher : MonoBehaviour
         {
             movement.enabled = isActive;
         }
+    }
+
+
+    void SwitchPuzzle()
+    {
+        EnablePlayer(player1, false);
+        EnablePlayer(player2, false);
+        rotated = !rotated;
+        if (rotated)
+        {
+            puzzleTransforms.DORotate(Vector3.up * 180, 1).OnComplete(SwitchCharacter);
+        }
+        else
+        {
+            puzzleTransforms.DORotate(Vector3.zero, 1).OnComplete(SwitchCharacter);
+        }
+    }
+
+    void SwitchCharacter()
+    {
+        EnablePlayer(player1, !rotated);
+        EnablePlayer(player2, rotated);
     }
 }
