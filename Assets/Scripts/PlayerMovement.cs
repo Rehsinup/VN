@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
             moveDirection += new Vector3(-10, 0, 0);
         }
 
-        rb.velocity = moveDirection * 10f; // Applique la vitesse
+        rb.velocity = moveDirection * 1f; // Applique la vitesse
 
         if (moveDirection == Vector3.zero)
         {

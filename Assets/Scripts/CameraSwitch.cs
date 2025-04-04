@@ -27,7 +27,7 @@ public class CameraSwitcher : MonoBehaviour
         }
         if (switchButton != null)
         {
-            switchButton.onClick.AddListener(SwitchCamera); // Ajout du listener sur le bouton
+            switchButton.onClick.AddListener(SwitchPuzzle); // Ajout du listener sur le bouton
         }
     }
 
