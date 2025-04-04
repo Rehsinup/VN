@@ -1,4 +1,6 @@
 VAR curseur = 0
+
+VAR A = 0 
 ==Scene1 
 Scene ou ils se font mettre dehors
 ->Ruelle
@@ -17,14 +19,18 @@ le majordome emphatique leur propose de s'interlink dans son casino dont il fait
 
 ==Hall_Casino
 Le majordome présente la salle de jeu et les récompenses possible, hansel et grethel sont enjoué à l'idée de pouvoir, il présente les différentes salle et propose à H/G de commencer à jouer.
-*[Croupier1]->CroupierCarreaux
+*[Croupier1]->CroupierCarreaux 
+
 *[Croupier2]->CroupierCoeur
+
 *[Croupier3]->CroupierTrefle
+
 {~curseur = 0 && CroupierCarreaux && CroupierCoeur && CroupierTrefle }->CurseurGrethel
 
 {~curseur = 2 && CroupierCarreaux && CroupierCoeur && CroupierTrefle }->CurseurHansel
 
 {~curseur = 1 && CroupierCarreaux && CroupierCoeur && CroupierTrefle }->CurseurMid
+
 
 ==CroupierCarreaux
 ->Hall_Casino
