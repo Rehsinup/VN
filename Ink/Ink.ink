@@ -28,7 +28,8 @@ G-NON,
 Restons ensemble je ne veux pas qu'il t'arrive quelque chose, père est sur son lit de mort et la basse ville n'est pas recommendable, et j'aurai besoin de toi si il m'arrive une bricole.
 H-D'accord, avançons ensemble, commençons par ce distributeur, tu penses pouvoir le hacker ?
 G-Mmmhh,
-Je crois qu'il est déconnecté.
+H-Alors qu'es-ce ça donne.
+G-Je crois qu'il est déconnecté.
 H-Laisse moi essayer de casser la vitre avec mon implant 
 G-Mais on risque de se faire repérer.
 H-T'inquiète je sais ce que je fais.
@@ -36,9 +37,10 @@ SFX *CRACK* bruit de vitre qui se casse
 H-Merde, c'est avarié... 
 G-Il n'y a rien d'autre ?
 H-Non, rien de rien tout est pourri on va devoir chercher ailleur.
+(peut-etre essayer de brancher un truc et ça allume les neon)
 NEON ON ->Neon_ON
--
--(Evoquer_les_plans)
+
+--(Evoquer_les_plans)
 H-Je pense avoir un plan pour dormir ce soir mais il se trouve plus loin dans la ville, il faut qu'on se sépare pour passer inaperçu
 G-Hans tu sais que je peux pas sortir loin en ville sans toi. Cette ville me fait peur.
 H-Allez Greth, c'est chez une bonne connaissance, il m'a déja sauvé de plusieurs affaires.
@@ -46,15 +48,55 @@ G-Tu me parles de ton collègue Max, celui qui t'as couté ce bras ?
 H-Oui on a presque perdu la vie ce jour la mais c'etait lui qui m'a sorti de la Greth je lui doit beaucoup et il peut encore nous aider.
 G-Mais c'est lui qui a eu l'idée d'aller la bas il me semble.
 H-Oui tu as raison Greth, peut être que je devrai t'écouter mais je n'ai pas d'autre solution pour le moment.
-G-Je suis sur que tu en trouveras une rapidement, après tout c'est toi qui connais le mieux la ville basse.
--
+G-Je suis sur que tu en trouveras une rapidement, après tout c'est toi qui connais le mieux la basse ville.
+--
 
 --(Neon_ON)
+SFX *Zing (genre neon qui s'allume)
+H et G-*air interloqué*
+H-On y voit plus clair tout à coup.
+G-Oui la ville commence à s'illuminer à cette heure-ci.
+H-Regarde les lumières on dirait que celui qui les a posés la voulait vraiment qu'on le remarque.
+G-Ahah(c'est nul a chier faut changer)Oui c'est sur que ce n'est pas très discret.
+H-Allons voir de plus près ça pique ma curiosité.
+*[Se drirger vers le lieu]->repGreth
+*[Dire a Hansel que c'est suspect]->repGreth
+
+---(repGreth)
+G- Allons-y je te suis Hans mais fait attention, les apparences sont souvent trompeuses dans la basse ville. 
+H- Je comprend ce que tu essaies de me faire voir mais c'est surement un commerce de nuit qui vient d'ouvrir ces portes, rien de quoi s'inquiéter.
+G- Oui désolé c'est moi qui réfléchit trop. 
+H-Ne te reproche pas cela ,c'est aussi pour ça que j'ai besoin de toi Greth.
+G-Merci, je te laisse prendre les devants une fois dedans, tu es plus doué que moi la dessus.
+H-Parfait allons-y.
+-
+---
 ->Sous_sol
 --
 ->Sous_sol
 
 ==Sous_sol
+H : C'est pas du tout ce quoi on s'attendait, l'endroit etait plus attrayant de l'extérieur.
+G : C'est quoi cet endroit ? On dirait une sorte de bazar bloqué dans le passé.
+H : Mhh je doute qu'on y trouve quoi que ce soit d'intéressant tout est poussiéreux et délabré sans parler de l'odeur mais jetons quand même un coup d'oeil autour on sait jamais sur quoi on va tomber.
+G : Oui ça tu l'as dis, j'ai l'impression d'être observé alors hâtons nous.
+*[décrire l'odeur]
+*[décrire la pièce]
+*[parler de l'objet sur le comptoir]
+*driiing*
+M : Oh là, excusez-moi jeunes gens, je ne vous ai pas du tout entendu entrer  !
+HetG : Et nous on ne s'attendait pas à voir quelqu'un ici.
+M : Veuillez m'excuser si je vous ai fait peur, permettez moi de me présenter, je suis celui qu'on appelle "le Majordome", propriétaire du prestigieux "Hexe Holle".
+H : Le Hexe Holle ? Jamais entendu parler et pourtant je connais bien ce secteur de la Basse-ville.
+M : Il n'y a pas de mal à cela vous êtes jeunes, mon établissement est très réputé auprès des amateurs de jeux nous ne cherchons pas à être connu de tous.
+H : De jeu ? Genre CyberBrawl ou NeuroMaze ? 
+M : Non, je parle ici de jeux plus anciens, plus nobles que ceux de nos jours, pas de sang pas de piratage juste votre réflexion et bien sûr une petite part de chance mais c'est ce qui rend chaque partie intéressante.
+H : Et on y gagne quoi ? des métadonnées, des NeuMark ? 
+M : tout se dont vous avez besoin peut être mis en jeu, nous som- enfin "je" suis plein de ressources. Et donc que recherchez vous jeunes gens ?
+G : Le mieux serait du NeuMark mais s'il est traçable alors il sera inutilisable dans beaucoup d'endroits.
+H : Et avec les métadonnées ? on pourrait trouver des acheteurs non, mon ami Vanz saura vers qui m'orienter si il est sortie de taule...
+M : Je vous laisse du temps pour vous décider, en tout cas mes portes sont ouvertes faites moi signes quand vous aurez choisi
+
 /*Hansel et grethel découvre l'endroit (contemplation avec possibilité de regarder les objets autour de nous)
 Le majordome arrive ensuite et se présente à H et G, leur explique le lieu de manière avenante, qui il est etc (façade)
 H/G expliquent ensuite leur situation
