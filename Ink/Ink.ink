@@ -1,7 +1,7 @@
 VAR curseur = 0
 
 VAR A = 0 
-En l'an 2087, dans les bas-fonds de Neo-Berlin, deux jeunes ados n'ayant connu que l'amour inconditionnel de leur père se retrouvent dans l'impasse lorsque celui-ci tomba gravement malade et furent mis à la porte par leur détestable belle-mère.
+En l'an 2087, dans les bas-fonds de Neo-Berlin, deux jeunes ados n'ayant connu que l'amour inconditionnel de leur père se retrouvent dans l'impasse lorsque celui-ci tomba gravement malade et furent mis à la porte par leur détestable belle-mère.->Scene1
 ==Scene1 
 HORS DE MA VUE !!! Ne cherchez pas à revenir ici, votre père est dans cette situation par votre faute vous ne le méritez pas !
 ->Ruelle
@@ -80,9 +80,9 @@ H : C'est pas du tout ce quoi on s'attendait, l'endroit etait plus attrayant de 
 G : C'est quoi cet endroit ? On dirait une sorte de bazar bloqué dans le passé.
 H : Mhh je doute qu'on y trouve quoi que ce soit d'intéressant tout est poussiéreux et délabré sans parler de l'odeur mais jetons quand même un coup d'oeil autour on sait jamais sur quoi on va tomber.
 G : Oui ça tu l'as dis, j'ai l'impression d'être observé alors hâtons nous.
-*[décrire l'odeur]
-*[décrire la pièce]
-*[parler de l'objet sur le comptoir]
+*[décrire l'odeur]->odeur
+*[décrire la pièce]->piece
+*[parler de l'objet sur le comptoir]->objet
 *driiing*
 M : Oh là, excusez-moi jeunes gens, je ne vous ai pas du tout entendu entrer  !
 HetG : Et nous on ne s'attendait pas à voir quelqu'un ici.
@@ -96,7 +96,17 @@ M : tout se dont vous avez besoin peut être mis en jeu, nous som- enfin "je" su
 G : Le mieux serait du NeuMark mais s'il est traçable alors il sera inutilisable dans beaucoup d'endroits.
 H : Et avec les métadonnées ? on pourrait trouver des acheteurs non, mon ami Vanz saura vers qui m'orienter si il est sortie de taule...
 M : Je vous laisse du temps pour vous décider, en tout cas mes portes sont ouvertes faites moi signes quand vous aurez choisi
+-(odeur)
 
+-
+
+-(piece)
+
+-
+
+-(objet)
+
+-
 /*Hansel et grethel découvre l'endroit (contemplation avec possibilité de regarder les objets autour de nous)
 Le majordome arrive ensuite et se présente à H et G, leur explique le lieu de manière avenante, qui il est etc (façade)
 H/G expliquent ensuite leur situation
