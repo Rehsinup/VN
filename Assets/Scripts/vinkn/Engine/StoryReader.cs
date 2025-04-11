@@ -40,10 +40,12 @@ namespace vinkn
 
         public StoryReadState state { get; private set; }
 
+        // Référence à LevelLoader pour charger une scène
+        private LevelLoader levelLoader;
+
         // Start is called before the first frame update
         void Awake()
         {
-
             if (storyAsset == null)
             {
                 gameObject.SetActive(false);
@@ -52,6 +54,8 @@ namespace vinkn
 
             story = new Story(storyAsset.text);
             state = StoryReadState.READ;
+
+            // Lier les fonctions externes
             foreach (EventLink e in eventList)
             {
                 story.BindExternalFunctionGeneral(e.eventName, (object[] args) => { e.onTrigger?.Invoke(this, args); return null; }, false);
@@ -62,8 +66,21 @@ namespace vinkn
                 story.ObserveVariable(v.variableName, (string varName, object varValue) => v.onTrigger?.Invoke(varName, varValue));
             }
 
-            // storyDisplay.engine = engine;
-            // storyDisplay.ReadTags(story.globalTags, true);
+            // Lier la fonction externe LoadScene
+            story.BindExternalFunction("LoadScene", (string sceneName) =>
+            {
+                if (levelLoader == null)
+                    levelLoader = FindObjectOfType<LevelLoader>(); // Trouver le LevelLoader si pas encore fait
+
+                if (levelLoader != null)
+                {
+                    levelLoader.ImportLevel(sceneName);
+                }
+                else
+                {
+                    Debug.LogError("LevelLoader not found!");
+                }
+            });
 
         }
 
@@ -81,7 +98,6 @@ namespace vinkn
 
             if (startOnAwake)
                 Next();
-
         }
 
         public virtual void Next()
@@ -132,6 +148,6 @@ namespace vinkn
             storyAsset = asset;
             story = new Story(asset.text);
         }
-
     }
 }
+

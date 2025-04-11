@@ -7,7 +7,7 @@ public class RouletteColor : MonoBehaviour
     public void OnButtonClick()
     {
 
-        float randomValue = Random.Range(0f, 1f);
+        float randomValue = Random.Range(0f, 1f); 
         string colorResult;
 
         if (randomValue < 0.45f)

@@ -8,4 +8,25 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Roulette.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+    guid: 59252f3611f46004f90554ddeb8d5b7b
+  - enabled: 1
+    path: Assets/Scenes/BlackJack.unity
+    guid: 5ea5e5eecf3166b45aa976be7ca7e684
+  - enabled: 1
+    path: Assets/Scenes/Hack.unity
+    guid: a8482343442ec874d9479209cb2a2f6e
+  - enabled: 1
+    path: Assets/Scenes/Memory.unity
+    guid: 603f722b24a20e049a1ca4f4f8f55002
+  - enabled: 1
+    path: Assets/Scenes/Options.unity
+    guid: 4f35487a4d898ac438f30a82a511a8ee
+  - enabled: 1
+    path: Assets/Scenes/Puzzle 1.unity
+    guid: 790fa2860ba9d7344a3b02a2cfb7c0cf
+  - enabled: 1
+    path: Assets/Scenes/TestVFX.unity
+    guid: a457f11a54f6132448238ad58a8d4aa0
   m_configObjects: {}

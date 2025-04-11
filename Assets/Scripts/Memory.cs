@@ -98,7 +98,7 @@ public class Memory : MonoBehaviour
         canSelect = true;
     }
 
-    Color GetAssignedColor(int index)
+    Color GetAssignedColor(int index) 
     {
         return colors[index % 5]; // Chaque couleur a une paire
     }
