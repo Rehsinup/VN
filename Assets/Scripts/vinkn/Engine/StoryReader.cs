@@ -42,8 +42,10 @@ namespace vinkn
 
         // Référence à LevelLoader pour charger une scène
         private LevelLoader levelLoader;
+        private VFXLoader vfxLoader;
 
         // Start is called before the first frame update
+
         void Awake()
         {
             if (storyAsset == null)
@@ -67,6 +69,21 @@ namespace vinkn
             }
 
             // Lier la fonction externe LoadScene
+            story.BindExternalFunction("LoadVFX", (string sceneName) =>
+            {
+                if (vfxLoader == null)
+                    vfxLoader = FindObjectOfType<VFXLoader>();
+
+                if (vfxLoader != null)
+                {
+                    vfxLoader.ImportLevel(sceneName);
+                }
+                else
+                {
+                    Debug.LogError("VFXLoader not found!");
+                }
+            });
+
             story.BindExternalFunction("LoadScene", (string sceneName) =>
             {
                 if (levelLoader == null)
@@ -80,6 +97,8 @@ namespace vinkn
                 {
                     Debug.LogError("LevelLoader not found!");
                 }
+
+
             });
 
         }
@@ -149,5 +168,7 @@ namespace vinkn
             story = new Story(asset.text);
         }
     }
+
+
 }
 

@@ -10,7 +10,7 @@ public class LevelLoader : MonoBehaviour
 
     [SerializeField] private float enterDuration = 2.5f;
     [SerializeField] private float centerDuration = 2.5f;
-    [SerializeField] Camera mainCamera;
+    [SerializeField] private Camera mainCamera;
     public float ZoomSize = 6f;
     private float currentSize;
     public Vector2 CamAnimTime;
@@ -24,12 +24,12 @@ public class LevelLoader : MonoBehaviour
 
     public void ImportLevel(string levelName)
     {
-        // Optionnel : replacer la caméra principale hors champ si besoin
+        Debug.Log("LEVEL Import called for scene: " + levelName);
+
         if (mainCam != null)
             mainCam.transform.position = new Vector3(0, 0, -10f);
 
-        // Désactiver le texte avant de charger la scène
-        GameObject textObject = GameObject.Find("Canvas"); // Nom à remplacer si on veut un autre objet
+        GameObject textObject = GameObject.Find("Canvas");
         if (textObject != null) textObject.SetActive(false);
 
         SceneManager.LoadScene(levelName, LoadSceneMode.Additive);
@@ -37,20 +37,21 @@ public class LevelLoader : MonoBehaviour
 
     public void ExitLevel()
     {
-        // Réactive la caméra principale
         if (mainCam != null)
             mainCam.gameObject.SetActive(true);
 
-        // Réactiver le texte quand on quitte la scène
-        GameObject textObject = GameObject.Find("Canvas"); // Nom à remplacer si on veut un autre objet
+        GameObject textObject = GameObject.Find("Canvas");
         if (textObject != null) textObject.SetActive(true);
 
-        // Décharge la scène précédente
         SceneManager.UnloadSceneAsync(lastlevel.buildIndex);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+
+        // Ignore les scènes VFX
+        if (scene.name.StartsWith("VFX")) return;
+
         if (mode == LoadSceneMode.Additive)
         {
             lastlevel = scene;
@@ -74,15 +75,11 @@ public class LevelLoader : MonoBehaviour
                 mainCamera.DOOrthoSize(ZoomSize, CamAnimTime.x).OnComplete(SwitchCam);
                 newCam.gameObject.SetActive(true);
 
-                // Position de départ : très haut
                 newCam.transform.position = new Vector3(0f, 15f, -10f);
-
-                // Rotation de départ : forte inclinaison
                 newCam.transform.rotation = Quaternion.Euler(45f, 0f, 0f);
 
-                // Animation smooth : descente + redressement
                 newCam.transform.DOMoveY(0f, enterDuration);
-                newCam.transform.DORotate(new Vector3(0f, 0f, 0f), enterDuration);
+                newCam.transform.DORotate(Vector3.zero, enterDuration);
             }
         }
     }
@@ -92,4 +89,3 @@ public class LevelLoader : MonoBehaviour
         mainCamera.DOOrthoSize(currentSize, CamAnimTime.y);
     }
 }
-

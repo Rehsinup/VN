@@ -27,6 +27,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Puzzle 1.unity
     guid: 790fa2860ba9d7344a3b02a2cfb7c0cf
   - enabled: 1
-    path: Assets/Scenes/TestVFX.unity
+    path: Assets/Scenes/VFXTest.unity
     guid: a457f11a54f6132448238ad58a8d4aa0
   m_configObjects: {}
