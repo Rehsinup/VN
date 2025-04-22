@@ -20,6 +20,7 @@ public class PressurePlate : MonoBehaviour
         {
             objectsOnPlate++;
             controlledWall.SetActive(false); // Désactive le mur
+           // AudioManager.instance.PlaySound("ID");
         }
     }
 

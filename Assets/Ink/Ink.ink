@@ -10,6 +10,7 @@ En l'an 2087, dans les bas-fonds de Neo-Berlin, deux jeunes ados n'ayant connu q
 ==Scene1 
 ~LoadVFX("VFXTest")
 ~fadeBg("Chambre", 4)
+~playSound("Son1")
 HORS DE MA VUE !!! Ne cherchez pas à revenir ici, votre père est dans cette situation par votre faute vous ne le méritez pas !
 ->Ruelle
 
