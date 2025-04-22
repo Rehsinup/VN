@@ -1,0 +1,1 @@
+﻿{"inkVersion":21,"root":[["^Tu ouvres une étrange porte qui mène ailleurs...","\n","ev","str","^Puzzle 1","/str",{"x()":"LoadScene","exArgs":1},"pop","/ev","\n","end",["done",{"#f":5,"#n":"g-0"}],null],"done",{"#f":1}],"listDefs":{}}

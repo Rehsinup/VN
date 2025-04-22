@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,10 +12,26 @@ namespace vinkn
 
         protected EDisplayable currentBg { get; set; }
 
+        // Nouveaux champs pour gérer l'état de la narration
+        private bool isNarrationActive = true; // Par défaut, la narration est active
+        public GameObject narrationCanvas; // Le canvas de narration ou autre UI lié à la narration
+
         // Start is called before the first frame update
         void Awake()
         {
             currentBg = null;
+        }
+
+        // Ajouter la méthode pour reprendre la narration
+        public void ResumeNarration()
+        {
+            if (narrationCanvas != null)
+            {
+                narrationCanvas.SetActive(true); // Réactive le canvas de narration
+            }
+
+            isNarrationActive = true; // La narration est maintenant active
+            Debug.Log("Narration reprise.");
         }
 
         public void Add(DisplayAnchor a)
@@ -46,7 +61,7 @@ namespace vinkn
 
         public void Add(EDisplayable item, InkObjectType type)
         {
-            switch(type)
+            switch (type)
             {
                 case InkObjectType.BACKGROUND:
                     if (!backgrounds.Contains(item))
@@ -156,6 +171,23 @@ namespace vinkn
                 c.Move(a.transform.position, duration);
             else
                 c.transform.position = a.transform.position;
+        }
+
+        // Si tu veux gérer la pause de la narration
+        public void PauseNarration()
+        {
+            if (narrationCanvas != null)
+            {
+                narrationCanvas.SetActive(false); // Désactive le canvas de narration
+            }
+
+            isNarrationActive = false; // La narration est mise en pause
+            Debug.Log("Narration mise en pause.");
+        }
+
+        public bool IsNarrationActive()
+        {
+            return isNarrationActive;
         }
     }
 }

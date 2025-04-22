@@ -5,69 +5,33 @@ using UnityEngine;
 public class PressurePlate : MonoBehaviour
 {
     public GameObject controlledWall; // Mur contrôlé par cette plaque
-    public bool isEndPlate = false; // Cette plaque est-elle une plaque de fin ?
-
     private int objectsOnPlate = 0; // Gère plusieurs objets sur la plaque
 
-    private bool endPlate1Active = false;
-    private bool endPlate2Active = false;
-    private MovingWalls Wall;
-
+    private MovingWalls wallScript;
 
     private void Start()
     {
-        Wall = controlledWall.GetComponent<MovingWalls>();
+        wallScript = controlledWall.GetComponent<MovingWalls>(); // Assure-toi que le mur est prêt
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) // Vérifie si un joueur marche sur la plaque
+        if (other.CompareTag("Player1") || other.CompareTag("Player2")) // Vérifie si un joueur marche sur la plaque
         {
             objectsOnPlate++;
             controlledWall.SetActive(false); // Désactive le mur
-            //Wall.Move();
-
-            if (isEndPlate) // Vérifie si cette plaque est une plaque de fin
-            {
-                if (endPlate1Active == false) endPlate1Active = true;
-                else endPlate2Active = true;
-                CheckEndCondition();
-            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player")) // Vérifie si un joueur quitte la plaque
+        if (other.CompareTag("Player1") || other.CompareTag("Player2")) // Vérifie si un joueur quitte la plaque
         {
             objectsOnPlate--;
             if (objectsOnPlate <= 0)
             {
-               controlledWall.SetActive(true); // Réactive le mur si plus personne dessus
-              // Wall.Move();
-                if (isEndPlate) // Si c'est une plaque de fin, reset son état
-                {
-                    if (endPlate2Active) endPlate2Active = false;
-                    else endPlate1Active = false;
-                }
+                controlledWall.SetActive(true); // Réactive le mur si plus personne dessus
             }
         }
     }
-
-    void CheckEndCondition()
-    {
-        if (endPlate1Active && endPlate2Active)
-        {
-            Debug.Log("Niveau terminé !");
-            EndLevel();
-        }
-    }
-
-    void EndLevel()
-    {
-       
-        //SceneManager.LoadScene("NiveauSuivant");
-        
-    }
 }
-

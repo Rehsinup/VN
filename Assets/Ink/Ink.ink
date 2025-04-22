@@ -1,9 +1,16 @@
 VAR curseur = 0
-
+INCLUDE 2d_api.ink
+EXTERNAL LoadVFX(string)
+EXTERNAL LoadScene(string)
 VAR A = 0 
-En l'an 2087, dans les bas-fonds de Neo-Berlin, deux jeunes ados n'ayant connu que l'amour inconditionnel de leur père se retrouvent dans l'impasse lorsque celui-ci tomba gravement malade et furent mis à la porte par leur détestable belle-mère.<>->Scene1
+
+En l'an 2087, dans les bas-fonds de Neo-Berlin, deux jeunes ados n'ayant connu que l'amour inconditionnel de leur père se retrouvent dans l'impasse lorsque celui-ci tomba gravement malade et furent mis à la porte par leur détestable belle-mère.
+\
+->Scene1
 ==Scene1 
-<>HORS DE MA VUE !!! Ne cherchez pas à revenir ici, votre père est dans cette situation par votre faute vous ne le méritez pas !
+~LoadVFX("VFXTest")
+~fadeBg("Chambre", 4)
+HORS DE MA VUE !!! Ne cherchez pas à revenir ici, votre père est dans cette situation par votre faute vous ne le méritez pas !
 ->Ruelle
 
 ==Ruelle
