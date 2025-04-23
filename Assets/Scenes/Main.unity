@@ -1040,7 +1040,7 @@ PrefabInstance:
     - target: {fileID: 5195625381305983652, guid: 37257d08b4822a8459d7340b3b0c0375, type: 3}
       propertyPath: storyAsset
       value: 
-      objectReference: {fileID: 4900000, guid: 41431dd9ef58c7d42baa2eae9c0b1e1c, type: 3}
+      objectReference: {fileID: 4900000, guid: 31c248c62e166a54d81e468ea1d5a600, type: 3}
     - target: {fileID: 5195625381305983652, guid: 37257d08b4822a8459d7340b3b0c0375, type: 3}
       propertyPath: eventList.Array.size
       value: 1
@@ -1443,6 +1443,10 @@ PrefabInstance:
       propertyPath: OnChoiceSelected.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 7249412096180937552, guid: fda422b695e4a7f40abc5129a3688b18, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7280630703037812485, guid: fda422b695e4a7f40abc5129a3688b18, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -1799,7 +1803,7 @@ Transform:
   m_GameObject: {fileID: 1865309534}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.81, y: 0.7741192, z: 0.0669817}
+  m_LocalPosition: {x: -9.16, y: 0.7741192, z: 0.0669817}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
