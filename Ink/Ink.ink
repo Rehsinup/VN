@@ -1,9 +1,12 @@
 VAR curseur = 0
-
+VAR carreau = false
+VAR trefle = false
+VAR coeur = false
 VAR A = 0 
-En l'an 2087, dans les bas-fonds de Neo-Berlin, deux jeunes ados n'ayant connu que l'amour inconditionnel de leur père se retrouvent dans l'impasse lorsque celui-ci tomba gravement malade et furent mis à la porte par leur détestable belle-mère.<>->Scene1
+En l'an 2087, dans les bas-fonds de Neo-Berlin, deux jeunes ados n'ayant connu que l'amour inconditionnel de leur père se retrouvent dans l'impasse lorsque celui-ci tomba gravement malade et furent mis à la porte par leur détestable belle-mère.\
+->Scene1
 ==Scene1 
-<>HORS DE MA VUE !!! Ne cherchez pas à revenir ici, votre père est dans cette situation par votre faute vous ne le méritez pas !
+HORS DE MA VUE !!! Ne cherchez pas à revenir ici, votre père est dans cette situation par votre faute vous ne le méritez pas !
 ->Ruelle
 
 ==Ruelle
@@ -87,7 +90,7 @@ G : Oui ça tu l'as dis, j'ai l'impression d'être observé alors hâtons nous.
 M : Oh là, excusez-moi jeunes gens, je ne vous ai pas du tout entendu entrer  !
 HetG : Et nous on ne s'attendait pas à voir quelqu'un ici.
 M : Veuillez m'excuser si je vous ai fait peur, permettez moi de me présenter, je suis celui qu'on appelle "le Majordome", propriétaire du prestigieux "Hexe Holle".
-H : Le Hexe Holle ? Jamais entendu parler et pourtant je connais bien ce secteur de la Basse-ville.
+H : Le prestigieux  Hexe Holle ? Jamais entendu parler et pourtant je connais bien ce secteur de la Basse-ville.
 M : Il n'y a pas de mal à cela vous êtes jeunes, mon établissement est très réputé auprès des amateurs de jeux nous ne cherchons pas à être connu de tous.
 H : De jeu ? Genre CyberBrawl ou NeuroMaze ? 
 M : Non, je parle ici de jeux plus anciens, plus nobles que ceux de nos jours, pas de sang pas de piratage juste votre réflexion et bien sûr une petite part de chance mais c'est ce qui rend chaque partie intéressante.
@@ -115,11 +118,11 @@ le majordome emphatique leur propose de s'interlink dans son casino dont il fait
 
 ==Hall_Casino
 /*Le majordome présente la salle de jeu et les récompenses possible, hansel et grethel sont enjoué à l'idée de pouvoir, il présente les différentes salle et propose à H/G de commencer à jouer.*/
-*[Croupier1]->CroupierCarreaux 
++[CroupierCarreaux]->CroupierCarreaux 
 
-*[Croupier2]->CroupierCoeur
++[CroupierCoeur]->CroupierCoeur
 
-*[Croupier3]->CroupierTrefle
++[CroupierTrefle]->CroupierTrefle
 
 {~curseur = 0 && CroupierCarreaux && CroupierCoeur && CroupierTrefle }->CurseurGrethel
 
@@ -127,14 +130,54 @@ le majordome emphatique leur propose de s'interlink dans son casino dont il fait
 
 {~curseur = 1 && CroupierCarreaux && CroupierCoeur && CroupierTrefle }->CurseurMid
 
-
 ==CroupierCarreaux
+Info: coeur 
+
+{CroupierTrefle:
+info:trefle
+~trefle = true
+}
+if var carreau = 2 alors info majordome
++[parler du majordome]
+{not carreau:
+majordome gentil
+}
+{carreau:
+majordome pas gentil
+}
+
 ->Hall_Casino
 
 ==CroupierCoeur
+Info trefle 
+{CroupierCarreaux:
+info carreau
+~carreau = true
+}
++[parler du majordome]
+{not coeur:
+majordome gentil
+}
+{coeur:
+majordome pas gentil
+}
+
 ->Hall_Casino
 
 ==CroupierTrefle
+info carreau 
+{CroupierCoeur:
+info coeur:
+~coeur = true
+}
++[parler du majordome]
+{not trefle:
+majordome gentil
+}
+{trefle:
+majordome pas gentil
+}
+
 ->Hall_Casino
 
 
