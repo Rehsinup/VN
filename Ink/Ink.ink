@@ -86,29 +86,31 @@ G : Oui ça tu l'as dis, j'ai l'impression d'être observé alors hâtons nous.
 *[décrire l'odeur]->odeur
 *[décrire la pièce]->piece
 *[parler de l'objet sur le comptoir]->objet
-*driiing*
+*[driiing]
 M : Oh là, excusez-moi jeunes gens, je ne vous ai pas du tout entendu entrer  !
 HetG : Et nous on ne s'attendait pas à voir quelqu'un ici.
 M : Veuillez m'excuser si je vous ai fait peur, permettez moi de me présenter, je suis celui qu'on appelle "le Majordome", propriétaire du prestigieux "Hexe Holle".
 H : Le prestigieux  Hexe Holle ? Jamais entendu parler et pourtant je connais bien ce secteur de la Basse-ville.
 M : Il n'y a pas de mal à cela vous êtes jeunes, mon établissement est très réputé auprès des amateurs de jeux nous ne cherchons pas à être connu de tous.
-H : De jeu ? Genre CyberBrawl ou NeuroMaze ? 
+H : De jeu ? Genre CyberBrawl ou NeuroMaze ?
 M : Non, je parle ici de jeux plus anciens, plus nobles que ceux de nos jours, pas de sang pas de piratage juste votre réflexion et bien sûr une petite part de chance mais c'est ce qui rend chaque partie intéressante.
-H : Et on y gagne quoi ? des métadonnées, des NeuMark ? 
+H : Et on y gagne quoi ? des métadonnées, des NeuMark ?
 M : tout se dont vous avez besoin peut être mis en jeu, nous som- enfin "je" suis plein de ressources. Et donc que recherchez vous jeunes gens ?
 G : Le mieux serait du NeuMark mais s'il est traçable alors il sera inutilisable dans beaucoup d'endroits.
 H : Et avec les métadonnées ? on pourrait trouver des acheteurs non, mon ami Vanz saura vers qui m'orienter si il est sortie de taule...
 M : Je vous laisse du temps pour vous décider, en tout cas mes portes sont ouvertes faites moi signes quand vous aurez choisi
 -(odeur)
-
+G-Il y a une odeur de vieux bois et de papiers anciens.
 -
 
 -(piece)
-
+H-Ou est-ce qu'on a atterit, c'est plein de babioles d'une autre époque. Le comptoir est plein de poussières.
+G-Oui c'est étrange, regarde il y a un objet avec une sorte de fleur métalique sur une boite je me demande à quoi ça servait.
+H- Tout à l'air vieux, on dirait que le propiétaire est coincé dans le passé
 -
 
 -(objet)
-
+page de magazine collées
 -
 /*Hansel et grethel découvre l'endroit (contemplation avec possibilité de regarder les objets autour de nous)
 Le majordome arrive ensuite et se présente à H et G, leur explique le lieu de manière avenante, qui il est etc (façade)
@@ -117,12 +119,47 @@ le majordome emphatique leur propose de s'interlink dans son casino dont il fait
 ->Hall_Casino
 
 ==Hall_Casino
+H et G *air étonné*
+M-Bravo pour le test, ce n'était qu'une formalité, rien de très compliqué. C'est un peu déroutant au début ne vous en faites pas,... ça change de mon vieil (établit, refuge,...) pas vrai ?
++{not scene_full}->fakeawnsers
+- -(fakeawnsers)
+* *H- Wow, Le contraste est flagrant , vous ne mentiez en parlant de votre prestigieux hôtel.
+M- Pourquoi l'aurai-je fais, vous êtes mes invités, c'est un plaisir pour moi de vous accueillir.->fakeawnsers
+* *G- C'est... impressionnant *elle se rapproche de Hansel
+M- Effectivement mes visiteurs sont souvent ébahis en arrivant, j'en suis plutôt fier d'ailleurs ça veut dire que mon Casino fait bonne première impression.
+-(scene_full)
+-(suite)
+M-Comme vous pouvez le constater nous nous trouvons à l'entrée c'est d'ici que vous pourrez accéder à nos différents jeu, malheureusement je n'ai que 3 jeux à vous proposer aujourd'hui, les différents croupiers du casino expliqueront bien mieux que moi les jeux auxquels ils sont attribués. Comme promis vous pourrez gagner des Neumark ou des métadonnées pour chaque manche remportée.
+*[Neumark]->neumark
+*[Métadonnées]->meta
+-(neumark)
+Très bien alors pour chaque partie remportée face à mes employés vous gagnerez des Neumark.->suite2
+-
+
+-(meta)
+C'est décidé alors, des métadonnées pour notre tandem.\
+->suite2
+-
+
+-(suite2)
+
+H- On peut rester autant qu'on veux ?
+M- Evidemment, jouez autant que vous le souhaitez, amuser vous autant que vous le voulez (reformuler), si vous avez la moindre question je reste à votre disposition.
 /*Le majordome présente la salle de jeu et les récompenses possible, hansel et grethel sont enjoué à l'idée de pouvoir, il présente les différentes salle et propose à H/G de commencer à jouer.*/
+//*[G- Parler]
+*[Question de H/G] ->Gquestion
+
 +[CroupierCarreaux]->CroupierCarreaux 
 
 +[CroupierCoeur]->CroupierCoeur
 
 +[CroupierTrefle]->CroupierTrefle
+
+-(Gquestion)
+Une question me turlupine, tout à l'heure vous nous avez dit qu'il n'y a pas de contrepartie comment faite vous tourner le casino ?
+M- Excellente remarque de votre part mademoiselle, le casino tourne sur les fonds d'investissement de grande entreprises tels que Bargeld et Endlos Netz malheureusement, dût à la crise économique nous avons du fermer une partie des jeux à disposition normalement.->suite2
+-
+
 
 {~curseur = 0 && CroupierCarreaux && CroupierCoeur && CroupierTrefle }->CurseurGrethel
 
@@ -131,45 +168,17 @@ le majordome emphatique leur propose de s'interlink dans son casino dont il fait
 {~curseur = 1 && CroupierCarreaux && CroupierCoeur && CroupierTrefle }->CurseurMid
 
 ==CroupierCarreaux
-Info: coeur 
+CC-greeting
+CC-présentation du jeux
+JEUX
+G-Question/blabla avec le croupier
+Le croupier propose de refaire une partie
+into reblabla
 
-{CroupierTrefle:
-info:trefle
-~trefle = true
-}
-if var carreau = 2 alors info majordome
-+[parler du majordome]
-{not carreau:
-majordome gentil
-}
-{carreau:
-majordome pas gentil
-}
+Info: coeur cachée dans le talk 
+conclusion de conversation
 
-->Hall_Casino
-
-==CroupierCoeur
-Info trefle 
-{CroupierCarreaux:
-info carreau
-~carreau = true
-}
-+[parler du majordome]
-{not coeur:
-majordome gentil
-}
-{coeur:
-majordome pas gentil
-}
-
-->Hall_Casino
-
-==CroupierTrefle
-info carreau 
-{CroupierCoeur:
-info coeur:
-~coeur = true
-}
+ne pas lui parler de d'ou il est allé dans sa vie
 +[parler du majordome]
 {not trefle:
 majordome gentil
@@ -178,8 +187,55 @@ majordome gentil
 majordome pas gentil
 }
 
+Avant de partir le croupier propose une derniere partie
+
 ->Hall_Casino
 
+==CroupierCoeur
+CC-greeting
+CC-présentation du jeux
+JEUX
+G-Question/blabla avec le croupier
+Le croupier propose de refaire une partie
+into reblabla
+
+conclusion de conversation
+Info trefle 
+
+ne pas lui parler de son ex-femme
++[parler du majordome]
+{not carreau:
+majordome gentil
+}
+{carreau:
+majordome pas gentil
+}
+
+Avant de partir le croupier propose une derniere partie
+
+->Hall_Casino
+
+==CroupierTrefle
+CC-greeting
+CC-présentation du jeux
+JEUX
+G-Question/blabla avec le croupier
+Le croupier propose de refaire une partie
+into reblabla
+
+conclusion de conversation
+info carreau 
++[parler du majordome]
+{not coeur:
+majordome gentil
+}
+{coeur:
+majordome pas gentil
+}
+
+Avant de partir le croupier propose une derniere partie
+
+->Hall_Casino
 
 ==CurseurGrethel
 Grethel a récolté suffisamment d'indices sur le lieu et l'identité du Majordome, ce qui lui permet de convaincre son frère de partir d'ici (Labyrinthe out)
