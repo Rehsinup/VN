@@ -1,74 +1,77 @@
 VAR curseur = 0
-
+VAR carreau = false
+VAR trefle = false
+VAR coeur = false
 VAR A = 0 
-En l'an 2087, dans les bas-fonds de Neo-Berlin, deux jeunes ados n'ayant connu que l'amour inconditionnel de leur père se retrouvent dans l'impasse lorsque celui-ci tomba gravement malade et furent mis à la porte par leur détestable belle-mère.<>->Scene1
+VAR objet = false
+En l'an 2087, dans les bas-fonds de Neo-Berlin, deux jeunes ados n'ayant connu que l'amour inconditionnel de leur père se retrouvent dans l'impasse. Lorsque celui-ci tomba gravement malade, ils furent mis à la porte par leur détestable belle-mère.\
+->Scene1
 ==Scene1 
-<>HORS DE MA VUE !!! Ne cherchez pas à revenir ici, votre père est dans cette situation par votre faute vous ne le méritez pas !
+HORS DE MA VUE !!! Ne cherchez pas à revenir ici, votre père est dans cette situation par votre faute. Vous ne le méritez pas !
 ->Ruelle
 
 ==Ruelle
 /*Conversation entre Hansel et Grethel, pose la dynamique entre les deux
 showbg ruelle On puis scene clef, on revient ensuite sur H et G dans la ruelle avec les neon on dans la ruelle, qui decident d'y aller.*/
-Après quelques heures à errer sous la pluie, Hansel et Grethel désormais démunis se regardent dans le blanc des yeux d'un air livide signe de leur désespoir.
+Après quelques heures à errer sous la pluie, Hansel et Grethel désormais démunis se regardent dans le blanc des yeux, d'un air livide signe de leur désespoir.
 G-Mon frère comment allons nous faire, papa est mourant et nous ne pouvons plus rentrer chez nous.
-H- "Greth... 
+H-"Greth... 
 viens par là, 
-je sais à quel point tu es triste et je le suis tout autant mais il ne faut pas qu'on se laisse abattre.
-G-Mais notre père... je n'ai jamais eu confiance en notre belle-mère je ne veux pas le laisser seul.
-H-Moi aussi Greth mais ne t'inquiète pas, j'ai quelques plans pour sortir d'ici mais ça risque de prendre du temps avant d'y parvenir alors fais moi confiance sœurette.
+je cmprends que tu sois triste et je le suis autant. Mais il ne faut pas qu'on se laisse abattre.
+G-Mais notre père... je n'ai jamais eu confiance en notre belle-mère. Je ne veux pas le laisser seul, j'ai peur.
+H-Moi aussi Greth mais ne t'inquiète pas, j'ai toujours un plan pour sortir d'ici ! Mais ça risque de prendre du temps avant d'y parvenir, alors fais moi confiance sœurette.
 En attendant on va devoir se débrouiller seuls... 
-et trouver de quoi manger ainsi qu'un lieu où crécher.
-G-Tu sais que toi comme moi nous avons confiance en tes premiers instinct. 
+et trouver de quoi manger, ainsi qu'un lieu où squatter.
+G-Tu sais, toi comme moi, que nous avons confiance en tes premiers instincts. 
 *[Fouiller la ruelle]->Fouiller_la_ruelle
 *[Evoquer les plans]->Evoquer_les_plans
 -(Fouiller_la_ruelle)
-H-Tant qu'il est encore temps essayons de recolter quelques chose qui pourrait nous aider a passer la nuit, le mieux serait d'aller chacun de notre...
+H-Tant qu'il est encore temps, essayons de recolter quelques choses qui pourrait nous aider à passer la nuit. Le mieux serait d'aller chacun de notre...
 G-NON,
 ..., 
-Restons ensemble je ne veux pas qu'il t'arrive quelque chose, père est sur son lit de mort et la basse ville n'est pas recommendable, et j'aurai besoin de toi si il m'arrive une bricole.
-H-D'accord, avançons ensemble, commençons par ce distributeur, tu penses pouvoir le hacker ?
+Restons ensemble. Je ne veux pas qu'il t'arrive quoique ce soit, père est sur son lit de mort et la basse ville n'est pas recommendable. J'aurai besoin de toi si il m'arrive quelque chose.
+H-D'accord, avançons ensemble. Commençons par ce distributeur, tu penses pouvoir le hacker ?
 G-Mmmhh,
-H-Alors qu'es-ce ça donne.
+H-Alors qu'est-ce ça donne ?
 G-Je crois qu'il est déconnecté.
-H-Laisse moi essayer de casser la vitre avec mon implant 
+H-Laisse-moi essayer de casser la vitre avec mon implant.
 G-Mais on risque de se faire repérer.
 H-T'inquiète je sais ce que je fais.
 SFX *CRACK* bruit de vitre qui se casse
 H-Merde, c'est avarié... 
 G-Il n'y a rien d'autre ?
-H-Non, rien de rien tout est pourri on va devoir chercher ailleur.
-(peut-etre essayer de brancher un truc et ça allume les neon)
+H-Non, rien de rien. Tout est pourri, on va devoir chercher ailleurs.
+(peut-être essayer de brancher un truc et ça allume les néons)
 NEON ON ->Neon_ON
 
 --(Evoquer_les_plans)
-H-Je pense avoir un plan pour dormir ce soir mais il se trouve plus loin dans la ville, il faut qu'on se sépare pour passer inaperçu
-G-Hans tu sais que je peux pas sortir loin en ville sans toi. Cette ville me fait peur.
-H-Allez Greth, c'est chez une bonne connaissance, il m'a déja sauvé de plusieurs affaires.
-G-Tu me parles de ton collègue Max, celui qui t'as couté ce bras ?
-H-Oui on a presque perdu la vie ce jour la mais c'etait lui qui m'a sorti de la Greth je lui doit beaucoup et il peut encore nous aider.
-G-Mais c'est lui qui a eu l'idée d'aller la bas il me semble.
-H-Oui tu as raison Greth, peut être que je devrai t'écouter mais je n'ai pas d'autre solution pour le moment.
-G-Je suis sur que tu en trouveras une rapidement, après tout c'est toi qui connais le mieux la basse ville.
+H-Je pense avoir un plan pour dormir ce soir, mais il se trouve plus loin dans la ville. Il faut qu'on se sépare pour passer inaperçu.
+G-Hans, tu sais que je ne me sens pas à l'aise en ville sans toi.
+H-T'en fais pas Greth, c'est chez une bonne connaissance. Il m'a sauvé de plusieurs mauvaises aventures, même s'il m'entreraîne dans d'autres.
+G-Ah...Max. Celui qui t'as couté ce bras ?
+H-Oui, on a presque perdu la vie ce jour là... Mais il m'a sauvé et je lui dois beaucoup. Il saura comment nous sortir de là.
+((G-Certes, mais c'est lui qui a eu l'idée d'aller la bas il me semble.
+H-Oui tu as raison Greth, peut être que je devrais t'écouter mais je n'ai pas d'autre solution pour le moment.))
+G-Même si ça sent le plan foireux, c'est toujours mieux que rien je suppose.
 --
 
 --(Neon_ON)
 SFX *Zing (genre neon qui s'allume)
-H et G-*air interloqué*
-H-On y voit plus clair tout à coup.
-G-Oui la ville commence à s'illuminer à cette heure-ci.
-H-Regarde les lumières on dirait que celui qui les a posés la voulait vraiment qu'on le remarque.
-G-Ahah(c'est nul a chier faut changer)Oui c'est sur que ce n'est pas très discret.
-H-Allons voir de plus près ça pique ma curiosité.
-*[Se drirger vers le lieu]->repGreth
+H+G-*air interloqué*
+G-Oh...Les néons repoussent les ombres.
+H-Oui il est déjà tard. On devrait pas trop tarder dans les ruelles.
+G-Si on suit les lumières peut-être qu'on sera plus en sécurité, non ? Ou alors c'est fait pour nous y attirer...
+H-Ahaha, comme tu veux Greth.
+*[Se dirirger vers le lieu]->repGreth
 *[Dire a Hansel que c'est suspect]->repGreth
 
 ---(repGreth)
-G- Allons-y je te suis Hans mais fait attention, les apparences sont souvent trompeuses dans la basse ville. 
-H- Je comprend ce que tu essaies de me faire voir mais c'est surement un commerce de nuit qui vient d'ouvrir ces portes, rien de quoi s'inquiéter.
-G- Oui désolé c'est moi qui réfléchit trop. 
-H-Ne te reproche pas cela ,c'est aussi pour ça que j'ai besoin de toi Greth.
-G-Merci, je te laisse prendre les devants une fois dedans, tu es plus doué que moi la dessus.
-H-Parfait allons-y.
+G-Allons-y Hans, mais fais attention, dans la basse ville les apparences sont souvent trompeuses. 
+H-Hum...Mais tu sais c'est sûrement un nouveau commerce de nuit qui vient d'ouvrir, je pense qu'on a pas besoin de s'inquiéter.
+G-Okay, désolée, c'est moi qui réfléchit trop. Peut-être que je me prends la tête pour rien.
+H-Te tracasse pas Greth, chacun son truc, toi tu réfléchis et moi j'agis !
+G-Aha merci, tu peux prendre les devants une fois dans le bâtiment, on sait tous les deux que tu t'en sortiras mieux.
+H-Parfait, allons-y.
 -
 ---
 ->Sous_sol
@@ -76,36 +79,44 @@ H-Parfait allons-y.
 ->Sous_sol
 
 ==Sous_sol
-H : C'est pas du tout ce quoi on s'attendait, l'endroit etait plus attrayant de l'extérieur.
-G : C'est quoi cet endroit ? On dirait une sorte de bazar bloqué dans le passé.
-H : Mhh je doute qu'on y trouve quoi que ce soit d'intéressant tout est poussiéreux et délabré sans parler de l'odeur mais jetons quand même un coup d'oeil autour on sait jamais sur quoi on va tomber.
-G : Oui ça tu l'as dis, j'ai l'impression d'être observé alors hâtons nous.
-*[décrire l'odeur]->odeur
-*[décrire la pièce]->piece
-*[parler de l'objet sur le comptoir]->objet
-*driiing*
-M : Oh là, excusez-moi jeunes gens, je ne vous ai pas du tout entendu entrer  !
-HetG : Et nous on ne s'attendait pas à voir quelqu'un ici.
-M : Veuillez m'excuser si je vous ai fait peur, permettez moi de me présenter, je suis celui qu'on appelle "le Majordome", propriétaire du prestigieux "Hexe Holle".
-H : Le Hexe Holle ? Jamais entendu parler et pourtant je connais bien ce secteur de la Basse-ville.
-M : Il n'y a pas de mal à cela vous êtes jeunes, mon établissement est très réputé auprès des amateurs de jeux nous ne cherchons pas à être connu de tous.
-H : De jeu ? Genre CyberBrawl ou NeuroMaze ? 
-M : Non, je parle ici de jeux plus anciens, plus nobles que ceux de nos jours, pas de sang pas de piratage juste votre réflexion et bien sûr une petite part de chance mais c'est ce qui rend chaque partie intéressante.
-H : Et on y gagne quoi ? des métadonnées, des NeuMark ? 
-M : tout se dont vous avez besoin peut être mis en jeu, nous som- enfin "je" suis plein de ressources. Et donc que recherchez vous jeunes gens ?
-G : Le mieux serait du NeuMark mais s'il est traçable alors il sera inutilisable dans beaucoup d'endroits.
-H : Et avec les métadonnées ? on pourrait trouver des acheteurs non, mon ami Vanz saura vers qui m'orienter si il est sortie de taule...
-M : Je vous laisse du temps pour vous décider, en tout cas mes portes sont ouvertes faites moi signes quand vous aurez choisi
--(odeur)
+H-C'est pas du tout ce à quoi je m'attendais... 
+L'endroit semblait plus attrayant de l'extérieur.
+G-C'est quoi cet endroit ? On dirait une sorte de bazar figé dans le passé.
+H-Hum... je doute qu'on y trouve quoi que ce soit d'intéressant. Tout est poussiéreux et délabré, sans parler de l'odeur ! Mais jetons quand même un coup d'oeil autour, on sait jamais sur quoi on peut tomber.
+G-Ouai ça tu l'as dis, j'ai l'impression d'être observé... Dépêchons nous.
 
++{not scene_full}->description
+- -(description)
+* * [décrire l'odeur] G-Il y a une odeur de vieux bois et de papiers anciens. ->description
+* * [décrire la pièce]H-Où est-ce qu'on a atterit ? C'est plein de babioles d'une autre époque. Le comptoir est plein de poussière.
+G-Oui c'est étrange, regarde cette boîte avec une sorte de fleur métallique. Je me demande à quoi ça pouvait servir.
+H-Tout à l'air vieu, on dirait que le propiétaire est lui aussi coincé dans le passé. ->description
+* * [parler de l'objet sur le comptoir]
+G-Fais attention en touchant les objets.
+H-T'inquiète regarde, les pages de magazines sont collées, on dirait qu'ils sont là depuis une éternité.
+G-Il y a une clochette sur le comptoir... C'est bizarre elle est lustrée, comme si elle servait encore. ->description
+* *(scene_full)->arrivee_majordome
+
+
+-(arrivee_majordome)
+*[Utiliser la sonnette]
+M-Oh là, excusez-moi jeunes gens, je ne vous ai pas du tout entendu entrer !
+H+G-Et nous on ne s'attendait pas à voir quelqu'un ici.
+M-Veuillez m'excuser si je vous ai fait peur, permettez moi de me présenter. Je suis celui qu'on appelle "le Majordome", propriétaire du prestigieux "Hexe Holle".
+H-Le Hexe Holle ? Jamais entendu parler et pourtant je connais la Basse-ville comme ma poche.
+M-Il n'y a pas de mal à cela, mon établissement est réservé aux amateurs de jeux que nous trions sur le volet.
+Nous ne cherchons pas à être connu de tous.
+H-De jeu ? Genre CyberBrawl ou NeuroMaze ?
+M-Non, je parle ici de jeux plus anciens, plus nobles que ceux de nos jours. Pas de sang, pas de piratage, juste votre réflexion. Et bien sûr une petite part de chance ! 
+Mais c'est ce qui rend chaque partie intéressante.
+H-Et on y gagne quoi ? Des métadonnées, des NeuMark ?
+M-Tout ce dont vous avez besoin peut être mis en jeu. Nous som-
+enfin JE suis plein de ressources. Et donc que recherchez vous jeunes gens ?
+G-Le mieux serait du NeuMark. Mais le problème c'est qu'il pourrait être traçable. Du coup il serait inutilisable dans beaucoup d'endroits.
+H-Et les métadonnées ? On pourrait trouver des acheteurs non ? Mon ami Vanz saura vers qui m'orienter. si il est sorti de taule.
+G-Hum, je suis sûr que je ferais du meilleur travail que ce lunatique de Vanz ! Laissons-le en dehors de ça.
+M-Je vous laisse le temps de vous décider. En tout cas les portes de mon casino vous sont ouvertes. Faites moi signe quand vous vous serez décidés.
 -
-
--(piece)
-
--
-
--(objet)
-
 -
 /*Hansel et grethel découvre l'endroit (contemplation avec possibilité de regarder les objets autour de nous)
 Le majordome arrive ensuite et se présente à H et G, leur explique le lieu de manière avenante, qui il est etc (façade)
@@ -114,12 +125,50 @@ le majordome emphatique leur propose de s'interlink dans son casino dont il fait
 ->Hall_Casino
 
 ==Hall_Casino
+H+G *air étonné*
+M-Bravo pour le test ! Ce n'était qu'une formalité évidemment, rien de très compliqué. 
+Le retour au casino est un peu déroutant au début, ne vous en faites pas... ça change de mon antre, n'est-ce pas ?
++{not scene_full}->fakeawnsers
+- -(fakeawnsers)
+* *H-Wow, le contraste est flagrant. Vous ne mentiez en parlant de votre prestigieuse institution.
+M-Pourquoi l'aurais-je fait, vous êtes mes invités, c'est un plaisir pour moi de vous accueillir.->fakeawnsers
+* *G-C'est... impressionnant *elle se rapproche de Hansel
+M-Effectivement, mes visiteurs sont souvent ébahis en arrivant. J'en suis plutôt fier d'ailleurs, ça veut dire que mon casino fait une bonne première impression.->fakeawnsers 
+* *(scene_full)->suite
+-(suite)
+M-Comme vous pouvez le constater, nous nous trouvons à l'entrée. 
+C'est d'ici que vous pourrez accéder à nos différents jeux. Malheureusement, je n'ai que 3 jeux à vous proposer aujourd'hui. Les divers croupiers du casino expliqueront bien mieux que moi les jeux auxquels ils sont attribués. 
+Comme promis vous pourrez gagner des Neumark ou des métadonnées pour chaque manche remportée.
+*[Neumark]->neumark
+*[Métadonnées]->meta
+-(neumark)
+Très bien alors, pour chaque partie remportée face à mes employés vous gagnerez des Neumarks.->suite2
+-
+
+-(meta)
+C'est décidé alors, des métadonnées pour notre binôme.\
+->suite2
+-
+
+-(suite2)
+
+H-On peut rester autant qu'on veut ?
+M-Evidemment, jouez autant que vous le souhaitez, si vous avez la moindre question je reste à votre disposition.
 /*Le majordome présente la salle de jeu et les récompenses possible, hansel et grethel sont enjoué à l'idée de pouvoir, il présente les différentes salle et propose à H/G de commencer à jouer.*/
-*[Croupier1]->CroupierCarreaux 
+//*[G- Parler]
+*[Question de H/G] ->Gquestion
 
-*[Croupier2]->CroupierCoeur
++[CroupierCarreaux]->CroupierCarreaux 
 
-*[Croupier3]->CroupierTrefle
++[CroupierCoeur]->CroupierCoeur
+
++[CroupierTrefle]->CroupierTrefle
+
+-(Gquestion)
+G-Une question me turlupine, tout à l'heure vous nous avez dit qu'il n'y avait pas de contrepartie aux jeux. Mais alors, comment fonctionne le casino ?
+M-Excellente remarque de votre part mademoiselle. Le casino tourne sur les fonds d'investissement de grandes entreprises, telles que Bargeld et Endlos Netz. Malheureusement à cause de la crise économique, nous avons dû fermer une partie des jeux à disposition.->suite2
+-
+
 
 {~curseur = 0 && CroupierCarreaux && CroupierCoeur && CroupierTrefle }->CurseurGrethel
 
@@ -127,16 +176,75 @@ le majordome emphatique leur propose de s'interlink dans son casino dont il fait
 
 {~curseur = 1 && CroupierCarreaux && CroupierCoeur && CroupierTrefle }->CurseurMid
 
-
 ==CroupierCarreaux
+CC-greeting
+CC-présentation du jeux
+JEUX
+G-Question/blabla avec le croupier
+Le croupier propose de refaire une partie
+into reblabla
+
+Info: coeur cachée dans le talk 
+conclusion de conversation
+
+ne pas lui parler de d'ou il est allé dans sa vie
++[parler du majordome]
+{not trefle:
+majordome gentil
+}
+{trefle:
+majordome pas gentil
+}
+
+Avant de partir le croupier propose une derniere partie
+
 ->Hall_Casino
 
 ==CroupierCoeur
+CC-greeting
+CC-présentation du jeux
+JEUX
+G-Question/blabla avec le croupier
+Le croupier propose de refaire une partie
+into reblabla
+
+conclusion de conversation
+Info trefle 
+
+ne pas lui parler de son ex-femme
++[parler du majordome]
+{not carreau:
+majordome gentil
+}
+{carreau:
+majordome pas gentil
+}
+
+Avant de partir le croupier propose une derniere partie
+
 ->Hall_Casino
 
 ==CroupierTrefle
-->Hall_Casino
+CC-greeting
+CC-présentation du jeux
+JEUX
+G-Question/blabla avec le croupier
+Le croupier propose de refaire une partie
+into reblabla
 
+conclusion de conversation
+info carreau 
++[parler du majordome]
+{not coeur:
+majordome gentil
+}
+{coeur:
+majordome pas gentil
+}
+
+Avant de partir le croupier propose une derniere partie
+
+->Hall_Casino
 
 ==CurseurGrethel
 Grethel a récolté suffisamment d'indices sur le lieu et l'identité du Majordome, ce qui lui permet de convaincre son frère de partir d'ici (Labyrinthe out)

@@ -27,7 +27,9 @@ public class BypassMinigame : MonoBehaviour
         sphereColors[id] = GetAssignedColor(id);
         sphereRenderer.material.color = Color.white;
     }
-
+    /// <summary>
+    /// Affiche la couleur de la sphère lorsque la souris entre dans le collider.
+    /// </summary>
     void OnMouseEnter()
     {
         if (!isMatched && !isClicked) // Affiche la couleur seulement si la sphère n'a pas été cliquée ou validée
