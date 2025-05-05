@@ -173,7 +173,7 @@ namespace vinkn
                 c.transform.position = a.transform.position;
         }
 
-        // Si tu veux gérer la pause de la narration
+        // Gérer la pause de la narration
         public void PauseNarration()
         {
             if (narrationCanvas != null)
