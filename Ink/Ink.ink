@@ -17,7 +17,7 @@ Après quelques heures à errer sous la pluie, Hansel et Grethel désormais dém
 G-Mon frère comment allons nous faire, papa est mourant et nous ne pouvons plus rentrer chez nous.
 H-"Greth... 
 viens par là, 
-je cmprends que tu sois triste et je le suis autant. Mais il ne faut pas qu'on se laisse abattre.
+je comprends que tu sois triste et je le suis autant. Mais il ne faut pas qu'on se laisse abattre.
 G-Mais notre père... je n'ai jamais eu confiance en notre belle-mère. Je ne veux pas le laisser seul, j'ai peur.
 H-Moi aussi Greth mais ne t'inquiète pas, j'ai toujours un plan pour sortir d'ici ! Mais ça risque de prendre du temps avant d'y parvenir, alors fais moi confiance sœurette.
 En attendant on va devoir se débrouiller seuls... 
@@ -201,49 +201,56 @@ Avant de partir le croupier propose une derniere partie
 ->Hall_Casino
 
 ==CroupierCoeur
-CC-greeting
-CC-présentation du jeux
-JEUX
-G-Question/blabla avec le croupier
-Le croupier propose de refaire une partie
-into reblabla
-
-conclusion de conversation
-Info trefle 
-
-ne pas lui parler de son ex-femme
-+[parler du majordome]
-{not carreau:
-majordome gentil
-}
-{carreau:
-majordome pas gentil
-}
-
-Avant de partir le croupier propose une derniere partie
+CCO-Bienvenue, bienvenue, asseyez-vous.
+CCO-Vous êtes la pour jouer c'est ça ?
++[H-Oui]->Oui
++[G-Non]->Non
+-(Non)
+Allons allons pourquoi êtes vous ici alors *bruit de carte qui se distribue* ->suite3
+-
+-(Oui)
+Alors jouons *bruit de carte qui se distribue*->suite3
+-
+-(suite3)
+G à H-Elle a l'air speed dis donc.
+H à G- C'est clair.
+CCO-Ici vous jouerez au memory, 
+le jeu est simple, 
+il vous faut constituez des paires de cartes, 
+vous retournez deux cartes, si les elles sont identiques alors vous les laissez faces retournées,
+...
+...
+sinon vous les retournées face cachée. L'objectif est de trouver toutes les paires, (en sachant que toute les cartes s'y trouve par paire.)
+G-Ca va ? Vous avez l'air d'avoir eu une absence.
+CCO-Excusez-moi, ce sont des souvenirs qui ressurgissent. Vous êtes près pour le jeu ? (Si vous avez besoin que je vous réexplique les règle pendant la partie il vous suffira de cliquer sur le "?".)
+-
 
 ->Hall_Casino
 
 ==CroupierTrefle
-CC-greeting
-CC-présentation du jeux
-JEUX
-G-Question/blabla avec le croupier
-Le croupier propose de refaire une partie
-into reblabla
-
-conclusion de conversation
-info carreau 
-+[parler du majordome]
-{not coeur:
-majordome gentil
-}
-{coeur:
-majordome pas gentil
-}
-
-Avant de partir le croupier propose une derniere partie
-
+CCO-Bienvenue, bienvenue, asseyez-vous.
+CCO-Vous êtes la pour jouer c'est ça ?
++[H-Oui]->Oui
++[G-Non]->Non
+-(Non)
+Allons allons pourquoi êtes vous ici alors *bruit de carte qui se distribue* ->suite3
+-
+-(Oui)
+Alors jouons *bruit de carte qui se distribue*->suite3
+-
+-(suite3)
+G à H-Elle a l'air speed dis donc.
+H à G- C'est clair.
+CCO-Ici vous jouerez au memory, 
+le jeu est simple, 
+il vous faut constituez des paires de cartes, 
+vous retournez deux cartes, si les elles sont identiques alors vous les laissez faces retournées,
+...
+...
+sinon vous les retournées face cachée. L'objectif est de trouver toutes les paires, (en sachant que toute les cartes s'y trouve par paire.)
+G-Ca va ? Vous avez l'air d'avoir eu une absence.
+CCO-Excusez-moi, ce sont des souvenirs qui ressurgissent. Vous êtes près pour le jeu ? (Si vous avez besoin que je vous réexplique les règle pendant la partie il vous suffira de cliquer sur le "?".)
+-
 ->Hall_Casino
 
 ==CurseurGrethel
