@@ -11,6 +11,7 @@ public class CharacterLabels : MonoBehaviour
         public SOCharacter character;
         public Image banniere;
         public Sprite banniereSprite;
+        public SpriteRenderer characterSprite;
     }
     [SerializeField] private List<CharacterBanniere> banniereList;
     // Start is called before the first frame update
@@ -24,18 +25,26 @@ public class CharacterLabels : MonoBehaviour
     {
         
     }
-    public void OnChangeCharacter(SOCharacter newCharacter) 
-    { 
+    public void OnChangeCharacter(SOCharacter newCharacter)
+    {
         CharacterBanniere banniereView = banniereList.Find(x => x.character == newCharacter);
+
         foreach (CharacterBanniere b in banniereList)
         {
+            // UI : Image (bannière)
             b.banniere.materialForRendering.SetFloat("_Saturation", 0);
+
+            // Sprite : SpriteRenderer (personnage)
+            b.characterSprite.material.SetFloat("_Saturation", 0.5f);
         }
-        if (banniereView == null )
+
+        if (banniereView == null)
         {
             return;
         }
+
         banniereView.banniere.materialForRendering.SetFloat("_Saturation", 1);
+        banniereView.characterSprite.material.SetFloat("_Saturation", 1);
         banniereView.banniere.sprite = banniereView.banniereSprite;
     }
 }
