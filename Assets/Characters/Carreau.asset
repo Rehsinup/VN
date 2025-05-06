@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tag: Carreau
   characterName: Carreau
-  characterColor: {r: 1, g: 0.9832225, b: 0, a: 0}
+  characterColor: {r: 1, g: 0.9832225, b: 0, a: 1}
   defaultExpression: Idle
   expressions:
   - expressionName: Idle

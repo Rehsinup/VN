@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tag: Grethel
   characterName: Grethel
-  characterColor: {r: 1, g: 0, b: 0.93190193, a: 0}
+  characterColor: {r: 1, g: 0, b: 0.93190193, a: 1}
   defaultExpression: Idle
   expressions:
   - expressionName: Idle
