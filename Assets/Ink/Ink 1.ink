@@ -32,7 +32,7 @@ Après quelques heures à errer sous la pluie, Hansel et Grethel désormais dém
 
 
 ~show("Grethel")
-~show("Hansel")
+~show("Hansel2")
 Grethel: Mon frère comment allons nous faire, papa est mourant et nous ne pouvons plus rentrer chez nous.
 
 Hansel: "Greth... 
@@ -88,21 +88,21 @@ Hansel: Oui tu as raison Greth, peut être que je devrais t'écouter mais je n'a
 
 Grethel: Même si ça sent le plan foireux, c'est toujours mieux que rien je suppose.
 ~hide("Grethel")
-~hide("Hansel")
+~hide("Hansel2")
 
 --
 
 --(Neon_ON)
 SFX *Zing (genre neon qui s'allume)
 ~show("Grethel")
-~show("Hansel")
+~show("Hansel2")
 H+G-*air interloqué*
 
 Grethel: G-Oh...Les néons repoussent les ombres.
 
 Hansel: Oui il est déjà tard. On devrait pas trop tarder dans les ruelles.
 
-Grethel: G-Si on suit les lumières peut-être qu'on sera plus en sécurité, non ? Ou alors c'est fait pour nous y attirer...
+Grethel: Si on suit les lumières peut-être qu'on sera plus en sécurité, non ? Ou alors c'est fait pour nous y attirer...
 
 Hansel: Ahaha, comme tu veux Greth.
 *[Se dirirger vers le lieu]->repGreth
@@ -120,18 +120,18 @@ Hansel: Te tracasse pas Greth, chacun son truc, toi tu réfléchis et moi j'agis
 Grethel: Aha merci, tu peux prendre les devants une fois dans le bâtiment, on sait tous les deux que tu t'en sortiras mieux.
 Hansel: Parfait, allons-y.
 ~hide("Grethel")
-~hide("Hansel")
+~hide("Hansel2")
 -
 ---
 ->Sous_sol
 --
 ~hide("Grethel")
-~hide("Hansel")
+~hide("Hansel2")
 ->Sous_sol
 
 ==Sous_sol
 ~show("Grethel")
-~show("Hansel")
+~show("Hansel2")
 Hansel: C'est pas du tout ce à quoi je m'attendais... 
 L'endroit semblait plus attrayant de l'extérieur.
 
@@ -144,47 +144,70 @@ Grethel: Ouai ça tu l'as dis, j'ai l'impression d'être observé... Dépêchons
 
 +{not scene_full}->description
 - -(description)
-* * [décrire l'odeur] G-Il y a une odeur de vieux bois et de papiers anciens. ->description
-* * [décrire la pièce]H-Où est-ce qu'on a atterit ? C'est plein de babioles d'une autre époque. Le comptoir est plein de poussière.
+* * [décrire l'odeur] Il y a une odeur de renfermé et de métal, ainsi un souffle venant de la ventilation. ->description
+* * [décrire la pièce]Hansel: Où est-ce qu'on a atterit ? C'est plein de babioles d'une autre époque. Le comptoir est plein de poussière.
 
 Grethel: Oui c'est étrange, regarde cette boîte avec une sorte de fleur métallique. Je me demande à quoi ça pouvait servir.
 
-Hansel: Tout à l'air vieu, on dirait que le propiétaire est lui aussi coincé dans le passé. ->description
-* * [parler de l'objet sur le comptoir]
+Hansel: Tout à l'air vieux, on dirait que le propriétaire n'a pas voulut se mettre à jour. ->description
+* * [parler des objets dans la pièce]
 
 Grethel: Fais attention en touchant les objets.
 
-Hansel: T'inquiète regarde, les pages de magazines sont collées, on dirait qu'ils sont là depuis une éternité.
+Hansel: T'inquiète regarde, un holo diffuseur,... 2063 ??? C'est hyper vieux, pourquoi est ce que c'est la ?
 
-Grethel: Il y a une clochette sur le comptoir... C'est bizarre elle est lustrée, comme si elle servait encore.
+Grethel: Je ne sais pas, tout a l'air vieux, , les sièges sont poussiéreux et même la ventilation peine à faire son travail.
+Grethel: Regarde, il y a une sonnette sur le comptoir.
 ->description
 * *(scene_full)->arrivee_majordome
 
 
 -(arrivee_majordome)
 *[Utiliser la sonnette]
+~hide("Hansel2")
 ~show("Majordome")
 Majordome: Oh là, excusez-moi jeunes gens, je ne vous ai pas du tout entendu entrer !
 
-H+G-Et nous on ne s'attendait pas à voir quelqu'un ici.
+~show("Hansel2")
+~hide("Majordome")
+~show("Grethel")
+Hansel: Grethel: Et nous on ne s'attendait pas à voir quelqu'un ici.
 
+~hide("Hansel2")
+~show("Majordome")
 Majordome: Veuillez m'excuser si je vous ai fait peur, permettez moi de me présenter. Je suis celui qu'on appelle "le Majordome", propriétaire du prestigieux "Hexe Holle".
+
+~hide("Grethel")
+~show("Hansel")
 Hansel: Le Hexe Holle ? Jamais entendu parler et pourtant je connais la Basse-ville comme ma poche.
+
 Majordome: Il n'y a pas de mal à cela, mon établissement est réservé aux amateurs de jeux que nous trions sur le volet.
 Majordome: Nous ne cherchons pas à être connu de tous.
+
 Hansel: De jeu ? Genre CyberBrawl ou NeuroMaze ?
+
 Majordome: Non, je parle ici de jeux plus anciens, plus nobles que ceux de nos jours. Pas de sang, pas de piratage, juste votre réflexion. Et bien sûr une petite part de chance ! 
 Mais c'est ce qui rend chaque partie intéressante.
+
 Hansel: Et on y gagne quoi ? Des métadonnées, des NeuMark ?
+
 Majordome: Tout ce dont vous avez besoin peut être mis en jeu. Nous som-
 Majordome: enfin JE suis plein de ressources. Et donc que recherchez vous jeunes gens ?
 
+~hide("Hansel")
+~show("Grethel")
 Grethel: Le mieux serait du NeuMark. Mais le problème c'est qu'il pourrait être traçable. Du coup il serait inutilisable dans beaucoup d'endroits.
 
+~hide("Grethel")
+~show("Hansel")
 Hansel: Et les métadonnées ? On pourrait trouver des acheteurs non ? Mon ami Vanz saura vers qui m'orienter. si il est sorti de taule.
 
+~hide("Hansel")
+~show("Grethel")
 Grethel: Hum, je suis sûr que je ferais du meilleur travail que ce lunatique de Vanz ! Laissons-le en dehors de ça.
+~hide("Grethel")
 
+~show("Hansel")
 Hansel: Je vous laisse le temps de vous décider. En tout cas les portes de mon casino vous sont ouvertes. Faites moi signe quand vous vous serez décidés.
 -
 -
@@ -198,23 +221,34 @@ le majordome emphatique leur propose de s'interlink dans son casino dont il fait
 ->Hall_Casino
 
 ==Hall_Casino
-~show("Majordome")
-~show("Grethel")
-~show("Hansel")
+~show("Hansel2")
 ~hide("Coeur")
 ~hide("Carreau")
 ~hide("Trefle")
+~show("Grethel")
+
 H+G *air étonné*
+~hide("Hansel2")
+~show("Majordome")
+
 Majordome: Bravo pour le test ! Ce n'était qu'une formalité évidemment, rien de très compliqué. 
 Majordome: Le retour au casino est un peu déroutant au début, ne vous en faites pas... ça change de mon antre, n'est-ce pas ?
+
 +{not scene_full}->fakeawnsers
 - -(fakeawnsers)
 * *Hansel: Wow, le contraste est flagrant. Vous ne mentiez en parlant de votre prestigieuse institution.
-Majordome: Pourquoi l'aurais-je fait, vous êtes mes invités, c'est un plaisir pour moi de vous accueillir.->fakeawnsers
+~show("Hansel")
+Majordome: Pourquoi l'aurais-je fait, vous êtes mes invités, c'est un plaisir pour moi de vous accueillir.
+~hide("Hansel")
+->fakeawnsers
 * *Grethel: C'est... impressionnant *elle se rapproche de Hansel
-Majordome: Effectivement, mes visiteurs sont souvent ébahis en arrivant. J'en suis plutôt fier d'ailleurs, ça veut dire que mon casino fait une bonne première impression.->fakeawnsers 
+~show("Grethel")
+Majordome: Effectivement, mes visiteurs sont souvent ébahis en arrivant. J'en suis plutôt fier d'ailleurs, ça veut dire que mon casino fait une bonne première impression.
+~hide("Grethel")
+->fakeawnsers 
 * *(scene_full)->suite
 -(suite)
+~show("Hansel")
 Majordome: Comme vous pouvez le constater, nous nous trouvons à l'entrée. 
 C'est d'ici que vous pourrez accéder à nos différents jeux. Malheureusement, je n'ai que 3 jeux à vous proposer aujourd'hui. Les divers croupiers du casino expliqueront bien mieux que moi les jeux auxquels ils sont attribués. 
 Comme promis vous pourrez gagner des Neumark ou des métadonnées pour chaque manche remportée.
@@ -245,6 +279,8 @@ Majordome: Evidemment, jouez autant que vous le souhaitez, si vous avez la moind
 
 -(Gquestion)
 
+~hide("Hansel")
+~show("Grethel")
 Grethel: Une question me turlupine, tout à l'heure vous nous avez dit qu'il n'y avait pas de contrepartie aux jeux. Mais alors, comment fonctionne le casino ?
 
 Majordome: Excellente remarque de votre part mademoiselle. Le casino tourne sur les fonds d'investissement de grandes entreprises, telles que Bargeld et Endlos Netz. Malheureusement à cause de la crise économique, nous avons dû fermer une partie des jeux à disposition.->suite2
@@ -324,7 +360,7 @@ J'espère que vous vous amusez bien, dites moi s'il vous faut quoi que se soit, 
 -(plat)
 Grethel:  Et vous êtes né ici ?
 
-Car : Malheureusement oui, comme beaucoup de gens.
+Carreau : Malheureusement oui, comme beaucoup de gens.
 Hansel: Vous aimez vraiment pas cette ville j'ai l'impression.
 Carreau: Qui peut bien aimer ? Naître ici ça revient à jouer à pile ou face dès la naissance soit on grandit dans la haute ville soit on étouffe ici dans les quartiers bas.
 
@@ -432,16 +468,7 @@ JEU
 
 
 
-
-
-
 ->Hall_Casino
-
-
-
-
-
-
 
 
 
@@ -511,13 +538,21 @@ Coeur: Oui elle rythme ma vie. Dès que j'en ai la possibilité j'attrape mes Sy
 
 Grethel: Je suis une grande fan du groupe "Synthex Virga", peut-être que vous connaissez ?
 
-Coeur: Oui, évidemment.
+Coeur: Evidemment.
 
 Grethel:  J'aimerais vraiment voir les visages derrière leurs masques, dommage que le groupe se soit séparé.
 
-Coeur: J'ai entendu dire qu'il y avait des conflits internes entre les musiciens.
+Coeur: Ouais, j'ai entendu dire qu'il y avait des conflits internes entre les musiciens.
 
-Grethel: C'était les rumeurs oui.
+Grethel:C'était les rumeurs oui, personnellement je pense qu'il y a eu plus que ça. Le groupe était à son apogée, même certains groupe comme les Beatles ont réussi à rester formé alors qu'il y avait de fortes tension entre les musiciens.
+
+Coeur: Vous savez certaines personnes choisissent parfois de finir sur une note positive pour ne pas avoir de regrets plus tard, c'était peut-être leur cas.
+
+Grethel: Alors pourquoi leur séparation avait un arrière goût amer, leur bassiste a disparu sans dire un mot.
+
+Coeur: ...
+Coeur: Ca ne nous regarde pas si vous voulez mon avis. Ils restent tous des humains, on ne pourra jamais comprendre leur décision à moins d'être à leur place.
+
 Hansel: On peut rejouer ou pas... je meurs d'envie de retenter ma chance !
 ->Conversation2
 
@@ -585,27 +620,42 @@ Grethel: On l'espère nous aussi.
 
 -(goodChoicecoeur)
 
-Grethel: Le croupier Carreau nous a dit que vous étiez la chanteuse du groupe Synthex Virga, c'est incroyable ! Je suis fan de votre groupe.
+Grethel: Le croupier Carreau nous a dit que vous étiez la chanteuse du groupe Synthex Virga, c'est incroyable ! Je suis fan de votre groupe.
 
-Coeur: C'est vrai, c'était une époque magnifique, on se sentait libres jusqu'....
-...
-...
+Coeur: C'est vrai, c'était une époque magnifique, on était libre, passionnés et populaire.
+
+Grethel: Mais... 
+Grethel: Pourquoi mettre fin au groupe tout se passait si bien ?
+Grethel: Un album était annoncé, la dynamique semblait bonne du point de vu des fans... Alors pourquoi ?
+
+Coeur: ...
 
 Grethel: Que ce passe-t-il?
 
+Coeur: C'est compliqué.
 
-Coeur: C'est mon mari, le groupe s'est séparé quand il est...
+Grethel: Comment ça ?
 
-Grethel: Je comprends, ne vous sentez pas obligée d'en parler si c'est trop difficile.
+Coeur: Tout est lien avec mon mari... et ce maudit accident.
 
-Coeur: Non, ça va. C'est juste qu'avec le travail j'arrive à me distraire mais même si ça fait déjà 2 ans et demi...
+Grethel: Je comprends, ne vous sentez pas obligée d'en parler.
+
+Coeur: Non, ça va. C'est juste...
+ 
+Coeur:Avec le travail j'arrive à me distraire mais même si ça fait déjà 2 ans et demi...
 Cet événement reste ancré en moi. C'est Bargeld et Endlos Netz qui ont caché l'accident.
-C'était pendant une représentation durant un de leurs concerts soi-disant caritatifs. Il était contre l'idée de supporter ces corpos, mais l'appât du gain était bien trop grand.
-Ses mots ont dû s'ébruiter et....
+Coeur: C'était pendant une représentation durant un de leurs concerts privé soi-disant caritatifs. Il était contre l'idée de supporter ces corpos, mais l'appât du gain était bien trop grand.
+Coeur: Ses mots ont dû s'ébruiter et....
 
 Grethel: Alors c'est pour ça, qu'il n'y a eu qu'une annonce de séparation du groupe ? Les gens suspectaient déjà quelque chose à l'époque.
 
 Coeur: D'ailleurs, il me semble qu'avec la crise, ce casino aurait dû fermer comme tout les autres. C'est étrange qu'il soit encore fonctionnel. Mais pas un mot au majordome ou vous risquez gros.
+
+Grethel: C'est si compromettant que ça ?
+
+Coeur: Oui et en plus de vous attirer des problèmes, je risque d'en pâtir aussi.
+
+Grethel: Okay, on fera gaffe.
 ->Conversation2
 
 -(badChoicecoeur)
