@@ -162,8 +162,10 @@ Grethel: Regarde, il y a une sonnette sur le comptoir.
 * *(scene_full)->arrivee_majordome
 
 
--(arrivee_majordome)
+-(arrivee_majordome) 
 *[Utiliser la sonnette]
+->suitemajordome
+-(suitemajordome)
 ~hide("Hansel2")
 ~show("Majordome")
 Majordome: Oh là, excusez-moi jeunes gens, je ne vous ai pas du tout entendu entrer !

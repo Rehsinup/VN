@@ -17,7 +17,7 @@ Coeur: AAA
 ~hide("Grethel")
 ~show("Majordome")
 ~show("Hansel")
-Majordome: Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Hansel: Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 ~hide("Majordome")
 ~show("Trefle")
 Trefle: Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
