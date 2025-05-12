@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Hansel
+  m_Name: Hansel 1
   m_Shader: {fileID: -6465566751694194690, guid: 800c901497f0e6c4fb87af2a95bb536b, type: 3}
-  m_Parent: {fileID: 2100000, guid: fc4f3f9a86b3927489e4f6374185bbdc, type: 2}
+  m_Parent: {fileID: 2100000, guid: 845c0cdc759a90348be462661baa21c6, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []

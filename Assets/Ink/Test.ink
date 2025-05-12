@@ -9,6 +9,7 @@ aaaa
 Grethel: Lorem ipsum dolor sit amet, consectetur adipiscing elit,
 Grethel: sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 Grethel: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Carreau:Feur
 ~hide("Carreau")
 ~show("Coeur")
 Coeur: AAA

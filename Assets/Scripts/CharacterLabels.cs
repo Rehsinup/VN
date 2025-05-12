@@ -13,18 +13,21 @@ public class CharacterLabels : MonoBehaviour
         public Sprite banniereSprite;
         public SpriteRenderer characterSprite;
     }
+
     [SerializeField] private List<CharacterBanniere> banniereList;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
+
     public void OnChangeCharacter(SOCharacter newCharacter)
     {
         CharacterBanniere banniereView = banniereList.Find(x => x.character == newCharacter);
@@ -35,7 +38,10 @@ public class CharacterLabels : MonoBehaviour
             b.banniere.materialForRendering.SetFloat("_Saturation", 0);
 
             // Sprite : SpriteRenderer (personnage)
-            b.characterSprite.material.SetFloat("_Saturation", 0.5f);
+            b.characterSprite.material.SetFloat("_Saturation", 0.35f);
+
+            // remettre l'ordre par défaut
+            b.characterSprite.sortingOrder = 1;
         }
 
         if (banniereView == null)
@@ -45,6 +51,7 @@ public class CharacterLabels : MonoBehaviour
 
         banniereView.banniere.materialForRendering.SetFloat("_Saturation", 1);
         banniereView.characterSprite.material.SetFloat("_Saturation", 1);
+        banniereView.characterSprite.sortingOrder = 11; // mettre le perso actif en avant
         banniereView.banniere.sprite = banniereView.banniereSprite;
     }
 }
