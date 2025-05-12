@@ -228,7 +228,7 @@ Grethel: Oui oui je sais..
 ~show("Hansel")
 ~show("Majordome")
 Majordome: Alors, vous avez pris votre décision ?
-Hansel: En avant ->hubcomin
+Hansel: En avant ->Hall_Casino
 
 -(Soeur)
 ~hide("Majordome")
@@ -240,14 +240,8 @@ Hansel: Bien sûr, l'occasion est trop belle, pas toi ?
 Grethel: Je sais pas, j'ai une sensation bizarre, un mauvais pressentiment...
 Hansel: je te comprends mais on a vraiment besoin de s'en sortir et là je vois pas d'autres solutions
 Grethel: Je sais je sais mais promets moi que tu seras sur tes gardes peu importe ce qui arrive
-Hansel:  D'accord sœurette j'ouvrirai l'œil ->hubcomin
+Hansel:  D'accord sœurette j'ouvrirai l'œil ->Hall_Casino
 
--(hubcomin)
-~hide("Majordome")
-~hide("Grethel")
-~hide("Hansel")
-~hide("Hansel2")
-->Hall_Casino
 
 
 /*Hansel et grethel découvre l'endroit (contemplation avec possibilité de regarder les objets autour de nous)
@@ -256,6 +250,11 @@ H/G expliquent ensuite leur situation
 le majordome emphatique leur propose de s'interlink dans son casino dont il fait les louanges en expliquant qu'il est touché par leur histoire et est près à les aider.*/
 
 ==Hall_Casino
+~hide("Majordome")
+~hide("Grethel")
+~hide("Hansel")
+~hide("Hansel2")
+
 ~show("Hansel2")
 ~hide("Coeur")
 ~hide("Carreau")
