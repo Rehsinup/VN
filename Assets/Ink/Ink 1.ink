@@ -209,16 +209,49 @@ Grethel: Hum, je suis sûr que je ferais du meilleur travail que ce lunatique de
 
 ~show("Hansel")
 Hansel: Je vous laisse le temps de vous décider. En tout cas les portes de mon casino vous sont ouvertes. Faites moi signe quand vous vous serez décidés.
--
--
+*[Mauvais présentiment de Grethel]->Frere
+*[Rassurer sa soeur]->Soeur
+
+-(Frere)
+~hide("Majordome")
+~hide("Hansel")
+~show("Hansel2")
+~show("Grethel")
+Hansel2: Bon on a l'occasion de se refaire une santé ici, moi et les jeux ça fait qu'un alors fais moi confiance. Tu es prête ?
+Grethel: Si tu penses que c'est une bonne solution je vais pas t'en empêcher
+Hansel2: Mais bien sûr et puis on a pas trop le choix là.
+Grethel: Oui oui je sais..
+~hide("Hansel2")
+~hide("Grethel")
+~show("Hansel")
+~show("Majordome")
+Majordome: Alors, vous avez pris votre décision ?
+Hansel: En avant ->hubcomin
+
+-(Soeur)
+~hide("Majordome")
+~hide("Hansel")
+~show("Hansel2")
+~show("Grethel")
+Grethel: Hans, tu veux vraiment y aller ?
+Hansel: Bien sûr, l'occasion est trop belle, pas toi ?
+Grethel: Je sais pas, j'ai une sensation bizarre, un mauvais pressentiment...
+Hansel: je te comprends mais on a vraiment besoin de s'en sortir et là je vois pas d'autres solutions
+Grethel: Je sais je sais mais promets moi que tu seras sur tes gardes peu importe ce qui arrive
+Hansel:  D'accord sœurette j'ouvrirai l'œil ->hubcomin
+
+-(hubcomin)
+~hide("Majordome")
+~hide("Grethel")
+~hide("Hansel")
+~hide("Hansel2")
+->Hall_Casino
+
+
 /*Hansel et grethel découvre l'endroit (contemplation avec possibilité de regarder les objets autour de nous)
 Le majordome arrive ensuite et se présente à H et G, leur explique le lieu de manière avenante, qui il est etc (façade)
 H/G expliquent ensuite leur situation
 le majordome emphatique leur propose de s'interlink dans son casino dont il fait les louanges en expliquant qu'il est touché par leur histoire et est près à les aider.*/
-~hide("Majordome")
-~hide("Grethel")
-~hide("Hansel")
-->Hall_Casino
 
 ==Hall_Casino
 ~show("Hansel2")
