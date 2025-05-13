@@ -7,6 +7,9 @@ VAR trefle = false
 VAR coeur = false
 VAR A = 0 
 VAR objet = false
+VAR etreAlleVoirUnCroupier = false
+VAR Grethel = 0
+VAR Hansel = 0
 
 VAR DéblocageInfoCroupierCoeur = 0
 VAR DéblocageInfoCroupierTrèfle = 0
@@ -248,6 +251,26 @@ Hansel:  D'accord sœurette j'ouvrirai l'œil ->Hall_Casino
 Le majordome arrive ensuite et se présente à H et G, leur explique le lieu de manière avenante, qui il est etc (façade)
 H/G expliquent ensuite leur situation
 le majordome emphatique leur propose de s'interlink dans son casino dont il fait les louanges en expliquant qu'il est touché par leur histoire et est près à les aider.*/
+FAIRE EN FONCTION DE LA VARIABLE DE HANSEL POUR LA FIN MID ET BAD MAIS EN FONCTION DE GRETHEL POUR LA FIN GOOD
+CAD STAT CHECK: DIRE SI HANSEL A 8 ALORS GO CHECK VAR GRETH POUR SAVOIR DANS QUEL FIN ALLER SINON SI 3 GRETH ALORS CHECK VAR HANS POUR SAVOIR SI FIN MID
+===CheckVariablePourFin
+{Hansel >= 10 && Grethel <=1:
+->CurseurHansel
+- else:
+->hubMajordome
+}
+{Hansel >= 6 && Grethel >=2:
+->CurseurMid
+- else:
+->hubMajordome
+}
+{Hansel <= 6 && Grethel >=3:
+->CurseurGrethel
+- else:
+->hubMajordome
+}
+
+
 
 ==Hall_Casino
 ~hide("Majordome")
@@ -296,11 +319,17 @@ Très bien alors, pour chaque partie remportée face à mes employés vous gagne
 C'est décidé alors, des métadonnées pour notre binôme.\
 ->suite2
 -
-
 -(suite2)
-
 Hansel: On peut rester autant qu'on veut ?
 Majordome: Evidemment, jouez autant que vous le souhaitez, si vous avez la moindre question je reste à votre disposition.
+Hansel: Parfait, alors allons jouer.
+Grethel: Vas-y joues, moi je vais essayer d'en apprendre plus sur cet endroit.
+->hubMajordome
+
+==hubMajordome
+{etreAlleVoirUnCroupier:
+Majordome: {~Vous revoila, j'espère que tout ce passe bien. De quelle table venez-vous ?|Alors, vous vous amusez ? J'espère que tout ce déroule comme vous le souhaitez|Déjà de retour, vous avez l'air en veine !}
+}
 /*Le majordome présente la salle de jeu et les récompenses possible, hansel et grethel sont enjoué à l'idée de pouvoir, il présente les différentes salle et propose à H/G de commencer à jouer.*/
 //*[G- Parler]
 *[Question de H/G] ->Gquestion
@@ -317,7 +346,7 @@ Majordome: Evidemment, jouez autant que vous le souhaitez, si vous avez la moind
 ~show("Grethel")
 Grethel: Une question me turlupine, tout à l'heure vous nous avez dit qu'il n'y avait pas de contrepartie aux jeux. Mais alors, comment fonctionne le casino ?
 
-Majordome: Excellente remarque de votre part mademoiselle. Le casino tourne sur les fonds d'investissement de grandes entreprises, telles que Bargeld et Endlos Netz. Malheureusement à cause de la crise économique, nous avons dû fermer une partie des jeux à disposition.->suite2
+Majordome: Excellente remarque de votre part mademoiselle. Le casino tourne sur les fonds d'investissement de grandes entreprises, telles que Bargeld et Endlos Netz. Malheureusement à cause de la crise économique, nous avons dû fermer une partie des jeux à disposition.->hubMajordome
 -
 
 
@@ -333,7 +362,11 @@ Majordome: Excellente remarque de votre part mademoiselle. Le casino tourne sur 
 
 
 ==CroupierCarreaux
+<<<<<<< HEAD
 //Roulette
+=======
+~etreAlleVoirUnCroupier = true
+>>>>>>> 9207f2058a813e4c49beb646d0cb87d4e89ca4da
 ~hide("Majordome")
 ~show("Carreau")
 ~show("Grethel")
@@ -380,7 +413,7 @@ J'espère que vous vous amusez bien, dites moi s'il vous faut quoi que se soit, 
 ===Conversation1
 *[age]->age
 *[d'ou il vient]->plat
-+[HUB]->Hall_Casino
++[HUB]->CheckVariablePourFin
 {DéblocageInfoCroupierCoeur < 2:
 *[Poser une autre question]->InfoCroupierCoeur
 }
@@ -440,7 +473,7 @@ Carreau: Comment vous savez ? C'est encore trèfle qui sait pas tenir sa langue 
 
 Grethel:  Peut-être, j'étais curieuse de savoir comment un ancien pilote de "Cuirasser Fantôme" aussi réputé que vous avez pu atterrir ici.
 
-Carreau: Ecoutez y a rien a savoir, ce qu'il s'est passé là-bas c'est du passé et j'ai aucune envie d'en parler, la Guerre ça n'a rien de glorieux c'est tout ce que je peux dire. Evitons les questions trop personnels et concentrons nous sur le jeu.
+Carreau: Ecoutez y a rien à savoir, ce qu'il s'est passé là-bas c'est du passé et j'ai aucune envie d'en parler, la Guerre ça n'a rien de glorieux c'est tout ce que je peux dire. Evitons les questions trop personnels et concentrons nous sur le jeu.
 ->Conversation1
 -
 
@@ -508,7 +541,11 @@ JEU
 
 
 ==CroupierCoeur
+<<<<<<< HEAD
 //Memory
+=======
+~etreAlleVoirUnCroupier = true
+>>>>>>> 9207f2058a813e4c49beb646d0cb87d4e89ca4da
 ~show("Coeur")
 ~show("Grethel")
 ~show("Hansel")
@@ -553,7 +590,7 @@ Coeur: J'espère que vous vous amusez bien, dites moi s'il vous faut quoi que se
 ===Conversation2
 *[Complimenter sa maîtrise des cartes]->cartes
 *[Demander pourquoi elle est si speed]->speed
-+[HUB]->Hall_Casino
++[HUB]->CheckVariablePourFin
 {DéblocageInfoCroupierTrèfle >= 2:
 *[Demander comment se passe le travail avec ses collègues]->InfoCroupiertrefle
 }
@@ -708,7 +745,12 @@ Coeur: Revenons au jeu voulez-vous.
 
 
 ==CroupierTrefle
+<<<<<<< HEAD
 //Blackjack
+=======
+~etreAlleVoirUnCroupier = true
+
+>>>>>>> 9207f2058a813e4c49beb646d0cb87d4e89ca4da
 
 ->Hall_Casino
 
