@@ -428,16 +428,13 @@ J'espère que vous vous amusez bien, dites moi s'il vous faut quoi que se soit, 
 *[age]->age
 *[d'ou il vient]->plat
 +[HUB]->CheckVariablePourFin
-{DéblocageInfoCroupierCoeur < 2:
-*[Poser une autre question]->InfoCroupierCoeur
-}
-{DéblocageInfoMajordome:
-*[lui parler d'ou il vient]->InfoMajordome 
-}
+//*{DéblocageInfoCroupierCoeur < 2}[Poser une autre question]->InfoCroupierCoeur
 
-{DéblocageInfoCroupierCoeur >= 2:
-*[Poser une autre question]->InfoCroupierCoeur
-}
+*{DéblocageInfoMajordome}[lui parler d'ou il vient]->InfoMajordome 
+
+
+*{DéblocageInfoCroupierCoeur >= 2}[Poser une autre question]->InfoCroupierCoeur
+
 
 -(plat)
 ~hide("Hansel")
@@ -619,15 +616,12 @@ Coeur: J'espère que vous vous amusez bien, dites moi s'il vous faut quoi que se
 *[Complimenter sa maîtrise des cartes]->cartes
 *[Demander pourquoi elle est si speed]->speed
 +[HUB]->CheckVariablePourFin
-{DéblocageInfoCroupierTrèfle >= 2:
-*[Demander comment se passe le travail avec ses collègues]->InfoCroupiertrefle
-}
-{DéblocageInfoCroupierTrèfle < 2:
-*[La croupière fredonne un air]->musique
-}
-{DéblocageInfoMajordomeCCO:
-*[lui parler d'ou il vient]->InfoMajordome 
-}
+*{DéblocageInfoCroupierTrèfle >= 2}[Demander comment se passe le travail avec ses collègues]->InfoCroupiertrefle
+
+*{DéblocageInfoCroupierTrèfle < 2}[La croupière fredonne un air]->musique
+
+*{DéblocageInfoMajordomeCCO}[lui parler d'ou il vient]->InfoMajordome 
+
 
 
 ===musique
@@ -815,15 +809,12 @@ Trefle: Tout se passe bien pour vous ? Si vous voulez rejouer faites moi signe.
 *[Demander pourquoi il est le croupier trèfle]->pourquoitrefle
 *[Lui parler du blackjack]->blackjack
 +[HUB]->CheckVariablePourFin
-{DéblocageInfoCroupierCarreau >= 2:
-*[Demander comment se passe le travail avec ses collègues]->InfoCroupiercarreau
-}
-{DéblocageInfoCroupierCarreau < 2:
-*[lastQuestionAFaireTrefle]->lastquestion
-}
-{DéblocageInfoMajordometrefle:
-*[lui parler d'ou il vient]->InfoMajordometrefle 
-}
+*{DéblocageInfoCroupierCarreau >= 2}[Demander comment se passe le travail avec ses collègues]->InfoCroupiercarreau
+
+*{DéblocageInfoCroupierCarreau <= 1}[lastQuestionAFaireTrefle]->lastquestion
+
+*{DéblocageInfoMajordometrefle}[lui parler d'ou il vient]->InfoMajordometrefle 
+
 
 ===pourquoitrefle
 Grethel: Vous êtes le croupier trèfle c'est ça ?

@@ -43,17 +43,13 @@ J'espère que vous vous amusez bien, dites moi s'il vous faut quoi que se soit, 
 ===Conversation1
 *[bdbthd]->age
 *[evtrhevtrhg]->plat
-*[HUB]->HUB
-{DéblocageInfoCroupierCoeur < 2:
-*[Poser une autre question]->InfoCroupierCoeur
-}
-{DéblocageInfoMajordome:
-*[lui parler d'ou il vient]->InfoMajordome 
-}
++[HUB]->HUB
 
-{DéblocageInfoCroupierCoeur >= 2:
-*[Poser une autre question]->InfoCroupierCoeur
-}
+*{InfoCroupierCarreau}[infomajor]->InfoMajordome
+
+
+*{DéblocageInfoCroupierCoeur >= 2}[info croup coeur]->InfoCroupierCoeur
+
 
 -(plat)
 blabla

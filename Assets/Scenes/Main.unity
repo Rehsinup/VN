@@ -4677,7 +4677,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startOnAwake: 1
-  storyAsset: {fileID: 4900000, guid: 41431dd9ef58c7d42baa2eae9c0b1e1c, type: 3}
+  storyAsset: {fileID: 4900000, guid: 67d60aba1b274944e99d256e98077692, type: 3}
   eventList:
   - eventName: playSound
     onTrigger:
