@@ -50,6 +50,7 @@ J'espère que vous vous amusez bien, dites moi s'il vous faut quoi que se soit, 
 
 *{DéblocageInfoCroupierCoeur >= 2}[info croup coeur]->InfoCroupierCoeur
 
+*{DéblocageInfoCroupierCoeur <=1}[choix blc]->origine
 
 -(plat)
 blabla
