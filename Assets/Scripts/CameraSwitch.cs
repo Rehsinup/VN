@@ -16,7 +16,9 @@ public class CameraSwitcher : MonoBehaviour
     private float currentSize;
     private bool CanClick = true;
     public Vector2 CamAnimTime;
-
+    [SerializeField] float verticalOffset;
+    [SerializeField] float enterDuration;
+    [SerializeField] float playSize = 5f;
     private void Start()
     {
         
@@ -31,7 +33,15 @@ public class CameraSwitcher : MonoBehaviour
         }
 
         mainCamera = Camera.main;
-        currentSize = mainCamera.orthographicSize;
+
+
+        Vector3 basePos = mainCamera.transform.position;
+        mainCamera.transform.position += Vector3.up * verticalOffset;
+        mainCamera.transform.rotation = Quaternion.Euler(45f, 0f, 0f);
+        mainCamera.DOOrthoSize(playSize, enterDuration);
+        mainCamera.transform.DOMove(basePos, enterDuration);
+        mainCamera.transform.DORotate(Vector3.zero, enterDuration);
+        
     }
 
     private void Update()
@@ -80,6 +90,6 @@ public class CameraSwitcher : MonoBehaviour
 
     void SwitchCam()
     {
-        mainCamera.DOOrthoSize(currentSize, CamAnimTime.y); 
+        mainCamera.DOOrthoSize(playSize, CamAnimTime.y); 
     }
 }

@@ -364,7 +364,11 @@ Majordome: Excellente remarque de votre part mademoiselle. Le casino tourne sur 
 
 
 ==CroupierCarreaux
+<<<<<<< HEAD
+//Roulette
+=======
 ~etreAlleVoirUnCroupier = true
+>>>>>>> 9207f2058a813e4c49beb646d0cb87d4e89ca4da
 ~hide("Majordome")
 ~show("Carreau")
 ~show("Hansel")
@@ -574,7 +578,11 @@ JEU
 
 
 ==CroupierCoeur
+<<<<<<< HEAD
+//Memory
+=======
 ~etreAlleVoirUnCroupier = true
+>>>>>>> 9207f2058a813e4c49beb646d0cb87d4e89ca4da
 ~show("Coeur")
 ~show("Hansel")
 Coeur: Bienvenue, bienvenue, asseyez-vous.
@@ -784,6 +792,9 @@ Coeur: Revenons au jeu voulez-vous.
 
 
 ==CroupierTrefle
+<<<<<<< HEAD
+//Blackjack
+=======
 ~etreAlleVoirUnCroupier = true
 ~show("Trefle")
 ~hide("Grethel")
@@ -939,6 +950,7 @@ Merci pour la conversation en tout cas et je vous souhaite de retrouver vos enfa
 Trefle: Merci pour ces mots et veillez bien l'un sur l'autre.
 ->Conversationtrefle
 
+>>>>>>> 9207f2058a813e4c49beb646d0cb87d4e89ca4da
 
 
 ==CurseurGrethel
