@@ -20,7 +20,8 @@ VAR InfoCroupierCCO = false
 VAR InfoCroupierT = false
 
 VAR DejaVenuCroupierCarreau = false
-VAR DéblocageInfoMajordome = false
+
+VAR DéblocageInfoMajordomeCarreau = false
 VAR DéblocageInfoMajordomeCCO = false
 VAR DéblocageInfoMajordometrefle = false
 
@@ -426,14 +427,14 @@ J'espère que vous vous amusez bien, dites moi s'il vous faut quoi que se soit, 
 
 ===Conversation1
 *[age]->age
-*[d'ou il vient]->plat
+*[Ou il est né]->plat
 +[HUB]->CheckVariablePourFin
-*{DéblocageInfoCroupierCoeur < 2}[Poser une autre question]->InfoCroupierCoeur
+*{DéblocageInfoCroupierCoeur < 2}[origine]->origine
 
-*{DéblocageInfoMajordome}[lui parler d'ou il vient]->InfoMajordome 
+*{DéblocageInfoMajordomeCarreau}[lui parler d'ou il vient]->InfoMajordome 
 
 
-*{DéblocageInfoCroupierCoeur >= 2}[Poser une autre question]->InfoCroupierCoeur
+*{DéblocageInfoCroupierCoeur >= 2}[Ambiance du caisno]->InfoCroupierCoeur
 
 
 -(plat)
@@ -545,7 +546,7 @@ Grethel:  Oui on a vu ça, on fera attention en sa présence merci pour l'info.
 
 
 ===InfoCroupierCoeur
-~InfoCroupierCCO = true
+~DéblocageInfoMajordomeCCO = true
 ~hide("Hansel")
 ~show("Grethel")
 Grethel:  Et sinon vous connaissez bien vos autres collègues ?
@@ -620,7 +621,7 @@ Coeur: J'espère que vous vous amusez bien, dites moi s'il vous faut quoi que se
 
 *{DéblocageInfoCroupierTrèfle < 2}[La croupière fredonne un air]->musique
 
-*{DéblocageInfoMajordomeCCO}[lui parler d'ou il vient]->InfoMajordome 
+*{DéblocageInfoMajordomeCCO}[lui parler du groupe Synthex Virga]->InfoMajordome 
 
 
 
@@ -649,9 +650,11 @@ Coeur: ...
 Coeur: Ca ne nous regarde pas si vous voulez mon avis. Ils restent tous des humains, on ne pourra jamais comprendre leur décision à moins d'être à leur place.
 
 Hansel: On peut rejouer ou pas... je meurs d'envie de retenter ma chance !
+~DéblocageInfoCroupierTrèfle +=1
 ->Conversation2
 
 ===cartes
+~DéblocageInfoCroupierTrèfle +=1
 ~hide("Hansel")
 ~show("Grethel")
 Grethel: On voit que vous maîtrisez les cartes, j'imagine que ça demande une certaine expertise ?
@@ -693,11 +696,12 @@ Grethel: Vous aimez ce que vous faites ?
 Coeur: Je pense que oui, j'utilise surtout ce métier pour m'échapper d'évènements passés.
 
 Grethel: (dans la tête) c'est peut-être pour ça qu'elle ne prend plus le temps...
+~DéblocageInfoCroupierTrèfle +=1
 ->Conversation2
 
 
 ===InfoCroupiertrefle
-~InfoCroupierT = true
+~DéblocageInfoMajordometrefle = true
 ~hide("Hansel")
 ~show("Grethel")
 Grethel: Vous ne travaillez pas toute seule ici il me semble, l'ambiance est bonne ?
@@ -821,8 +825,13 @@ Trefle: Oui c'est bien ça.
 Grethel: Et, sans vouloir être indiscrète pourquoi est-ce que c'est ce symbole qui vous a été attribuée ?
 Trefle: Chaque symbole a une signification, le mien fait référence à une situation inchangé et continue, que cette dernière soit positif ou négatif, je vous laisse interpréter ça à votre manière.
 Grethel: ....
+~hide("Grethel")
+~show("Hansel")
 Hansel: Alors vous....
+~hide("Hansel")
+~show("Grethel")
 Grethel: Il vaut mieux qu'on passe à autre chose.
+~DéblocageInfoCroupierCarreau += 1
 ->Conversationtrefle
 
 ===blackjack
@@ -835,6 +844,7 @@ Trefle: Ça me parait évident, meilleur vous êtes plus vos chances de gagner s
 ~hide("Hansel")
 ~show("Grethel")
 Grethel: Effectivement, vu comme ça, ça fait sens.
+~DéblocageInfoCroupierCarreau += 1
 ->Conversationtrefle
 
 ===lastquestion
@@ -843,6 +853,7 @@ Grethel: Effectivement, vu comme ça, ça fait sens.
 
 
 ===InfoCroupiercarreau
+~DéblocageInfoMajordomeCarreau =true
 ~hide("Hansel")
 ~show("Grethel")
 Grethel: Par hasard, vous auriez des infos sur le croupier carreau ?

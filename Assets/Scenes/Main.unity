@@ -1502,6 +1502,8 @@ MonoBehaviour:
   centerDuration: 2.5
   mainCamera: {fileID: 172521351}
   inkCanvas: {fileID: 8936259553082102583}
+  charas: {fileID: 942299191}
+  backgrounds: {fileID: 208028243}
 --- !u!4 &1029099063
 Transform:
   m_ObjectHideFlags: 0
@@ -4677,7 +4679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startOnAwake: 1
-  storyAsset: {fileID: 4900000, guid: 67d60aba1b274944e99d256e98077692, type: 3}
+  storyAsset: {fileID: 4900000, guid: 79c9986a069af3c40b06a652af6c1ef8, type: 3}
   eventList:
   - eventName: playSound
     onTrigger:

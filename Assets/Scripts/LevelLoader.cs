@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using Unity.VisualScripting;
 
 public class LevelLoader : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class LevelLoader : MonoBehaviour
     [SerializeField] private float centerDuration = 2.5f;
     [SerializeField] private Camera mainCamera;
     [SerializeField] Canvas inkCanvas;
+    [SerializeField] private GameObject charas;
+    [SerializeField] private GameObject backgrounds;
+
     private Vector3 cameraPos;
     private float orthographicSize;
 
@@ -30,6 +34,8 @@ public class LevelLoader : MonoBehaviour
         if (gameObject.scene == scene)
             return;
         inkCanvas.gameObject.SetActive(true);
+        charas.SetActive(true);
+        backgrounds.SetActive(true);
         mainCam.transform.DOMove(cameraPos, centerDuration);
         mainCam.DOOrthoSize(orthographicSize, centerDuration);
     }
@@ -43,6 +49,8 @@ public class LevelLoader : MonoBehaviour
             mainCam.transform.position = new Vector3(0, 0, -10f);
 
         inkCanvas.gameObject.SetActive(false);
+        charas.SetActive(false);
+        backgrounds.SetActive(false);
 
         SceneManager.LoadScene(levelName, LoadSceneMode.Additive);
     }
