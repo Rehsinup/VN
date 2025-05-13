@@ -333,6 +333,7 @@ Majordome: Excellente remarque de votre part mademoiselle. Le casino tourne sur 
 
 
 ==CroupierCarreaux
+//Roulette
 ~hide("Majordome")
 ~show("Carreau")
 ~show("Grethel")
@@ -507,6 +508,7 @@ JEU
 
 
 ==CroupierCoeur
+//Memory
 ~show("Coeur")
 ~show("Grethel")
 ~show("Hansel")
@@ -706,7 +708,7 @@ Coeur: Revenons au jeu voulez-vous.
 
 
 ==CroupierTrefle
-
+//Blackjack
 
 ->Hall_Casino
 

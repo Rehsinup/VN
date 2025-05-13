@@ -25,6 +25,15 @@ Trefle: Excepteur sint occaecat cupidatat non proident, sunt in culpa qui offici
 ~hide("Hansel")
 ~hide("Trefle")
 ~changeBg("Rien")
-~ LoadScene("Puzzle 1")
+~ LoadScene("VFXRoulette")
+
+FEUR FEUR FEUR 
+~changeBg("Salon")
+FEUR FEUR FEUR 
+AAAAAA
+OULOULOU
+->HALL
+==HALL
+ayayayay
 
 -> END

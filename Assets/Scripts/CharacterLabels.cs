@@ -38,7 +38,7 @@ public class CharacterLabels : MonoBehaviour
             b.banniere.materialForRendering.SetFloat("_Saturation", 0);
 
             // Sprite : SpriteRenderer (personnage)
-            b.characterSprite.material.SetFloat("_Saturation", 0.35f);
+            b.characterSprite.material.SetFloat("_Saturation", 0);
 
             // remettre l'ordre par défaut
             b.characterSprite.sortingOrder = 1;
