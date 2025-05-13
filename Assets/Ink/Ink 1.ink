@@ -13,6 +13,7 @@ VAR Hansel = 0
 
 VAR DéblocageInfoCroupierCoeur = 0
 VAR DéblocageInfoCroupierTrèfle = 0
+VAR DéblocageInfoCroupierCarreau = 0
 
 VAR InfoCroupierCarreau = false
 VAR InfoCroupierCCO = false
@@ -21,6 +22,7 @@ VAR InfoCroupierT = false
 VAR DejaVenuCroupierCarreau = false
 VAR DéblocageInfoMajordome = false
 VAR DéblocageInfoMajordomeCCO = false
+VAR DéblocageInfoMajordometrefle = false
 
 En l'an 2087, dans les bas-fonds de Neo-Berlin, deux jeunes ados n'ayant connu que l'amour inconditionnel de leur père se retrouvent dans l'impasse. Lorsque celui-ci tomba gravement malade, ils furent mis à la porte par leur détestable belle-mère.\
 ->Scene1
@@ -365,29 +367,45 @@ Majordome: Excellente remarque de votre part mademoiselle. Le casino tourne sur 
 ~etreAlleVoirUnCroupier = true
 ~hide("Majordome")
 ~show("Carreau")
-~show("Grethel")
 ~show("Hansel")
 {DejaVenuCroupierCarreau:
 C'est encore vous, asseyez vous et jouons.
 }
 {not DejaVenuCroupierCarreau:
-...
+Carreau: ...*
+
+~hide("Hansel")
+~show("Grethel")
 Hansel: euh bonjour ?
-Car: Oups, excusez moi j'étais perdu dans mes pensées, faut croire qu'on ne voit pas souvent du monde par ici..
+Carreau: Oups, excusez moi j'étais perdu dans mes pensées, faut croire qu'on ne voit pas souvent du monde par ici..
 
 Grethel:  Ah bon? je croyais que le casino était populaire dans le milieu.
 
 Carreau: Populaire ? qui vous a dit ça ?
+
+~hide("Grethel")
+~show("Hansel")
 Hansel: Votre collègue à l'entrée
+
 Carreau: ça ne m'étonne pas de lui. Enfin bref j'imagine que vous êtes ici pour jouer, non ?
+
 Hansel: Evidemment, je suis bouillant ! C'est quoi les règles ?
+
 Carreau: Oh et bien le jeu n'est pas très compliqué, il s'agit de miser sur un élément de la roue, cela peut être la couleur, Pair ou impair ou bien la case verte et si la bille atterrit sur la bonne case vous remportez la mise.
+
+~hide("Hansel")
+~show("Grethel")
 Grethel:  Donc c'est uniquement de la chance..
 
-Carreau: Et bien oui, ici c'est un casino après tout
-Hansel: C'est parfait je me sens particulièrement chanceux en ce moment
+Carreau: Et bien oui, ici c'est un casino après tout.
 
-Grethel:  J'aurais pas dis ça
+~hide("Grethel")
+~show("Hansel")
+Hansel: C'est parfait je me sens particulièrement chanceux en ce moment.
+
+~hide("Hansel")
+~show("Grethel")
+Grethel:  J'aurais pas dis ça.
 
 Carreau: Alors, vous jouez ?
 
@@ -400,7 +418,7 @@ Jouez mes couilles
 ->HubCC
 
 ===HubCC
-J'espère que vous vous amusez bien, dites moi s'il vous faut quoi que se soit, je serais heureux de vous aider
+J'espère que vous vous amusez bien, dites moi s'il vous faut quoi que se soit, je serais heureux de vous aider.
 +[Demander à rejouer]->jouer
 +[Interroger]->Conversation1
 
@@ -422,30 +440,42 @@ J'espère que vous vous amusez bien, dites moi s'il vous faut quoi que se soit, 
 }
 
 -(plat)
+~hide("Hansel")
+~show("Grethel")
 Grethel:  Et vous êtes né ici ?
 
 Carreau : Malheureusement oui, comme beaucoup de gens.
+
+~hide("Grethel")
+~show("Hansel")
 Hansel: Vous aimez vraiment pas cette ville j'ai l'impression.
+
 Carreau: Qui peut bien aimer ? Naître ici ça revient à jouer à pile ou face dès la naissance soit on grandit dans la haute ville soit on étouffe ici dans les quartiers bas.
 
+~hide("Hansel")
+~show("Grethel")
 Grethel:  oui... faut croire que notre pièce est mal tombée.
 ~DéblocageInfoCroupierCoeur += 1
 ->Conversation1
 -
 
 -(age)
-
+~hide("Hansel")
+~show("Grethel")
 Grethel:  Je peux vous poser une simple question ?
 
-Carreau: Allez-y
+Carreau: Allez-y.
 
 Grethel:  Vous avez quel âge ?
 
 Carreau: Oh, ce genre de questions là... et bien j'approche du demi-siècle on va dire.
 
-Grethel:Vraiment ?? Mais vous faites bien plus jeune !
+Grethel: Vraiment ?? Mais vous faites bien plus jeune !
 
+~hide("Grethel")
+~show("Hansel")
 Hansel: Le chrome a fait du bon boulot, on vous aurait pas rafistolé ?
+
 Carreau: Il y a des choses qu'on ne peut échapper dans la vie mais je n'ai pas envie d'en parler
 
 ~DéblocageInfoCroupierCoeur += 1
@@ -474,7 +504,8 @@ Carreau: Ecoutez y a rien à savoir, ce qu'il s'est passé là-bas c'est du pass
 -
 
 -(goodChoiceCarr)
-
+~hide("Hansel")
+~show("Grethel")
 Grethel:Apparemment vous connaissez le croupier Trèfle ?
 
 Carreau: Ce jeune là ? Oui, pourquoi ?
@@ -488,9 +519,13 @@ Carreau: En effet j'ai eu cette chance là mais pourquoi ces questions ?
 Grethel:  On en a jamais eu l'occasion nous... et je suis pas sûr qu'on en ai une un jour.
 
 Carreau: Je comprends, écoutez mon voyage en Asie est celui qui m'a le plus marqué si ça vous intéresse autant.
+~hide("Grethel")
+~show("Hansel")
 Hansel: L'Asie ? Toute l'Asie ?
 Carreau: A peu près partout oui, je suis parti plus d'un an, à cette époque on voyageait plus facilement donc j'ai eu tout le temps qu'il me fallait et autant vous dire que j'y serais bien resté. C'est un tel dépaysement et la nourriture ,que dire, je crois que c'est ce qui me manque le plus au monde.
 
+~hide("Hansel")
+~show("Grethel")
 Grethel:  Vous en parlez avec tellement de passion alors pourquoi ne pas y retourner ?
 
 Carreau: C'est une histoire plus compliqué qu'elle n'en a l'air, je cherchais avant tout a m'évader et me sortir d'une période sombre que je venais de traverser.
@@ -514,6 +549,8 @@ Grethel:  Oui on a vu ça, on fera attention en sa présence merci pour l'info.
 
 ===InfoCroupierCoeur
 ~InfoCroupierCCO = true
+~hide("Hansel")
+~show("Grethel")
 Grethel:  Et sinon vous connaissez bien vos autres collègues ?
 
 Carreau: Je connais les deux mais Trèfle et moi on se parle plus trop, surtout qu'avec le temps on a plus grand chose à se dire.
@@ -526,7 +563,7 @@ Grethel:  SYNTHEX VIRGA ? Le Synthex Virga ??? Mais j'écoute encore leurs chans
 
 Carreau: Et bien elle sera sûrement ravie d'avoir une fan avec qui parler.
 ~hide("Carreau")
-->END
+->HubCC
 
 JEU
 
@@ -539,7 +576,6 @@ JEU
 ==CroupierCoeur
 ~etreAlleVoirUnCroupier = true
 ~show("Coeur")
-~show("Grethel")
 ~show("Hansel")
 Coeur: Bienvenue, bienvenue, asseyez-vous.
 Coeur: Vous êtes la pour jouer c'est ça ?
@@ -622,15 +658,21 @@ Hansel: On peut rejouer ou pas... je meurs d'envie de retenter ma chance !
 ->Conversation2
 
 ===cartes
-
+~hide("Hansel")
+~show("Grethel")
 Grethel: On voit que vous maîtrisez les cartes, j'imagine que ça demande une certaine expertise ?
 
+~hide("Grethel")
+~show("Hansel")
 Hansel: Ca veut dire qu'on va pouvoir jouer plus rapidement *clin d'oeil*(pas coquin par pitié)
-CCO-On peut dire ça oui, ça fait quelque temps que je suis là.
-
+Coeur: On peut dire ça oui, ça fait quelque temps que je suis là.
+~hide("Hansel")
+~show("Grethel")
 Grethel: J'imagine oui, vous sauriez dire depuis combien de temps ?
 
 Coeur: Depuis 2 ans à peu près, si on s'investit, on progresse plutôt rapidement dans le métier.
+~hide("Grethel")
+~show("Hansel")
 Hansel: On rejoue ! Je veux assister à une nouvelle démonstration de vos talents.
 *[Oui]
 *[Non]
@@ -640,11 +682,14 @@ Coeur: -Avec plaisir, n'hésitez pas si vous avez besoin de reprendre les règle
 ->jouer
 
 -(Non)
-
+~hide("Hansel")
+~show("Grethel")
 Grethel:  Attends Hans, on peut discuter un peu avant de rejouer, non ?
 ->Conversation2
 
 ===speed
+~hide("Hansel")
+~show("Grethel")
 Grethel: Vous êtes super speed, il y a une raison particulière ?
 
 Coeur: Pas vraiment j'aime me concentrer sur mon travail et rester active.
@@ -659,6 +704,8 @@ Grethel: (dans la tête) c'est peut-être pour ça qu'elle ne prend plus le temp
 
 ===InfoCroupiertrefle
 ~InfoCroupierT = true
+~hide("Hansel")
+~show("Grethel")
 Grethel: Vous ne travaillez pas toute seule ici il me semble, l'ambiance est bonne ?
 
 Coeur: Oui on peut dire ça, je suis plus proche du croupier trèfle que du carreau, mais on s'entend plutôt bien tous les trois.
@@ -685,6 +732,8 @@ Grethel: On l'espère nous aussi.
 
 -(goodChoicecoeur)
 
+~hide("Hansel")
+~show("Grethel")
 Grethel: Le croupier Carreau nous a dit que vous étiez la chanteuse du groupe Synthex Virga, c'est incroyable ! Je suis fan de votre groupe.
 
 Coeur: C'est vrai, c'était une époque magnifique, on était libre, passionnés et populaire.
@@ -731,16 +780,166 @@ Coeur: C'est le croupier carreau qui vous a dit ça ? Pourtant, il a sûrement d
 Grethel: Excusez-nous,
 Grethel: ....
 Coeur: Revenons au jeu voulez-vous.
-~hide("Coeur")
 ->Conversation2
-
 
 
 ==CroupierTrefle
 ~etreAlleVoirUnCroupier = true
+~show("Trefle")
+~hide("Grethel")
+~show("Hansel")
+Hansel: Alors on joue à quoi ici ?
+
+Trefle: Moi je m'occupe du Blackjack, un jeu de cartes qui remontent à l'époque du Far-West
+
+Hansel: Ah mais je connais ce jeu, je l'ai vu dans les vieux films que notre père adore, par contre je veux bien qu'on me réexplique les règles.
+
+Trefle: Bien sûr, le but c'est de me battre en obtenant un nombre supérieur au mien sans jamais dépassé 21. 
+Trefle: Chaque carte numérotée vaut sa valeur, les figures valent 10, et l’as vaut 1 ou 11 selon ce qui avantage le joueur. Au début, chacun reçoit deux cartes. 
+Trefle: Le joueur peut ensuite "tirer" (prendre une carte) ou "rester". 
+Trefle: Le croupier doit tirer jusqu’à atteindre au moins 17. Si un joueur dépasse 21, il perd automatiquement.
+Trefle: Voilà tout ce qu'il faut savoir, vous êtes partant pour une partie ?
+
+Hansel: On est là pour ça de toute façon alors go !->Jouertrefle
+
+===Jouertrefle
+jouer mon copain ->Hubtrefle
+
+===Hubtrefle
+Trefle: Tout se passe bien pour vous ? Si vous voulez rejouer faites moi signe.
+
++[Demander à rejouer]->jouer
++[Interroger]->Conversationtrefle
+
+===Conversationtrefle
+*[Demander pourquoi il est le croupier trèfle]->pourquoitrefle
+*[Lui parler du blackjack]->blackjack
++[HUB]->CheckVariablePourFin
+{DéblocageInfoCroupierCarreau >= 2:
+*[Demander comment se passe le travail avec ses collègues]->InfoCroupiercarreau
+}
+{DéblocageInfoCroupierCarreau < 2:
+*[lastQuestionAFaireTrefle]->lastquestion
+}
+{DéblocageInfoMajordometrefle:
+*[lui parler d'ou il vient]->InfoMajordometrefle 
+}
+
+===pourquoitrefle
+Grethel: Vous êtes le croupier trèfle c'est ça ?
+Trefle: Oui c'est bien ça.
+Grethel: Et, sans vouloir être indiscrète pourquoi est-ce que c'est ce symbole qui vous a été attribuée ?
+Trefle: Chaque symbole a une signification, le mien fait référence à une situation inchangé et continue, que cette dernière soit positif ou négatif, je vous laisse interpréter ça à votre manière.
+Grethel: ....
+Hansel: Alors vous....
+Grethel: Il vaut mieux qu'on passe à autre chose.
+->Conversationtrefle
+
+===blackjack
+~hide("Grethel")
+~show("Hansel")
+Hansel: C'est super connu le blackjack, il y a une technique pour gagner ?
+Trefle: Ahah, c'est effectivement très populaire et ce depuis des siècles. Malheureusement en tant que croupier je suis dans l'impossibilité de vous révéler quoique ce soit sur les stratagèmes.
+Hansel: Pourquoi ça ?
+Trefle: Ça me parait évident, meilleur vous êtes plus vos chances de gagner sont élevées et donc de nous faire perdre, moi et le casino.
+~hide("Hansel")
+~show("Grethel")
+Grethel: Effectivement, vu comme ça, ça fait sens.
+->Conversationtrefle
+
+===lastquestion
+
+->Conversationtrefle
 
 
-->Hall_Casino
+===InfoCroupiercarreau
+~hide("Hansel")
+~show("Grethel")
+Grethel: Par hasard, vous auriez des infos sur le croupier carreau ?
+Grethel: Il m'intrigue, j'aimerez bien parler avec lui et apparemment vous le connaissez.
+Trefle: Ce bon vieux Carreau, oh oui je le connais.
+Il était déjà là quand je suis arrivé, on a eu l'occasion de discuter un bon nombre de fois.
+Grethel: Il y a des sujets qui l'intéresse particulièrement ?
+Trefle: Alors ça oui, notamment ses nombreux voyages, quand il en parle il a des étoiles pleins les yeux.
+Faut croire que ça lui remémore des bons souvenirs Contrairement à son passage dans l'armée corporative...
+Grethel: Il a fait la guerre corpo ?
+Trefle: Oui, à chaque fois que j'essayais d'échanger sur ce sujet il m'envoyait valser et la discussion s'arrêtait net mais j'ai quand même appris son rôle.
+C'était un pilote de "Cuirasser Fantôme" et pas des moindre, il a dirigé l'unité Zero pendant un temps.
+~hide("Grethel")
+~show("Hansel")
+Hansel: Vraiment ?!
+Hansel: Mais ce sont des légendes ces soldats !
+Hansel: Il y a même eu un film sur eux ?
+~hide("Hansel")
+~show("Grethel")
+Grethel: Oui ! Ça me dit quelque chose on a dû le voir avec papa...
+Grethel: En tout cas merci pour les infos.
+Grethel: On va sûrement aller lui parler après.
+Trefle: Derien mais n'oubliez pas que je suis là pour vous faire jouer aussi.
+->Conversationtrefle    
+
+
+
+
+
+===InfoMajordometrefle
+*[Lui demander pourquoi un ancien joueur compulsif à pu attérir ici]->badchoicetrefle
+*[Evoquer ses enfants]->goodchoicetrefle
+
+-(badchoicetrefle)
+Grethel: Comment se fait-il qu'un ancien addict aux jeux se soit retrouvé en tant que croupier dans un casino ? C'est pas un peu risqué ?
+Trefle: Vous insinuez quoi par là ?
+Que je ne suis pas apte à faire ce travail ?
+Grethel: Non loin de moi cette idée mais...
+Trefle: Parce que justement, étant connaisseur je suis parfaitement à ma place et je fais du bon travail depuis que je suis là.
+Alors évitons ce genre de questions et concentrons nous sur le jeu si vous voulez bien.
+->Conversationtrefle
+-
+
+-(goodchoicetrefle)
+~hide("Hansel")
+~show("Grethel")
+Grethel: On peut vous parler deux minutes ?
+Trefle: Oui, enfin ça dépend du sujet.
+Grethel: Cœur nous a évoqué votre histoire, notamment celle de vos enfants...
+Trefle: D'accord, si vous y tenez, c'est vrai que j'y penses plus trop en ce moment.
+Grethel: Ils s'appellent comment vos petits ?
+Trefle: Sofia et Gustav...
+~hide("Grethel")
+~show("Hansel")
+Hansel: Bon choix de prénoms.
+Trefle: Merci, c'était le choix de mon épouse.
+~hide("Hansel")
+~show("Grethel")
+Grethel: Et quel âge ont ils ?
+Trefle : Ma fille doit avoir à peu près ton âge, quant à mon fils et bien... il devrait avoir 13 ans cette année.
+Grethel: Mais vous n'avez plus de nouvelles d'eux ?
+Trefle: En fait ils sont partis avec ma femme… enfin ex-femme.
+~hide("Grethel")
+~show("Hansel")
+Hansel: Ouais ça doit compliquer les choses.
+~hide("Hansel")
+~show("Grethel")
+Grethel: Vous avez pu les contacter ? Ne serait-ce que par VisioLink ? Au moins vous auriez des infos.
+Trefle: J'ai bien essayé croyez moi, mais elle a coupé tous les ponts avant de partir avec eux. Je sais même pas si ils sont encore en ville.
+Grethel: Ça doit pas être facile pour vous j'en suis désolée... mais vous bossiez déjà ici avant votre rupture ?
+Trefle: Non justement, tout est parti en vrille depuis ce jour-là, je me suis retrouvé au plus bas dans ma vie. Je comblais le vide en buvant et en jouant, je vivais la nuit et dormais le jour, incapable de faire autre chose.
+Grethel: Attendez, vous veniez jouer ici avant d'y travailler ?
+Trefle: Non je passais de casino miteux en casino miteux, en pensant que je trouverais celui qui me rendra riche. Bien sûr c'est jamais arrivé.
+~hide("Grethel")
+~show("Hansel")
+Hansel: Mais vous connaissiez le 'Hexe Hölle' ?
+Trefle: Personne ne connaît cet endroit, c'est ce qui m'a marqué en discutant avec les joueurs précédents.
+Tous ont atterri ici par hasard.
+J'imagine que vous aussi vous avez suivi ces néons pour atterrir ici ?
+Grethel: Mhh oui... vous aussi ??
+Trefle: Comme tout le monde j'ai l'impression.
+Grethel: Okay bon c'est vraiment bizarre comme moyen d'attirer des joueurs.
+Merci pour la conversation en tout cas et je vous souhaite de retrouver vos enfants, si c'est dur pour vous ça doit l'être aussi pour eux.
+Trefle: Merci pour ces mots et veillez bien l'un sur l'autre.
+->Conversationtrefle
+
+
 
 ==CurseurGrethel
 Grethel a récolté suffisamment d'indices sur le lieu et l'identité du Majordome, ce qui lui permet de convaincre son frère de partir d'ici (Labyrinthe out)
