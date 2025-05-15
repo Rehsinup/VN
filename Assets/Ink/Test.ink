@@ -5,15 +5,19 @@ INCLUDE 2d_api.ink
 ~playSound("Son5")
 ~show("Grethel")
 ~show("Carreau")
-~changeBg("Salon")
+~changeBg("Noir")
 aaaa
+~fadeBg("Salon", 1.0)
 Grethel: Lorem ipsum dolor sit amet, consectetur adipiscing elit,
 Grethel: sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 Grethel: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-Carreau:Feur
+Carreau:Feurs
+~fadeBg("Noir", 0.5)
+//~changeBg("Salon")
 ~hide("Carreau")
 ~show("Coeur")
 Coeur: AAA
+~fadeBg("Salon", 0.4)
 ~hide("Coeur")
 ~hide("Grethel")
 ~show("Majordome")
