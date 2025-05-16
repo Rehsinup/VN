@@ -25,18 +25,23 @@ VAR DéblocageInfoMajordomeCarreau = false
 VAR DéblocageInfoMajordomeCCO = false
 VAR DéblocageInfoMajordometrefle = false
 
-En l'an 2087, dans les bas-fonds de Neo-Berlin, deux jeunes ados n'ayant connu que l'amour inconditionnel de leur père se retrouvent dans l'impasse. Lorsque celui-ci tomba gravement malade, ils furent mis à la porte par leur détestable belle-mère.\
+En l'an 2087, dans les bas-fonds de Neo-Berlin, 
+deux jeunes ados n'ayant connu que l'amour inconditionnel de leur père se retrouvent dans l'impasse. 
+Lorsque celui-ci tomba gravement malade, ils furent mis à la porte par leur détestable belle-mère.\
 ->Scene1
 ==Scene1 
-HORS DE MA VUE !!! Ne cherchez pas à revenir ici, votre père est dans cette situation par votre faute. Vous ne le méritez pas !
+HORS DE MA VUE !!! 
+Ne cherchez pas à revenir ici, votre père est dans cette situation par votre faute. 
+Vous ne le méritez pas !
 ->Ruelle
 
 ==Ruelle
 /*Conversation entre Hansel et Grethel, pose la dynamique entre les deux
 showbg ruelle On puis scene clef, on revient ensuite sur H et G dans la ruelle avec les neon on dans la ruelle, qui decident d'y aller.*/
-Après quelques heures à errer sous la pluie, Hansel et Grethel désormais démunis se regardent dans le blanc des yeux, d'un air livide signe de leur désespoir.
+Après quelques heures à errer sous la pluie, 
+Hansel et Grethel désormais démunis se regardent dans le blanc des yeux, d'un air livide signe de leur désespoir.
 
-
+~changeBg("Ruelle")
 ~show("Grethel")
 ~show("Hansel2")
 Grethel: Mon frère comment allons nous faire, papa est mourant et nous ne pouvons plus rentrer chez nous.
@@ -136,6 +141,7 @@ Hansel: Parfait, allons-y.
 ->Sous_sol
 
 ==Sous_sol
+~changeBg("Sous-sol")
 ~show("Grethel")
 ~show("Hansel2")
 Hansel: C'est pas du tout ce à quoi je m'attendais... 
@@ -254,8 +260,8 @@ Hansel:  D'accord sœurette j'ouvrirai l'œil ->Hall_Casino
 Le majordome arrive ensuite et se présente à H et G, leur explique le lieu de manière avenante, qui il est etc (façade)
 H/G expliquent ensuite leur situation
 le majordome emphatique leur propose de s'interlink dans son casino dont il fait les louanges en expliquant qu'il est touché par leur histoire et est près à les aider.*/
-FAIRE EN FONCTION DE LA VARIABLE DE HANSEL POUR LA FIN MID ET BAD MAIS EN FONCTION DE GRETHEL POUR LA FIN GOOD
-CAD STAT CHECK: DIRE SI HANSEL A 8 ALORS GO CHECK VAR GRETH POUR SAVOIR DANS QUEL FIN ALLER SINON SI 3 GRETH ALORS CHECK VAR HANS POUR SAVOIR SI FIN MID
+//FAIRE EN FONCTION DE LA VARIABLE DE HANSEL POUR LA FIN MID ET BAD MAIS EN FONCTION DE GRETHEL POUR LA FIN GOOD
+//CAD STAT CHECK: DIRE SI HANSEL A 8 ALORS GO CHECK VAR GRETH POUR SAVOIR DANS QUEL FIN ALLER SINON SI 3 GRETH ALORS CHECK VAR HANS POUR SAVOIR SI FIN MID
 ===CheckVariablePourFin
 {Hansel >= 10 && Grethel <=1:
 ->CurseurHansel
@@ -310,8 +316,10 @@ Majordome: Effectivement, mes visiteurs sont souvent ébahis en arrivant. J'en s
 -(suite)
 ~show("Hansel")
 Majordome: Comme vous pouvez le constater, nous nous trouvons à l'entrée. 
-C'est d'ici que vous pourrez accéder à nos différents jeux. Malheureusement, je n'ai que 3 jeux à vous proposer aujourd'hui. Les divers croupiers du casino expliqueront bien mieux que moi les jeux auxquels ils sont attribués. 
-Comme promis vous pourrez gagner des Neumark ou des métadonnées pour chaque manche remportée.
+Majordome: C'est d'ici que vous pourrez accéder à nos différents jeux. 
+Majordome: Malheureusement, je n'ai que 3 jeux à vous proposer aujourd'hui. 
+Majordome: Les divers croupiers du casino expliqueront bien mieux que moi les jeux auxquels ils sont attribués. 
+Majordome: Comme promis vous pourrez gagner des Neumark ou des métadonnées pour chaque manche remportée.
 *[Neumark]->neumark
 *[Métadonnées]->meta
 -(neumark)
@@ -330,6 +338,7 @@ Grethel: Vas-y joues, moi je vais essayer d'en apprendre plus sur cet endroit.
 ->hubMajordome
 
 ==hubMajordome
+~changeBg("Casino")
 {etreAlleVoirUnCroupier:
 Majordome: {~Vous revoila, j'espère que tout ce passe bien. De quelle table venez-vous ?|Alors, vous vous amusez ? J'espère que tout ce déroule comme vous le souhaitez|Déjà de retour, vous avez l'air en veine !}
 }
@@ -369,6 +378,7 @@ Majordome: Excellente remarque de votre part mademoiselle. Le casino tourne sur 
 ~hide("Majordome")
 ~show("Carreau")
 ~show("Hansel")
+~changeBg("Carreau")
 {DejaVenuCroupierCarreau:
 C'est encore vous, asseyez vous et jouons.
 }
@@ -414,7 +424,7 @@ Carreau: Alors, vous jouez ?
 ->jouer
 }
 ===jouer
-Jouez mes couilles
+//Jouez mes couilles
 //Fonction jouer jsp débrouille-toi
 ->HubCC
 
@@ -497,7 +507,8 @@ Carreau: Comment vous savez ? C'est encore trèfle qui sait pas tenir sa langue 
 
 Grethel:  Peut-être, j'étais curieuse de savoir comment un ancien pilote de "Cuirasser Fantôme" aussi réputé que vous avez pu atterrir ici.
 
-Carreau: Ecoutez y a rien à savoir, ce qu'il s'est passé là-bas c'est du passé et j'ai aucune envie d'en parler, la Guerre ça n'a rien de glorieux c'est tout ce que je peux dire. Evitons les questions trop personnels et concentrons nous sur le jeu.
+Carreau: Ecoutez y a rien à savoir, ce qu'il s'est passé là-bas c'est du passé et j'ai aucune envie d'en parler, la Guerre ça n'a rien de glorieux c'est tout ce que je peux dire. 
+Carreau: Evitons les questions trop personnels et concentrons nous sur le jeu.
 ->Conversation1
 -
 
@@ -534,7 +545,11 @@ Carreau: Absolument pas mais c'est gentil de vous être intéressé à moi, je m
 
 Grethel:  Pas de soucis, je me pose des questions sur cet endroit donc j'essaye d'échanger le plus avec vous et vos collègues.
 
-Carreau: Bon écoutez.., le Majordome, je le connais depuis l'époque du Kristallkugel Palace, il s'appelle Herz, c'est un androïde autonome. A la fermeture du Palace il s'est retrouvé comme nous à la rue et nous nous sommes perdus de vue pendant plusieurs années. Puis il y a quelques mois j'ai vu une annonce de job de croupier pour un soi-disant casino, et évidemment qui ai-je retrouvé en allant voir sur place ? Ce bon vieux Herz, autoproclamé "Majordome", je n'ai sûrement pas fais attention à ce moment là mais il parlait et se comportait différemment du Herz que je connaissais, j'ai néanmoins accepté de travailler pour lui étant ma seule option...
+Carreau: Bon écoutez.., le Majordome, je le connais depuis l'époque du Kristallkugel Palace, il s'appelle Herz, c'est un androïde autonome. 
+Carreau: A la fermeture du Palace il s'est retrouvé comme nous à la rue et nous nous sommes perdus de vue pendant plusieurs années. 
+Carreau: Puis il y a quelques mois j'ai vu une annonce de job de croupier pour un soi-disant casino, et évidemment qui ai-je retrouvé en allant voir sur place ? 
+Carreau: Ce bon vieux Herz, autoproclamé "Majordome", je n'ai sûrement pas fais attention à ce moment là mais il parlait et se comportait différemment du Herz que je connaissais, 
+Carreau: J'ai néanmoins accepté de travailler pour lui étant ma seule option...
 
 Grethel:  Donc vous pensez que c'est toujours le même Herz ?
 
@@ -555,7 +570,9 @@ Carreau: Je connais les deux mais Trèfle et moi on se parle plus trop, surtout 
 
 Grethel:  Alors vous savez des choses sur Cœur ?
 
-Carreau: Assez peu mais récemment on a eu l'occasion de bien parler, elle est assez troublé à cause de son défunt mari donc j'évite de lui en parler vu l'état dans laquelle ça la met. Les seules fois où je l'ai vu sourire c'était quand on parlait de son ancien groupe de musique, par contre le nom je m'en souviens pas, c'est un truc du genre Syne Vierga ou dans ce style.
+Carreau: Assez peu mais récemment on a eu l'occasion de bien parler.
+Carreau: Elle est assez troublé à cause de son défunt mari donc j'évite de lui en parler vu l'état dans laquelle ça la met. 
+Carreau: Les seules fois où je l'ai vu sourire c'était quand on parlait de son ancien groupe de musique, par contre le nom je m'en souviens pas, c'est un truc du genre Syne Vierga ou dans ce style.
 
 Grethel:  SYNTHEX VIRGA ? Le Synthex Virga ??? Mais j'écoute encore leurs chansons en boucle sur mon radiolink !
 
@@ -575,6 +592,7 @@ JEU
 ~etreAlleVoirUnCroupier = true
 ~show("Coeur")
 ~show("Hansel")
+~changeBg("Coeur")
 Coeur: Bienvenue, bienvenue, asseyez-vous.
 Coeur: Vous êtes la pour jouer c'est ça ?
 +[H-Oui]->Oui
@@ -714,7 +732,10 @@ Coeur: On partage tous les deux de vieilles cicatrices.
 
 Grethel: Oui j'avais cru comprendre dans notre conversation.
 
-Coeur: Il a eu de gros problèmes d'addictions plus jeune. C'est comme ça qu'il a atterrit ici. A force de jouer il avec le majordome, ce dernier lui proposa un travail dans le casino pour qu'il puisse se reconstruire. Mais tout ça lui pèse encore beaucoup, il évite tout le temps le sujet quand on parle d'addiction, ça lui fait vraiment mal de voir les gens sombrer dans l'addiction en venant ici. De plus il a perdu la garde de ses enfants suite à son addiction, il espère de tout coeur pouvoir les revoir un jour.
+Coeur: Il a eu de gros problèmes d'addictions plus jeune. C'est comme ça qu'il a atterrit ici. 
+A force de jouer il avec le majordome, ce dernier lui proposa un travail dans le casino pour qu'il puisse se reconstruire. 
+Coeur: Mais tout ça lui pèse encore beaucoup, il évite tout le temps le sujet quand on parle d'addiction, ça lui fait vraiment mal de voir les gens sombrer dans l'addiction en venant ici. 
+Coeur: De plus il a perdu la garde de ses enfants suite à son addiction, il espère de tout coeur pouvoir les revoir un jour.
 
 Grethel: Nous aussi nous espérons pouvoir revoir notre père. Notre belle-mère nous a mit à la porte en nous disant de ne jamais revenir....
 
@@ -754,8 +775,8 @@ Grethel: Je comprends, ne vous sentez pas obligée d'en parler.
 
 Coeur: Non, ça va. C'est juste...
  
-Coeur:Avec le travail j'arrive à me distraire mais même si ça fait déjà 2 ans et demi...
-Cet événement reste ancré en moi. C'est Bargeld et Endlos Netz qui ont caché l'accident.
+Coeur: Avec le travail j'arrive à me distraire mais même si ça fait déjà 2 ans et demi...
+Coeur: Cet événement reste ancré en moi. C'est Bargeld et Endlos Netz qui ont caché l'accident.
 Coeur: C'était pendant une représentation durant un de leurs concerts privé soi-disant caritatifs. Il était contre l'idée de supporter ces corpos, mais l'appât du gain était bien trop grand.
 Coeur: Ses mots ont dû s'ébruiter et....
 
@@ -786,6 +807,8 @@ Coeur: Revenons au jeu voulez-vous.
 ~show("Trefle")
 ~hide("Grethel")
 ~show("Hansel")
+~hide("Majordome")
+~changeBg("Trefle")
 Hansel: Alors on joue à quoi ici ?
 
 Trefle: Moi je m'occupe du Blackjack, un jeu de cartes qui remontent à l'époque du Far-West
@@ -801,6 +824,7 @@ Trefle: Voilà tout ce qu'il faut savoir, vous êtes partant pour une partie ?
 Hansel: On est là pour ça de toute façon alors go !->Jouertrefle
 
 ===Jouertrefle
+~LoadScene("VFXRoulette") 
 jouer mon copain ->Hubtrefle
 
 ===Hubtrefle
