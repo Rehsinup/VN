@@ -17,6 +17,7 @@ public class BypassMinigame : MonoBehaviour
 
     private bool isMatched = false; // Vérifie si la sphère est validée
     private bool isClicked = false; // Vérifie si la sphère a été cliquée
+    private LevelLoader LevelLoader; // Référence au script LevelLoader
 
     void Start()
     {
@@ -26,6 +27,7 @@ public class BypassMinigame : MonoBehaviour
         int id = int.Parse(gameObject.name.Replace("Sphere", ""));
         sphereColors[id] = GetAssignedColor(id);
         sphereRenderer.material.color = Color.white;
+        LevelLoader = FindObjectOfType<LevelLoader>();
     }
     /// <summary>
     /// Affiche la couleur de la sphère lorsque la souris entre dans le collider.
@@ -82,6 +84,7 @@ public class BypassMinigame : MonoBehaviour
             if (matchedPairsCount == totalPairs)
             {
                 Debug.Log("Toutes les paires ont été trouvées ! Minijeu terminé !");
+                LevelLoader.ExitLevel(); // Appelle la fonction pour quitter le niveau
             }
         }
         else

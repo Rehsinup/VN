@@ -282,6 +282,7 @@ le majordome emphatique leur propose de s'interlink dans son casino dont il fait
 
 
 ==Hall_Casino
+~LoadScene("Puzzle 1")
 ~hide("Majordome")
 ~hide("Grethel")
 ~hide("Hansel")
@@ -424,6 +425,7 @@ Carreau: Alors, vous jouez ?
 ->jouer
 }
 ===jouer
+~LoadScene("VFXRoulette")
 //Jouez mes couilles
 //Fonction jouer jsp débrouille-toi
 ->HubCC
@@ -569,7 +571,6 @@ Grethel:  Et sinon vous connaissez bien vos autres collègues ?
 Carreau: Je connais les deux mais Trèfle et moi on se parle plus trop, surtout qu'avec le temps on a plus grand chose à se dire.
 
 Grethel:  Alors vous savez des choses sur Cœur ?
-
 Carreau: Assez peu mais récemment on a eu l'occasion de bien parler.
 Carreau: Elle est assez troublé à cause de son défunt mari donc j'évite de lui en parler vu l'état dans laquelle ça la met. 
 Carreau: Les seules fois où je l'ai vu sourire c'était quand on parlait de son ancien groupe de musique, par contre le nom je m'en souviens pas, c'est un truc du genre Syne Vierga ou dans ce style.
@@ -623,7 +624,7 @@ Coeur: Excusez-moi, ce sont des souvenirs qui ressurgissent. Vous êtes près po
 
 ===jouer2
 Jouez mes couilles
-//Fonction jouer jsp débrouille-toi
+~LoadScene("Hack")
 ->HubCC0
 
 ===HubCC0
@@ -824,7 +825,7 @@ Trefle: Voilà tout ce qu'il faut savoir, vous êtes partant pour une partie ?
 Hansel: On est là pour ça de toute façon alors go !->Jouertrefle
 
 ===Jouertrefle
-~LoadScene("VFXRoulette") 
+~LoadScene("Blackjack") 
 jouer mon copain ->Hubtrefle
 
 ===Hubtrefle

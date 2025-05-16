@@ -7,7 +7,7 @@ INCLUDE 2d_api.ink
 ~show("Carreau")
 ~changeBg("Noir")
 aaaa
-~fadeBg("Salon", 1.0)
+~fadeBg("Casino", 1.0)
 Grethel: Lorem ipsum dolor sit amet, consectetur adipiscing elit,
 Grethel: sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 Grethel: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -17,7 +17,7 @@ Carreau:Feurs
 ~hide("Carreau")
 ~show("Coeur")
 Coeur: AAA
-~fadeBg("Salon", 0.4)
+~fadeBg("Trefle", 0.4)
 ~hide("Coeur")
 ~hide("Grethel")
 ~show("Majordome")
@@ -27,9 +27,9 @@ Hansel: Duis aute irure dolor in reprehenderit in voluptate velit esse cillum do
 ~show("Trefle")
 Trefle: Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 <bounce>Tu ouvres une étrange porte qui mène ailleurs...</bounce>
-~ LoadScene("VFXRoulette")
+~ LoadScene("Puzzle 1")
 FEUR FEUR FEUR 
-~changeBg("Rien")
+~changeBg("Carreau")
 FEUR FEUR FEUR 
 AAAAAA
 OULOULOU

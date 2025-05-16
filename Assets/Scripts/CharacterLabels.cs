@@ -35,10 +35,10 @@ public class CharacterLabels : MonoBehaviour
         foreach (CharacterBanniere b in banniereList)
         {
             // UI : Image (bannière)
-            b.banniere.materialForRendering.SetFloat("_Saturation", 0);
+            b.banniere.materialForRendering.SetFloat("_Alpha", 0);
 
             // Sprite : SpriteRenderer (personnage)
-            b.characterSprite.material.SetFloat("_Saturation", 0);
+            b.characterSprite.material.SetFloat("_Saturation", 1);
 
             // remettre l'ordre par défaut
             b.characterSprite.sortingOrder = 1;
@@ -49,7 +49,7 @@ public class CharacterLabels : MonoBehaviour
             return;
         }
 
-        banniereView.banniere.materialForRendering.SetFloat("_Saturation", 1);
+        banniereView.banniere.materialForRendering.SetFloat("_Alpha", 1);
         banniereView.characterSprite.material.SetFloat("_Saturation", 1);
         banniereView.characterSprite.sortingOrder = 11; // mettre le perso actif en avant
         banniereView.banniere.sprite = banniereView.banniereSprite;

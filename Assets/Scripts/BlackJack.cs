@@ -5,18 +5,20 @@ using UnityEngine.UI;
 
 public class BlackjackGame : MonoBehaviour
 {
-    public Button btnTirer, btnAs1, btnAs11, btnStop, btnRejouer;
+    public Button btnTirer, btnStop, btnRejouer;
     int playerScore = 0, dealerScore = 0;
     bool playerTurn = true, gameOver = false;
+    private Button Quitter; // Bouton pour quitter le jeu
+    private LevelLoader LevelLoader; // Référence au script LevelLoader
+    [SerializeField] private GameObject QuitterButton; // Préfabriqué pour le bouton Quitter
 
     void Start()
     {
         btnTirer.onClick.AddListener(() => PlayTurn(0)); // 0 signifie que c'est une carte normale
-        btnAs1.onClick.AddListener(() => PlayTurn(1)); // Tirer un As comme 1
-        btnAs11.onClick.AddListener(() => PlayTurn(11)); // Tirer un As comme 11
         btnStop.onClick.AddListener(EndGame); // Fin de la partie, arrêt du croupier
         btnRejouer.onClick.AddListener(StartGame);
         StartGame();
+        LevelLoader = FindObjectOfType<LevelLoader>();
     }
 
     void StartGame()
@@ -28,8 +30,6 @@ public class BlackjackGame : MonoBehaviour
 
         // Réinitialiser les boutons pour jouer une nouvelle partie
         btnTirer.gameObject.SetActive(true);
-        btnAs1.gameObject.SetActive(true);
-        btnAs11.gameObject.SetActive(true);
         btnStop.gameObject.SetActive(true);
         btnRejouer.gameObject.SetActive(false);
     }
@@ -91,12 +91,6 @@ public class BlackjackGame : MonoBehaviour
         else if (playerScore > dealerScore) Debug.Log("Vous gagnez !");
         else if (playerScore < dealerScore) Debug.Log("Le croupier gagne !");
         else Debug.Log("Égalité !");
-
-        // Afficher le bouton Rejouer et désactiver les autres pour éviter les erreurs
-        btnRejouer.gameObject.SetActive(true);
-        btnTirer.gameObject.SetActive(false);
-        btnAs1.gameObject.SetActive(false);
-        btnAs11.gameObject.SetActive(false);
-        btnStop.gameObject.SetActive(false);
+        LevelLoader.ExitLevel();
     }
 }
