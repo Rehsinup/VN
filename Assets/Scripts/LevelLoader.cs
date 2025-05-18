@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
 using Unity.VisualScripting;
+using System.Collections;
 
 public class LevelLoader : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class LevelLoader : MonoBehaviour
     [SerializeField] Canvas inkCanvas;
     [SerializeField] private GameObject charas;
     [SerializeField] private GameObject backgrounds;
+    [SerializeField] Animator transitionAnim;
+    [SerializeField] Canvas AnimCanvas;
 
     private Vector3 cameraPos;
     private float orthographicSize;
@@ -57,11 +60,20 @@ public class LevelLoader : MonoBehaviour
 
     public void ExitLevel()
     {
-       // if (mainCam != null)
-        //    mainCam.gameObject.SetActive(true);
-
-        SceneManager.UnloadSceneAsync(lastlevel.buildIndex);
+        StartCoroutine(QuitterLevel());
     }
+
+    IEnumerator QuitterLevel()
+    {
+        AnimCanvas.sortingOrder = 11;
+        transitionAnim.SetTrigger("End");
+        yield return new WaitForSeconds(2f);
+        SceneManager.UnloadSceneAsync(lastlevel.buildIndex);
+        transitionAnim.SetTrigger("Start");
+        yield return new WaitForSeconds(2f);
+        AnimCanvas.sortingOrder = 1;
+    }
+
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
