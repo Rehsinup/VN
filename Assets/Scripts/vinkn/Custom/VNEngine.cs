@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace vinkn
 {
@@ -9,6 +11,8 @@ namespace vinkn
         [SerializeField] List<SOCharacter> charactersDefinitions;
         [SerializeField] List<EDisplayable> backgrounds;
         [SerializeField] List<DisplayAnchor> anchors;
+        [SerializeField] Animator transitionAnim;
+        [SerializeField] Canvas AnimCanvas;
 
         protected EDisplayable currentBg { get; set; }
 
@@ -119,9 +123,17 @@ namespace vinkn
             {
                 currentBg.Fade(0, duration);
             }
-
+            StartCoroutine(QuitterBG());
             currentBg = FindBackground(name);
             currentBg.Fade(1, duration);
+        }
+             IEnumerator QuitterBG()
+        {
+            AnimCanvas.sortingOrder = 1;
+            transitionAnim.SetTrigger("BgOut");
+            yield return new WaitForSeconds(1f);
+            transitionAnim.SetTrigger("BgIn");
+            yield return new WaitForSeconds(2f);
         }
 
         public virtual void FlipXChar(string item)

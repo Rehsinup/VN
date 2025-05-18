@@ -1,10 +1,13 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class VFXLoader : MonoBehaviour
 {
     private Scene lastlevel;
+    [SerializeField] Animator transitionAnim;
+    [SerializeField] Canvas AnimCanvas;
 
     void Start()
     {
@@ -25,10 +28,18 @@ public class VFXLoader : MonoBehaviour
 
     public void ExitLevel()
     {
-        GameObject textObject = GameObject.Find("Canvas");
-        if (textObject != null) textObject.SetActive(true);
+        StartCoroutine(QuitterLevel());
+    }
 
+    IEnumerator QuitterLevel()
+    {
+        AnimCanvas.sortingOrder = 11;
+        transitionAnim.SetTrigger("End");
+        yield return new WaitForSeconds(2f);
         SceneManager.UnloadSceneAsync(lastlevel.buildIndex);
+        transitionAnim.SetTrigger("Start");
+        yield return new WaitForSeconds(2f);
+        AnimCanvas.sortingOrder = 1;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)

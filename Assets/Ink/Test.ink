@@ -27,11 +27,12 @@ Hansel: Duis aute irure dolor in reprehenderit in voluptate velit esse cillum do
 ~show("Trefle")
 Trefle: Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 <bounce>Tu ouvres une étrange porte qui mène ailleurs...</bounce>
-~ LoadScene("Puzzle 1")
+~ LoadScene("MemoryCards")
 FEUR FEUR FEUR 
 ~changeBg("Carreau")
 FEUR FEUR FEUR 
 AAAAAA
+~LoadScene("Blackjack")
 OULOULOU
 ->HALL
 ==HALL
