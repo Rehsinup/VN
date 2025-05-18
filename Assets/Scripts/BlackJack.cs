@@ -2,12 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;  // Ajout pour TextMeshPro
+using TMPro;
 
 public class BlackjackGame : MonoBehaviour
 {
     public Button btnTirer, btnStop, btnRejouer;
-    public TMP_Text messageText; // Texte TMP pour afficher les messages
+    public TMP_Text messageText;
+
+    public Image imagePlayerCard;
+    public Image imageDealerCard;
+
+    // 12 listes de 4 sprites (2 à 10, J, Q, K)
+    [Header("Cartes par valeur (4 sprites par carte)")]
+    public List<Sprite> sprites2;
+    public List<Sprite> sprites3;
+    public List<Sprite> sprites4;
+    public List<Sprite> sprites5;
+    public List<Sprite> sprites6;
+    public List<Sprite> sprites7;
+    public List<Sprite> sprites8;
+    public List<Sprite> sprites9;
+    public List<Sprite> sprites10;
+    public List<Sprite> spritesJ;
+    public List<Sprite> spritesQ;
+    public List<Sprite> spritesK;
+
+    private Dictionary<int, List<Sprite>> cardSpriteMap;
 
     int playerScore = 0, dealerScore = 0;
     bool playerTurn = true, gameOver = false;
@@ -15,11 +35,32 @@ public class BlackjackGame : MonoBehaviour
 
     void Start()
     {
-        btnTirer.onClick.AddListener(() => PlayTurn(0)); // 0 = carte normale
+        btnTirer.onClick.AddListener(() => PlayTurn());
         btnStop.onClick.AddListener(EndGame);
         btnRejouer.onClick.AddListener(StartGame);
-        StartGame();
         LevelLoader = FindObjectOfType<LevelLoader>();
+
+        InitCardSpriteMap();
+        StartGame();
+    }
+
+    void InitCardSpriteMap()
+    {
+        cardSpriteMap = new Dictionary<int, List<Sprite>>
+        {
+            { 2, sprites2 },
+            { 3, sprites3 },
+            { 4, sprites4 },
+            { 5, sprites5 },
+            { 6, sprites6 },
+            { 7, sprites7 },
+            { 8, sprites8 },
+            { 9, sprites9 },
+            { 10, sprites10 }, // Pour 10
+            { 11, spritesJ },   // Valet
+            { 12, spritesQ },   // Dame
+            { 13, spritesK }    // Roi
+        };
     }
 
     void StartGame()
@@ -30,17 +71,21 @@ public class BlackjackGame : MonoBehaviour
 
         messageText.text = "Nouvelle partie ! Votre score : 0 | Score du croupier : 0";
 
+        imagePlayerCard.sprite = null;
+        imageDealerCard.sprite = null;
+
         btnTirer.gameObject.SetActive(true);
         btnStop.gameObject.SetActive(true);
         btnRejouer.gameObject.SetActive(false);
     }
 
-    void PlayTurn(int aceValue)
+    void PlayTurn()
     {
         if (gameOver || !playerTurn) return;
 
-        int card = aceValue == 0 ? RandomCard() : aceValue;
-        playerScore += card;
+        int value = RandomCardValue();
+        playerScore += GetCardPoints(value);
+        imagePlayerCard.sprite = GetCardSprite(value);
 
         messageText.text = $"Votre score total : {playerScore}";
 
@@ -58,12 +103,13 @@ public class BlackjackGame : MonoBehaviour
 
     IEnumerator DealerTurnCoroutine()
     {
-        yield return new WaitForSeconds(2f); // petite pause pour effet
+        yield return new WaitForSeconds(2f);
 
         if (gameOver) yield break;
 
-        int card = RandomCard();
-        dealerScore += card;
+        int value = RandomCardValue();
+        dealerScore += GetCardPoints(value);
+        imageDealerCard.sprite = GetCardSprite(value);
 
         messageText.text = $"Le croupier tire une carte, score total : {dealerScore}";
 
@@ -80,7 +126,25 @@ public class BlackjackGame : MonoBehaviour
         }
     }
 
-    int RandomCard() => new int[] { 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10 }[Random.Range(0, 12)];
+    int RandomCardValue()
+    {
+        int[] values = new int[] { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 }; // 11=J, 12=Q, 13=K
+        return values[Random.Range(0, values.Length)];
+    }
+
+    int GetCardPoints(int value)
+    {
+        if (value >= 11 && value <= 13) return 10; // J, Q, K
+        return value;
+    }
+
+    Sprite GetCardSprite(int value)
+    {
+        if (!cardSpriteMap.ContainsKey(value)) return null;
+
+        List<Sprite> options = cardSpriteMap[value];
+        return options[Random.Range(0, options.Count)];
+    }
 
     void EndGame()
     {
@@ -94,7 +158,7 @@ public class BlackjackGame : MonoBehaviour
 
         btnTirer.gameObject.SetActive(false);
         btnStop.gameObject.SetActive(false);
-        btnRejouer.gameObject.SetActive(true);
+        btnRejouer.gameObject.SetActive(false);
 
         if (LevelLoader != null)
             LevelLoader.ExitLevel();

@@ -1999,6 +1999,7 @@ MonoBehaviour:
   backgrounds: {fileID: 208028243}
   transitionAnim: {fileID: 1162906791}
   AnimCanvas: {fileID: 843190183}
+  cardPrefab: {fileID: 6678983170296682776, guid: 5cf7f2653a1360644899b6c8514d3d4f, type: 3}
 --- !u!4 &1029099063
 Transform:
   m_ObjectHideFlags: 0
@@ -6038,7 +6039,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startOnAwake: 1
-  storyAsset: {fileID: 4900000, guid: 79c9986a069af3c40b06a652af6c1ef8, type: 3}
+  storyAsset: {fileID: 4900000, guid: 41431dd9ef58c7d42baa2eae9c0b1e1c, type: 3}
   eventList:
   - eventName: playSound
     onTrigger:

@@ -39,6 +39,7 @@ public class LevelLoader : MonoBehaviour
         inkCanvas.gameObject.SetActive(true);
         charas.SetActive(true);
         backgrounds.SetActive(true);
+
         mainCam.transform.DOMove(cameraPos, centerDuration);
         mainCam.DOOrthoSize(orthographicSize, centerDuration);
     }
