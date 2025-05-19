@@ -1,14 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro; // Assure-toi d'utiliser TextMeshPro
+using TMPro;
 
 public class RouletteColor : MonoBehaviour
 {
-    public TextMeshProUGUI messageText; // Assure-toi de l’assigner dans l’inspecteur
-    private VFXLoader vfxLoader; // Référence au script VFXLoader
-    private string chosenColor = ""; // Couleur choisie par le joueur
-    [SerializeField] Canvas canvas; // Référence au canvas
+    public TextMeshProUGUI messageText;
+    private VFXLoader vfxLoader;
+    private string chosenColor = "";
+    [SerializeField] Canvas canvas;
+    [SerializeField] private SpriteRenderer glowSpriteRenderer;
+
+    private string colorResult = "";
+    private Material _glowMaterialInstance;
+
     private void Start()
     {
         Debug.Log("==> Start() appelé");
@@ -23,9 +28,18 @@ public class RouletteColor : MonoBehaviour
         {
             Debug.LogError("messageText n'est pas assigné !");
         }
+
+        if (glowSpriteRenderer != null)
+        {
+            // Instancie le matériel pour éviter de modifier le sharedMaterial
+            _glowMaterialInstance = glowSpriteRenderer.material;
+        }
+        else
+        {
+            Debug.LogWarning("glowSpriteRenderer non assigné !");
+        }
     }
 
-    // Appelée par un bouton pour choisir une couleur
     public void ChooseColor(string color)
     {
         Debug.Log("==> ChooseColor() appelé avec : " + color);
@@ -42,7 +56,6 @@ public class RouletteColor : MonoBehaviour
         }
     }
 
-    // Appelée pour lancer la roulette
     public void OnButtonClick()
     {
         Debug.Log("==> OnButtonClick() appelé");
@@ -60,8 +73,6 @@ public class RouletteColor : MonoBehaviour
         float randomValue = Random.Range(0f, 1f);
         Debug.Log("randomValue généré : " + randomValue);
 
-        string colorResult;
-
         if (randomValue < 0.45f)
             colorResult = "Noir";
         else if (randomValue < 0.90f)
@@ -70,6 +81,7 @@ public class RouletteColor : MonoBehaviour
             colorResult = "Vert";
 
         Debug.Log("Couleur obtenue par la roulette : " + colorResult);
+        ChangeGlowColor(colorResult);
 
         if (messageText != null)
         {
@@ -90,10 +102,9 @@ public class RouletteColor : MonoBehaviour
 
             if (vfxLoader != null)
             {
-
                 Debug.Log("vfxLoader trouvé, on quitte le niveau");
                 vfxLoader.ExitLevel();
-                canvas.gameObject.SetActive(false); // Désactive le canvas de la roulette
+                canvas.gameObject.SetActive(false);
                 FindAnyObjectByType<Canvas>().gameObject.SetActive(true);
             }
             else
@@ -120,5 +131,41 @@ public class RouletteColor : MonoBehaviour
                 Debug.LogError("vfxLoader non trouvé !");
             }
         }
+    }
+
+    private void ChangeGlowColor(string colorName)
+    {
+        if (_glowMaterialInstance == null)
+        {
+            Debug.LogWarning("Matériau glow non instancié !");
+            return;
+        }
+
+        Color newColor;
+
+        switch (colorName)
+        {
+            case "Rouge":
+                newColor = Color.red;
+                break;
+            case "Noir":
+                newColor = new Color(0.05f, 0.05f, 0.05f, 1f);
+                break;
+            case "Vert":
+                newColor = Color.green;
+                break;
+            default:
+                newColor = Color.white;
+                break;
+        }
+
+        float intensity = 5f; // Intensité HDR dans la couleur
+        Color colorWithIntensity = newColor * intensity;
+
+        _glowMaterialInstance.SetColor("_GlowColor", colorWithIntensity);
+
+        // Toujours fixer glowIntensity à 3
+        if (_glowMaterialInstance.HasProperty("_GlowIntensity"))
+            _glowMaterialInstance.SetFloat("_GlowIntensity", 3f);
     }
 }
