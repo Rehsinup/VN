@@ -16,6 +16,7 @@ Carreau:Feurs
 //~changeBg("Salon")
 ~hide("Carreau")
 ~show("Coeur")
+~LoadScene("VFXRoulette")
 Coeur: AAA
 ~fadeBg("Trefle", 0.4)
 ~hide("Coeur")
