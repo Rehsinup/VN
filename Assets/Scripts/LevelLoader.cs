@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using Unity.VisualScripting;
+using System.Collections;
 
 public class LevelLoader : MonoBehaviour
 {
@@ -11,16 +13,37 @@ public class LevelLoader : MonoBehaviour
     [SerializeField] private float enterDuration = 2.5f;
     [SerializeField] private float centerDuration = 2.5f;
     [SerializeField] private Camera mainCamera;
-    public float ZoomSize = 6f;
-    private float currentSize;
-    public Vector2 CamAnimTime;
+    [SerializeField] Canvas inkCanvas;
+    [SerializeField] private GameObject charas;
+    [SerializeField] private GameObject backgrounds;
+    [SerializeField] Animator transitionAnim;
+    [SerializeField] Canvas AnimCanvas;
+
+    private Vector3 cameraPos;
+    private float orthographicSize;
+
 
     void Start()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
         mainCam = Camera.main;
-        currentSize = mainCamera.orthographicSize;
+        cameraPos = mainCam.transform.position;
+        orthographicSize = mainCam.orthographicSize;
     }
+
+    private void OnSceneUnloaded(Scene scene)
+    {
+        if (gameObject.scene == scene)
+            return;
+        inkCanvas.gameObject.SetActive(true);
+        charas.SetActive(true);
+        backgrounds.SetActive(true);
+
+        mainCam.transform.DOMove(cameraPos, centerDuration);
+        mainCam.DOOrthoSize(orthographicSize, centerDuration);
+    }
+
 
     public void ImportLevel(string levelName)
     {
@@ -29,22 +52,29 @@ public class LevelLoader : MonoBehaviour
         if (mainCam != null)
             mainCam.transform.position = new Vector3(0, 0, -10f);
 
-        GameObject textObject = GameObject.Find("Canvas");
-        if (textObject != null) textObject.SetActive(false);
+        inkCanvas.gameObject.SetActive(false);
+        charas.SetActive(false);
+        backgrounds.SetActive(false);
 
         SceneManager.LoadScene(levelName, LoadSceneMode.Additive);
     }
 
     public void ExitLevel()
     {
-        if (mainCam != null)
-            mainCam.gameObject.SetActive(true);
-
-        GameObject textObject = GameObject.Find("Canvas");
-        if (textObject != null) textObject.SetActive(true);
-
-        SceneManager.UnloadSceneAsync(lastlevel.buildIndex);
+        StartCoroutine(QuitterLevel());
     }
+
+    IEnumerator QuitterLevel()
+    {
+        AnimCanvas.sortingOrder = 11;
+        transitionAnim.SetTrigger("End");
+        yield return new WaitForSeconds(2f);
+        SceneManager.UnloadSceneAsync(lastlevel.buildIndex);
+        transitionAnim.SetTrigger("Start");
+        yield return new WaitForSeconds(2f);
+        AnimCanvas.sortingOrder = 1;
+    }
+
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -55,37 +85,7 @@ public class LevelLoader : MonoBehaviour
         if (mode == LoadSceneMode.Additive)
         {
             lastlevel = scene;
-
-            if (mainCam != null)
-                mainCam.gameObject.SetActive(false);
-
-            Camera newCam = null;
-            foreach (GameObject obj in scene.GetRootGameObjects())
-            {
-                Camera cam = obj.GetComponentInChildren<Camera>();
-                if (cam != null)
-                {
-                    newCam = cam;
-                    break;
-                }
-            }
-
-            if (newCam != null)
-            {
-                mainCamera.DOOrthoSize(ZoomSize, CamAnimTime.x).OnComplete(SwitchCam);
-                newCam.gameObject.SetActive(true);
-
-                newCam.transform.position = new Vector3(0f, 15f, -10f);
-                newCam.transform.rotation = Quaternion.Euler(45f, 0f, 0f);
-
-                newCam.transform.DOMoveY(0f, enterDuration);
-                newCam.transform.DORotate(Vector3.zero, enterDuration);
-            }
         }
     }
 
-    void SwitchCam()
-    {
-        mainCamera.DOOrthoSize(currentSize, CamAnimTime.y);
-    }
 }

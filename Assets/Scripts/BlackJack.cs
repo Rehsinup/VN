@@ -2,21 +2,65 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class BlackjackGame : MonoBehaviour
 {
-    public Button btnTirer, btnAs1, btnAs11, btnStop, btnRejouer;
+    public Button btnTirer, btnStop, btnRejouer;
+    public TMP_Text messageText;
+
+    public Image imagePlayerCard;
+    public Image imageDealerCard;
+
+    // 12 listes de 4 sprites (2 à 10, J, Q, K)
+    [Header("Cartes par valeur (4 sprites par carte)")]
+    public List<Sprite> sprites2;
+    public List<Sprite> sprites3;
+    public List<Sprite> sprites4;
+    public List<Sprite> sprites5;
+    public List<Sprite> sprites6;
+    public List<Sprite> sprites7;
+    public List<Sprite> sprites8;
+    public List<Sprite> sprites9;
+    public List<Sprite> sprites10;
+    public List<Sprite> spritesJ;
+    public List<Sprite> spritesQ;
+    public List<Sprite> spritesK;
+
+    private Dictionary<int, List<Sprite>> cardSpriteMap;
+
     int playerScore = 0, dealerScore = 0;
     bool playerTurn = true, gameOver = false;
+    private LevelLoader LevelLoader;
 
     void Start()
     {
-        btnTirer.onClick.AddListener(() => PlayTurn(0)); // 0 signifie que c'est une carte normale
-        btnAs1.onClick.AddListener(() => PlayTurn(1)); // Tirer un As comme 1
-        btnAs11.onClick.AddListener(() => PlayTurn(11)); // Tirer un As comme 11
-        btnStop.onClick.AddListener(EndGame); // Fin de la partie, arrêt du croupier
+        btnTirer.onClick.AddListener(() => PlayTurn());
+        btnStop.onClick.AddListener(EndGame);
         btnRejouer.onClick.AddListener(StartGame);
+        LevelLoader = FindObjectOfType<LevelLoader>();
+
+        InitCardSpriteMap();
         StartGame();
+    }
+
+    void InitCardSpriteMap()
+    {
+        cardSpriteMap = new Dictionary<int, List<Sprite>>
+        {
+            { 2, sprites2 },
+            { 3, sprites3 },
+            { 4, sprites4 },
+            { 5, sprites5 },
+            { 6, sprites6 },
+            { 7, sprites7 },
+            { 8, sprites8 },
+            { 9, sprites9 },
+            { 10, sprites10 }, // Pour 10
+            { 11, spritesJ },   // Valet
+            { 12, spritesQ },   // Dame
+            { 13, spritesK }    // Roi
+        };
     }
 
     void StartGame()
@@ -24,79 +68,99 @@ public class BlackjackGame : MonoBehaviour
         playerScore = dealerScore = 0;
         playerTurn = true;
         gameOver = false;
-        Debug.Log("Nouvelle partie ! Votre score : 0 | Score du croupier : 0");
 
-        // Réinitialiser les boutons pour jouer une nouvelle partie
+        messageText.text = "Nouvelle partie ! Votre score : 0 | Score du croupier : 0";
+
+        imagePlayerCard.sprite = null;
+        imageDealerCard.sprite = null;
+
         btnTirer.gameObject.SetActive(true);
-        btnAs1.gameObject.SetActive(true);
-        btnAs11.gameObject.SetActive(true);
         btnStop.gameObject.SetActive(true);
         btnRejouer.gameObject.SetActive(false);
     }
 
-    void PlayTurn(int aceValue)
+    void PlayTurn()
     {
         if (gameOver || !playerTurn) return;
 
-        // Si on joue un As, on ajoute sa valeur
-        int card = aceValue == 0 ? RandomCard() : aceValue;
-        playerScore += card;
-        Debug.Log($"Votre score total : {playerScore}");
+        int value = RandomCardValue();
+        playerScore += GetCardPoints(value);
+        imagePlayerCard.sprite = GetCardSprite(value);
 
-        // Vérifier si le joueur dépasse 21
+        messageText.text = $"Votre score total : {playerScore}";
+
         if (playerScore > 21)
         {
             EndGame();
         }
         else
         {
-            // Passer au tour du croupier
             playerTurn = false;
-            Debug.Log("C'est au tour du croupier...");
-            DealerTurn();
+            messageText.text += "\nC'est au tour du croupier...";
+            StartCoroutine(DealerTurnCoroutine());
         }
     }
 
-    void DealerTurn()
+    IEnumerator DealerTurnCoroutine()
     {
-        if (gameOver) return;
+        yield return new WaitForSeconds(2f);
 
-        // Le croupier tire une carte
-        int card = RandomCard();
-        dealerScore += card;
-        Debug.Log($"Le croupier tire une carte, score total : {dealerScore}");
+        if (gameOver) yield break;
 
-        // Vérifier si le croupier dépasse 21
+        int value = RandomCardValue();
+        dealerScore += GetCardPoints(value);
+        imageDealerCard.sprite = GetCardSprite(value);
+
+        messageText.text = $"Le croupier tire une carte, score total : {dealerScore}";
+
+        yield return new WaitForSeconds(1f);
+
         if (dealerScore > 21)
         {
             EndGame();
         }
         else
         {
-            // Passer à nouveau au joueur
             playerTurn = true;
-            Debug.Log("C'est à nouveau votre tour !");
+            messageText.text += "\nC'est à nouveau votre tour !";
         }
     }
 
-    int RandomCard() => new int[] { 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10 }[Random.Range(0, 12)];
+    int RandomCardValue()
+    {
+        int[] values = new int[] { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 }; // 11=J, 12=Q, 13=K
+        return values[Random.Range(0, values.Length)];
+    }
+
+    int GetCardPoints(int value)
+    {
+        if (value >= 11 && value <= 13) return 10; // J, Q, K
+        return value;
+    }
+
+    Sprite GetCardSprite(int value)
+    {
+        if (!cardSpriteMap.ContainsKey(value)) return null;
+
+        List<Sprite> options = cardSpriteMap[value];
+        return options[Random.Range(0, options.Count)];
+    }
 
     void EndGame()
     {
         gameOver = true;
 
-        // Afficher les résultats
-        if (playerScore > 21) Debug.Log("Vous avez dépassé 21 ! Défaite !");
-        else if (dealerScore > 21) Debug.Log("Le croupier a dépassé 21 ! Vous gagnez !");
-        else if (playerScore > dealerScore) Debug.Log("Vous gagnez !");
-        else if (playerScore < dealerScore) Debug.Log("Le croupier gagne !");
-        else Debug.Log("Égalité !");
+        if (playerScore > 21) messageText.text = "Vous avez dépassé 21 ! Défaite !";
+        else if (dealerScore > 21) messageText.text = "Le croupier a dépassé 21 ! Vous gagnez !";
+        else if (playerScore > dealerScore) messageText.text = "Vous gagnez !";
+        else if (playerScore < dealerScore) messageText.text = "Le croupier gagne !";
+        else messageText.text = "Égalité !";
 
-        // Afficher le bouton Rejouer et désactiver les autres pour éviter les erreurs
-        btnRejouer.gameObject.SetActive(true);
         btnTirer.gameObject.SetActive(false);
-        btnAs1.gameObject.SetActive(false);
-        btnAs11.gameObject.SetActive(false);
         btnStop.gameObject.SetActive(false);
+        btnRejouer.gameObject.SetActive(false);
+
+        if (LevelLoader != null)
+            LevelLoader.ExitLevel();
     }
 }

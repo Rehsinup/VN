@@ -24,7 +24,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Emissive:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 179f596f878a72e4b8b40c242e7b7c6e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -47,7 +47,7 @@ Material:
     m_Floats:
     - _Intensity: 1
     m_Colors:
-    - _GlowColor: {r: 0, g: 2.799118, b: 4, a: 1}
+    - _GlowColor: {r: 4.6374893, g: 5.3403144, b: 0, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &8399897881227285165
 MonoBehaviour:
