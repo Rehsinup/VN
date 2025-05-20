@@ -14,7 +14,7 @@ Carreau:Feurs
 //~changeBg("Salon")
 ~hide("Carreau")
 ~show("Coeur")
-~LoadScene("VFXRoulette")
+~LoadScene("Blackjack")
 Coeur: AAA
 ~fadeBg("Trefle", 0.4)
 ~hide("Coeur")
@@ -31,7 +31,7 @@ FEUR FEUR FEUR
 ~changeBg("Carreau")
 FEUR FEUR FEUR 
 AAAAAA
-~LoadScene("Blackjack")
+~LoadScene("VFXRoulette")
 OULOULOU
 ->HALL
 ==HALL
