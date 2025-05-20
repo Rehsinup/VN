@@ -149,7 +149,7 @@ public class RouletteColor : MonoBehaviour
                 newColor = Color.red;
                 break;
             case "Noir":
-                newColor = new Color(0.05f, 0.05f, 0.05f, 1f);
+                newColor = new Color(0.2f, 0.2f, 0.2f, 1f);
                 break;
             case "Vert":
                 newColor = Color.green;
@@ -165,7 +165,7 @@ public class RouletteColor : MonoBehaviour
         _glowMaterialInstance.SetColor("_GlowColor", colorWithIntensity);
 
         // Toujours fixer glowIntensity à 3
-        if (_glowMaterialInstance.HasProperty("_GlowIntensity"))
-            _glowMaterialInstance.SetFloat("_GlowIntensity", 3f);
+        if (_glowMaterialInstance.HasProperty("_Intensity"))
+            _glowMaterialInstance.SetFloat("_Intensity", 3f);
     }
 }
