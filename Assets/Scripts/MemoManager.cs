@@ -26,6 +26,7 @@ public class MemoManager : MonoBehaviour
     private LevelLoader levelLoader;
     private List<GameObject> instantiatedCards = new List<GameObject>();
 
+
     private void Start()
     {
         SetupCards();

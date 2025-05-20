@@ -133,7 +133,6 @@ namespace vinkn
             transitionAnim.SetTrigger("BgOut");
             yield return new WaitForSeconds(1f);
             transitionAnim.SetTrigger("BgIn");
-            yield return new WaitForSeconds(2f);
         }
 
         public virtual void FlipXChar(string item)

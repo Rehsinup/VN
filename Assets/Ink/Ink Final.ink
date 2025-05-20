@@ -8,6 +8,7 @@ VAR coeur = false
 VAR A = 0 
 VAR objet = false
 VAR etreAlleVoirUnCroupier = false
+
 VAR Grethel = 0
 VAR Hansel = 0
 
@@ -325,7 +326,7 @@ le majordome emphatique leur propose de s'interlink dans son casino dont il fait
 - else:
 ->hubMajordome
 }
-{Hansel <= 6 && Grethel >=3:
+{Grethel >=3:
 ->CurseurGrethel
 - else:
 ->hubMajordome
@@ -355,21 +356,17 @@ Majordome: Bravo pour le test ! Ce n'était qu'une formalité évidemment, rien 
 Majordome: Le retour au casino est un peu déroutant au début, ne vous en faites pas... 
 Majordome: Ca change de mon antre, n'est-ce pas ?
 
-+{not scene_full}->fakeawnsers
-- -(fakeawnsers)
-* *Hansel: Wow, le contraste est flagrant. Vous ne mentiez en parlant de votre prestigieuse institution.
+
 ~show("Hansel")
+Hansel: Wow, le contraste est flagrant. Vous ne mentiez en parlant de votre prestigieuse institution.
 Majordome: Pourquoi l'aurais-je fait, vous êtes mes invités, c'est un plaisir pour moi de vous accueillir.
 ~hide("Hansel")
-->fakeawnsers
-* *Grethel: C'est... impressionnant *elle se rapproche de Hansel
 ~show("Grethel")
+Grethel: C'est... impressionnant *elle se rapproche de Hansel*
 Majordome: Effectivement, mes visiteurs sont souvent ébahis en arrivant. 
 Majordome: J'en suis plutôt fier d'ailleurs, ça veut dire que mon casino fait une bonne première impression.
 ~hide("Grethel")
-->fakeawnsers 
-* *(scene_full)->suite
--(suite)
+
 ~show("Hansel")
 Majordome: Comme vous pouvez le constater, nous nous trouvons à l'entrée. 
 Majordome: C'est d'ici que vous pourrez accéder à nos différents jeux. 
@@ -535,6 +532,7 @@ Carreau: Alors, vous jouez ?
 ->jouerCarr
 }
 ===jouerCarr
+~Hansel +=1
 ~LoadScene("VFXRoulette")
 //Jouez mes couilles
 //Fonction jouer jsp débrouille-toi
@@ -679,6 +677,7 @@ Carreau: C'est dur à dire mais je m'en méfierai quand même, après tout ces a
 Carreau: C'est facile pour eux d'amadouer des joueurs.
 
 Grethel:  Oui on a vu ça, on fera attention en sa présence merci pour l'info.
+~Grethel +=1
 ~InfoCroupierCarreau = true
 ->Conversation1
 
@@ -719,6 +718,7 @@ JEU
 ~show("Grethel")
 ~changeBg("Coeur")
 ~hide("Hansel")
+~hide("Hansel2")
 Coeur: Bienvenue, bienvenue, asseyez-vous.
 Coeur: Vous êtes la pour jouer c'est ça ?
 +[H-Oui]->Oui
@@ -731,12 +731,15 @@ Coeur: Alors jouons *bruit de carte qui se distribue*\
 ->suite3
 -
 -(suite3)
+~hide("Coeur")
+~show("Hansel2")
+Grethel: Elle a l'air speed dis donc.
 
-Grethel:  à H-Elle a l'air speed dis donc.
-
-Hansel: à G- C'est clair.
-Coeur: Ici vous jouerez au memory, 
-Coeur: le jeu est simple, 
+Hansel: C'est clair.
+~hide("Hansel2")
+~show("Coeur")
+Coeur: Ici vous jouerez au memory. 
+Coeur: Le jeu est simple, 
 Coeur: Il vous faut constituez des paires de cartes, 
 Coeur: Vous retournez deux cartes, si les elles sont identiques alors vous les laissez faces retournées,
 Coeur: ...
@@ -745,21 +748,23 @@ Coeur: Sinon vous les retournez face cachée. L'objectif est de trouver toutes l
 
 Grethel: Ca va ? Vous avez l'air d'avoir eu une absence.
 
-Coeur: Excusez-moi, ce sont des souvenirs qui ressurgissent. Vous êtes prêt pour le jeu ? 
+Coeur: Excusez-moi, ça m'arrive de temps en temps. 
+Coeur: Vous êtes prêt pour le jeu ? 
 ->jouerCCO
 
 ===jouerCCO
+~Hansel +=1
 ~LoadScene("MemoryCards")
 ->HubCC0
 
 ===HubCC0
-Coeur: J'espère que vous vous amusez bien, dites moi s'il vous faut quoi que se soit, je serais heureux de vous aider
+{! "Coeur: J'espère que vous vous amusez bien, dites moi s'il vous faut quoi que se soit, je serais heureux de vous aider"}
 +[Demander à rejouer]->jouerCCO
 +[Converser avec le croupier]->Conversation2
 
 ===Conversation2
 *[Complimenter sa maîtrise des cartes]->cartes
-*[Demander pourquoi elle est si speed]->speed
+*[Demander pourquoi elle est si rapide]->speed
 +[Retourner voir le Majordome]->CheckVariablePourFin
 *{DéblocageInfoCroupierTrèfle >= 2}[Demander comment se passe le travail avec ses collègues]->InfoCroupiertrefle
 
@@ -774,17 +779,19 @@ La croupière fredonne un air*
 
 Grethel: J'ai l'impression d'avoir déjà entendu cet air, vous aimez la musique ?
 
-Coeur: Oui elle rythme ma vie. Dès que j'en ai la possibilité j'attrape mes Sybopod pour vibrer.
+Coeur: Oui elle rythme ma vie. Dès que j'en ai la possibilité j'attrape mon RadioLink.
 
 Grethel: Je suis une grande fan du groupe "Synthex Virga", peut-être que vous connaissez ?
 
 Coeur: Evidemment.
 
-Grethel:  J'aimerais vraiment voir les visages derrière leurs masques, dommage que le groupe se soit séparé.
+Grethel: J'aimerais vraiment voir les visages derrière leurs masques, dommage que le groupe se soit séparé.
 
 Coeur: Ouais, j'ai entendu dire qu'il y avait des conflits internes entre les musiciens.
 
-Grethel:C'était les rumeurs oui, personnellement je pense qu'il y a eu plus que ça. Le groupe était à son apogée, même certains groupe comme les Beatles ont réussi à rester formé alors qu'il y avait de fortes tension entre les musiciens.
+Grethel:C'était les rumeurs oui, personnellement je pense qu'il y a eu plus que ça. 
+Grethel: Le groupe était à son apogée.
+Grethel: Même certains groupe comme les Beatles ont réussi à rester formé alors qu'il y avait de fortes tension entre les musiciens.
 
 Coeur: Vous savez certaines personnes choisissent parfois de finir sur une note positive pour ne pas avoir de regrets plus tard, c'était peut-être leur cas.
 
@@ -793,7 +800,8 @@ Grethel: Alors pourquoi leur séparation avait un arrière goût amer, leur bass
 Coeur: ...
 Coeur: Ca ne nous regarde pas si vous voulez mon avis. Ils restent tous des humains, on ne pourra jamais comprendre leur décision à moins d'être à leur place.
 
-Hansel: On peut rejouer ou pas... je meurs d'envie de retenter ma chance !
+Hansel: On peut rejouer ou pas... 
+Hansel: Je meurs d'envie de retenter ma chance !
 ~DéblocageInfoCroupierTrèfle +=1
 ->Conversation2
 
@@ -837,9 +845,9 @@ Coeur: Pas vraiment j'aime me concentrer sur mon travail et rester active.
 
 Grethel: Vous aimez ce que vous faites ?
 
-Coeur: Je pense que oui, j'utilise surtout ce métier pour m'échapper d'évènements passés.
+Coeur: Je pense que oui, ça me permet de m'évader et d'oublier certaines choses.
 
-Grethel: (dans la tête) c'est peut-être pour ça qu'elle est rapide...
+Grethel: (dans la tête) C'est peut-être pour ça qu'elle est rapide...
 ~DéblocageInfoCroupierTrèfle +=1
 ->Conversation2
 
@@ -859,7 +867,8 @@ Coeur: On partage tous les deux de vieilles cicatrices.
 Grethel: Oui j'avais cru comprendre dans notre conversation.
 
 Coeur: Il a eu de gros problèmes d'addictions plus jeune. C'est comme ça qu'il a atterrit ici. 
-Coeur: Mais tout ça lui pèse encore beaucoup, il évite tout le temps le sujet quand on parle d'addiction, ça lui fait vraiment mal de voir les gens sombrer dans l'addiction en venant ici. 
+Coeur: Mais tout ça lui pèse encore beaucoup, il évite tout le temps le sujet quand on parle d'addiction, 
+Coeur: Ca lui fait vraiment mal de voir les gens sombrer dans l'addiction en venant ici. 
 Coeur: Mais il me parle souvent de ses enfants dont il a perdu la garde, il espère de tout coeur pouvoir les revoir un jour.
 
 Grethel: Nous aussi nous espérons pouvoir revoir notre père. Notre belle-mère nous a mit à la porte en nous disant de ne jamais revenir....
@@ -919,6 +928,7 @@ Grethel: C'est si compromettant que ça ?
 Coeur: Oui et en plus de vous attirer des problèmes, je risque d'en pâtir aussi.
 
 Grethel: Okay, on fera gaffe.
+~Grethel +=1
 ~InfoCroupierCCO = true
 ->Conversation2
 
@@ -944,38 +954,40 @@ Coeur: Revenons au jeu voulez-vous.
 ~changeBg("Trefle")
 Hansel: Alors on joue à quoi ici ?
 
-Trefle: Moi je m'occupe du Blackjack, un jeu de cartes qui remontent à l'époque du Far-West
+Trefle: Moi je m'occupe du Blackjack, un jeu de cartes qui remontent à l'époque du Far-West.
 
-Hansel: Ah mais je connais ce jeu, je l'ai vu dans les vieux films que notre père adore, par contre je veux bien qu'on me réexplique les règles.
+Hansel: Ah mais je connais ce jeu, je l'ai vu dans les vieux films que notre père adore.
+Hansel: Par contre je veux bien qu'on me réexplique les règles.
 
-Trefle: Bien sûr, le but c'est de me battre en obtenant un nombre supérieur au mien sans jamais dépassé 21. 
-Trefle: Chaque carte numérotée vaut sa valeur, les figures valent 10, et l’as vaut 1 ou 11 selon ce qui avantage le joueur. 
-Trefle: Au début, chacun reçoit deux cartes. 
-Trefle: Le joueur peut ensuite "tirer" (prendre une carte) ou "rester". 
+Trefle: Bien sûr, le but c'est de me battre en obtenant un nombre supérieur au mien sans jamais dépasser 21. 
+Trefle: Chaque carte numérotée vaut sa valeur et les figures valent 10.
+Trefle: Au début, chacun de nous reçoit deux cartes. 
+Trefle: Le joueur peut ensuite "tirer une carte" ou "rester". 
 Trefle: Le croupier doit tirer jusqu’à atteindre au moins 17. Si un joueur dépasse 21, il perd automatiquement.
 Trefle: Voilà tout ce qu'il faut savoir, vous êtes partant pour une partie ?
 
 Hansel: On est là pour ça de toute façon alors go !->Jouertrefle
 
 ===Jouertrefle
+~Hansel +=1
 ~LoadScene("Blackjack") 
 ->Hubtrefle
 
 ===Hubtrefle
-Trefle: Tout se passe bien pour vous ? 
+Trefle: Tout se passe bien pour vous ? //1fois
 Trefle: Si vous voulez rejouer faites moi signe.
 
 +[Demander à rejouer]->Jouertrefle
 +[Converser avec le croupier]->Conversationtrefle
++[Retourner voir le Majordome]->CheckVariablePourFin
 
 ===Conversationtrefle
-*[Demander pourquoi il est le croupier trèfle]->pourquoitrefle
-*[Poser des questions sur le blackjack]->blackjack
 +[Retourner voir le Majordome]->CheckVariablePourFin
+*[Pourquoi "Trèfle"]->pourquoitrefle
+*[Poser des questions sur le blackjack]->blackjack
 *{DéblocageInfoCroupierCarreau >= 2}[Demander comment se passe le travail avec ses collègues]->InfoCroupiercarreau
 
-*{DéblocageInfoCroupierCarreau < 2}[lastQuestionAFaireTrefle]->lastquestion
-*{DéblocageInfoMajordometrefle}[lui parler d'ou il vient]->InfoMajordometrefle 
+*{DéblocageInfoMajordometrefle}[Evoquer son passé]->InfoMajordometrefle 
 
 
 ===pourquoitrefle
@@ -983,7 +995,8 @@ Grethel: Vous êtes le croupier trèfle c'est ça ?
 Trefle: Oui c'est bien ça.
 Grethel: Et, sans vouloir être indiscrète pourquoi est-ce que c'est ce symbole qui vous a été attribuée ?
 Trefle: Chaque symbole a une signification.
-Trefle: Le mien fait référence à une situation inchangé et continue, que cette dernière soit positif ou négatif, je vous laisse interpréter ça à votre manière.
+Trefle: Le mien fait référence à une situation inchangée et continue. 
+Trefle: Que cette dernière soit positif ou négatif, je vous laisse interpréter ça à votre manière.
 Grethel: ....
 ~hide("Grethel")
 ~show("Hansel")
@@ -1008,9 +1021,6 @@ Grethel: Effectivement, vu comme ça, ça fait sens.
 ~DéblocageInfoCroupierCarreau += 1
 ->Conversationtrefle
 
-===lastquestion
-
-->Conversationtrefle
 
 
 ===InfoCroupiercarreau
@@ -1023,10 +1033,10 @@ Trefle: Ce bon vieux Carreau, oh oui je le connais.
 Il était déjà là quand je suis arrivé, on a eu l'occasion de discuter un bon nombre de fois.
 Grethel: Il y a des sujets qui l'intéresse particulièrement ?
 Trefle: Alors ça oui, notamment ses nombreux voyages, quand il en parle il a des étoiles pleins les yeux.
-Faut croire que ça lui remémore des bons souvenirs Contrairement à son passage dans l'armée corporative...
+Faut croire que ça lui remémore des bons souvenirs contrairement à son passage dans l'armée corporative...
 Grethel: Il a fait la guerre corpo ?
 Trefle: Oui, à chaque fois que j'essayais d'échanger sur ce sujet il m'envoyait valser et la discussion s'arrêtait net mais j'ai quand même appris son rôle.
-C'était un pilote de "Cuirasser Fantôme" et pas des moindre, il a dirigé l'unité Zero pendant un temps.
+Trefle: C'était un pilote de "Cuirasser Fantôme" et pas des moindre, il a dirigé l'unité Zero pendant un temps.
 ~hide("Grethel")
 ~show("Hansel")
 Hansel: Vraiment ?!
@@ -1037,10 +1047,8 @@ Hansel: Il y a même eu un film sur eux ?
 Grethel: Oui ! Ça me dit quelque chose on a dû le voir avec papa...
 Grethel: En tout cas merci pour les infos.
 Grethel: On va sûrement aller lui parler après.
-Trefle: Derien mais n'oubliez pas que je suis là pour vous faire jouer aussi.
+Trefle: De rien mais n'oubliez pas que je suis là pour vous faire jouer aussi.
 ->Conversationtrefle    
-
-
 
 
 
@@ -1104,19 +1112,240 @@ Grethel: Merci pour la conversation en tout cas et je vous souhaite de retrouver
 Grethel: Si c'est dur pour vous ça doit l'être aussi pour eux.
 Trefle: Merci pour ces mots et veillez bien l'un sur l'autre.
 ~InfoCroupierT = true
+~Grethel +=1
 ->Conversationtrefle
 
 
 
 ==CurseurGrethel
-Grethel a récolté suffisamment d'indices sur le lieu et l'identité du Majordome, ce qui lui permet de convaincre son frère de partir d'ici (Labyrinthe out)
+~hide("Majordome")
+~show("Grethel")
+~hide("Hansel")
+~show("Hansel2")
+Grethel: Hansel ! Il faut qu'on parle.
+
+Hansel2: Qu'est-ce qu'il y a ? Je suis sur une bonne lancée en plus.
+
+Grethel: Il faut qu'on arrête de jouer et qu'on parte d'ici avant que ça se retourne contre nous.
+Grethel: Trop de choses clochent et j'ai pas confiance en ce Majordome.
+
+Hansel2: Attends tu as trouvé quoi comme indices ?
+
+Grethel: Le croupier Carreau m'a dit que le majordome s'appelait Herz, ils ont travaillé ensemble dans l'ancien Krystalkugell.
+Grethel: D'après lui le Majordome est bien différent de celui qu'il a connu et s'en méfie aussi.
+Grethel: Selon la croupière Coeur, le casino étant financé par Bargheld et EndlosNetz, il aurait dû fermer depuis longtemps, quand ces corpos ont fait faillite.
+Grethel: Le Trèfle a raconté comment il est arrivé ici.
+Grethel: Et bizarrement c'est de la même façon que nous.
+Grethel: Les néons se sont allumés et l'ont menés jusqu'au Majordome, c'est pas anodin.
+
+Hansel2: En effet ça fait beaucoup d'infos.
+Hansel2: Tu penses qu'on doit arrêter de jouer ?
+
+Grethel: Il vaut mieux, j'ai peur qu'on finisse bloqué ici si on joue trop.
+
+Hansel2: Et merde...
+
+Grethel: Je pense pas qu'on ai assez gagné pour survivre dehors.
+Grethel: Mais Hans, tu comprends pas ?
+Grethel: Il y a rien a gagné ici, on ne mise même pas.
+Grethel:C'est juste pour nous amadouer.
+
+Hansel2: Okay je te crois mais par où on sort ?
+
+Grethel: Voyons avec le Majordome.
+
+~show("Majordome")
+Majordome: Alors jeunes gens, tout se passe bien ?
+~show("Hansel")
+~hide("Grethel")
+Hansel: Oui c'était super mais on a des choses à faire, alors on va devoir s'en aller.
+Majordome: Si tôt ?
+Majordome: Vous êtes sûrs d'avoir assez profité du lieu ?
+Majordome: N'hésitez pas, il vous reste encore beaucoup à gagner.
+~show("Grethel")
+~hide("Hansel")
+Grethel: Ce sera sans nous, on veut partir.
+Majordome: Vraiment ? Mais votre frère semble aimer jouer et il est plutôt bon.
+Grethel: Justement on sait ce qui nous attend si on reste trop longtemps ici.
+Grethel: Et c'est ce que vous cherchez, n'est-ce pas Herz ?
+Majordome: ...
+Majordome: Vous êtes perspicace.
+Majordome: On a tendance à dire que la curiosité est un vilain défaut, mais dans votre cas...
+Majordome: Cela vous aura bien sauvé.
+Grethel: Vraiment ? On peut partir alors.
+Majordome: Evidemment.
+Majordome: Ici tout est régie par des règles et elles doivent être respectées, sinon le jeu n'a plus de valeur.
+Majordome: Même pour moi.
+~show("Hansel")
+~hide("Grethel")
+Hansel: Et il arrive quoi à ceux qui jouent trop ?
+Majordome: Vous voulez vraiment le savoir ?
+~show("Grethel")
+~hide("Hansel")
+Grethel: Oui
+Majordome: Non jeunes gens, je vais vous épargner les détails cette fois.
+Grethel: Mais pourquoi vous faites ça ? Vous êtes une machine.
+Majordome: Tout le monde a des besoins, j'ai été crée pour faire jouer les gens, c'est ce qui m'anime et m'animera toujours.
+Majordome: Si vous n'avez pas d'autres questions je vais vous sortir d'ici et vous continuerez votre vie comme si de rien n'était.
+~show("Hansel")
+~hide("Grethel")
+Hansel: Pas d'entourloupes j'espère.
+Majordome: Je vous l'ai dit, je respecte les règles.
+Majordome: D'une certaine façon vous avez gagné, enfin vous n'avez pas perdu... je n'ai pas de raisons de vous garder ici.
+Grethel: Alors sortez nous.
+Majordome: ... "SFX numérique ? "
+
+Sous-sol
+
+Majordome: C'est ici que nos chemins se séparent.
+Majordome: Veuillez fermer la porte derrière vous.
+Majordome: Il ne faudrait pas que n'importe qui tombe sur mon antre n'est-ce pas ?
+Hansel: Je vous le fait pas dire...
+~show("Grethel")
+~hide("Hansel")
+Grethel: Attendez.
+Grethel: Et les croupiers ? Ce sont de véritables personnes ?
+Majordome: Pourquoi ne le seraient-ils pas.
+Grethel: Alors ils sont en vie...
+Majordome: Vous pensez ? Libre à vous.
+Majordome: Merci de votre visite, vous connaissez le chemin.
+
+~changeBg("Ruelle")
+~hide("Majordome")
+~hide("Hansel")
+~show("Hansel2")
+~show("Grethel")
+Hansel: Bon...
+Hansel: Nous revoilà au point de départ.
+Grethel: Oui... mais au moins on est libre.
+Hansel: C'est sûr.
+Hansel: Au fait Greth. Je suis désolé...
+Grethel: Pourquoi ?
+Hansel: Je me suis laissé absorbé par le jeu, sans toi j'étais foutu.
+Grethel: Bah tu sais c'est pas la première fois que je te sauve la mise et sûrement pas la dernière !
+Hansel: Oh que oui ! Bon on va chez Max ?
+Grethel: Ça va encore être une sacré histoire je le sens...
+
+
+Scène clé Léa + Musique de fou "Fancy Kids" - Emmanuel Lipszyc
 ->END
 
 ==CurseurHansel
-Si grethel n'a pas réussi a raisonner son frère
-alors Hansel sombre dans l'addiction et H et G se retrouvent piégés dans le casino (Grethel suis son frère car elle pense qu'il a raison)
+~hide("Majordome")
+~show("Hansel2")
+~show("Grethel")
+~hide("Hansel")
+Grethel: Hans tu penses pas qu'on a assez jouer ?
+Hansel: Tu rigoles ? Je suis en train de tout rafler là.
+Grethel: Je vois que tu aimes ça mais on est là depuis longtemps déjà et ça m'inquiète.
+Hansel: Qu'est-ce qui t'inquiètes ? Tu as des infos ?
+
+
+{not InfoCroupierCarreau && not InfoCroupierCCO && InfoCroupierT:
+Grethel: Aucune Info Non pas vraiment mais j'ai juste un mauvais pressentiment.
+}
+
+{InfoCroupierCarreau:
+Grethel: Le croupier Carreau m'a dit que le majordome s'appelait Herz, ils ont travaillé ensemble dans l'ancien Krystalkugell.
+Grethel: D'après lui le Majordome est bien différent de celui qu'il a connu et s'en méfie aussi.
+}
+
+ {InfoCroupierCCO:
+ Grethel: Selon la Coeur, le casino étant financé par Bargheld et EndlosNetz, il aurait dû fermer depuis longtemps en même temps que leurs faillites.
+ Grethel: Et elle nous a dis de pas le repeter au majordome, étrange non ?
+ }
+
+{InfoCroupierT:
+Grethel: Le Trèfle as raconté comment il est arrivé ici.
+Grethel: Et bizarrement c'est de la même façon que nous.
+Grethel: Les néons se sont allumés et l'ont amenés jusqu'au Majordome, c'est pas anodin.
+}
+
+Hansel: C'est maigre comme indice.
+Franchement je pense que y a pas de quoi s'inquiéter, en plus je suis en veine.
+Grethel: Tu veux continuer donc ?
+Hansel: Mais oui. Fais moi confiance et toi aussi joues !
+Grethel: Bon si tu le sens alors...
+Continuons.
+
+Ellipse temporel*
+
+Majordome: Eh bien !
+Majordome: On dirait que vous n'êtes pas prêt de vous en aller...
+Majordome: Il faut dire que mon casino est l'endroit rêvé pour des joueurs tels que vous.
+Majordome: On y joue.
+Majordome: On y gagne.
+Majordome: Et on y reste !
 ->END
 
 ==CurseurMid
-Si grethel comprend que le casino est un mauvais endroit et ne suit pas son frère, sans pour autant arriver a lui faire comprendre, elle se voit éjectée du casino et se retrouve dans le sous-sol avec le majordome, elle parle avec ce dernier et à la possibilité de lui proposer un quitte ou double pour chercher son frère si vous avez parlé au croupier qui donne une certaine information, l'IA étant joueuse accepte et si grethel gagne l'IA libère hansel (good ending) sinon elle retourne dans le casino avec son frère (bad ending). Si le joueur ne veut pas faire le quitte ou double grethel sort sans son frère du casino en se promettant de revenir le chercher.
+~show("Hansel2")
+~show("Grethel")
+Hansel2: Wow, j'suis on fire !!
+Hansel2: J'y retourne tout de suite !!
+Grethel: Hé, Hans attends, c'est n'importe quoi ce casino. T'as vu ce que les croupiers nous on dit ?! Tout pointe en défaveur du majordome, je ne sais pas ce qu'il souhaitait réellement de nous.
+Hansel2: Tu dis n'importe quoi Greth à ce rythme là on pourra sauver papa en un rien de temps !
+Hansel2: Bon, je vais jouer reste la si tu veux.
+~hide("Hansel2")
+Grethel: Attends...
+Grethel: C'est pas possible....
+~show("Majordome")
+Majordome: Et bien, on dirait que votre frère est déjà perdu. Majordome: Mais je vois que ce n'est pas votre cas.
+Grethel: Qu'est-ce que vous manigancez ? Pourquoi vous me dites ça ?
+Majordome: Car j'ai déjà compris que je ne pourrais pas vous forcer à jouer, alors pourquoi garder le secret plus longtemps.
+Grethel: J'ai cru comprendre que quelque chose clochait dans le casino. Et vous n'avez même pas honte de venir me le dire en face.
+Majordome: Allons, allons.
+Majordome: Nous devons tous vivre de quelque chose.
+Grethel: Vous êtes une intelligence artificielle de quoi auriez-vous besoin à part d'une alimentation ?
+Majordome: J'ai été conçu pour faire jouer les gens, c'est mon but premier.
+Majordome: Je comblait le manque de joueurs dans certains jeux il y a des années.
+Grethel: Et on dirait que vous avez pris goût au jeu de manière générale puisque vous avez monté un casino.
+Majordome: Effectivement, à l'époque jouer au jeux auquel j'étais consigné me suffisait.
+Majordome: Mais avec le temps les sensations se dérobaient, j'avais besoin de plus.
+Grethel: Comment ça plus ?
+Majordome: D'émotions, mais je ne pouvais plus me les procurer en jouant alors j'ai construit ce casino pour y faire venir des gens avec des prédispositions psychologique à l'addiction.
+Grethel: Si vous aimez tant que ça jouer alors jouons, je ne veux pas laisser mon frère entre vos sale pâtes.
+Majordome: En fonction de ce que vous me proposer c'est avec plaisir.
+Majordome: Mais sachez que je suis impassible et sans pitié lorsqu'il s'agit de jouer.
+Grethel: Ca ne m'étonne que très peu bizarrement.
+Grethel: Un quitte ou double ça vous tente, si je perd, j'accepte de devenir croupière dans votre casino. Sinon vous nous laissez partir avec Hansel.
+Majordome: Mhh....
+Majordome: C'est vrai que c'est une proposition alléchante.
+Majordome: Alors laissez moi vous inviter à résoudre cet énigme.
+->enigme
+
+===enigme
+Majordome: Je suis sans visage, mais on peut me compter.
+Majordome: Je suis au sommet de mon enseigne, mais certains vous dirons le contraire.
+Majordome: A ma table, nous sommes quatre, mais avons deux couleurs distincte.
+Majordome: Parmis nous, je suis le plus aggresif.
+Majordome: Qui suis-je?
+
+*[10 de Carreau]->midbad
+*[As de Pique]->midgood
+*[Roi de Pique]->midbad
+*[As de Carreau]->midbad
+*[Répéter]->enigme
+
+====midbad
+~show("Grethel")
+~show("Majordome")
+Majordome: On dirait que vous allez travailler pour moi jeune demoiselle.
+Majordome: Ne vous en faites pas vous allez vous y plaire.
+Grethel: Epargnez-moi ça.
+Majordome: Allons Allons, fixez votre attitude, elle pourrait déplaire nos futur clients.
+Grethel: Je ne serait jamais sous votre contrôle.
+Majordome: Vous êtes dans mon domaine, vous y serez contraint 
+Majordome: Que vous le vouliez ou non.
+
+
+->END
+===midgood
+~show("Grethel")
+~show("Majordome")
+Majordome: Je dois m'avouer battu cette fois-ci.
+Majordome: Vous pouvez aller chercher votre frère.
+Grethel: Comme ça ? Sans entourloupe ? Je ne vous crois pas.
+Majordome: Que vous me croyez ou non ça ne change rien, jugez moi autant que vous le voulez mais ici tout est régi par des règle, il faut les respecter sinon je le jeu perd de la valeur même pour moi.
+
 ->END

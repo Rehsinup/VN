@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Fadde
+  m_Controller: {fileID: 9100000, guid: 44f980e048bfc65408bb733d9cd4a202, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 75e6fe2dcd128c1488eee45dee9c3b35, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 4b208a24e53163e4f81e763a170fa056, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 4dc0668753a161847b9a7aebef4d6305, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d7395ac951ea4b842a6c62f0788c26cc, type: 2}

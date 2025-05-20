@@ -28,7 +28,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Emissive:
-        m_Texture: {fileID: 2800000, guid: 1c151dfefe4348644b7006d907f1ab59, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0fe1fe51c184f0b4297f308b3e2295e6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GlowMask:
+        m_Texture: {fileID: 2800000, guid: a51824ecea8726440b2225a5410d94ca, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -41,6 +45,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TimeMask:
+        m_Texture: {fileID: 2800000, guid: aa03f6b1b057daa42a942a369f833e95, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -59,10 +67,11 @@ Material:
     m_Floats:
     - _EnableExternalAlpha: 0
     - _Intensity: 0.5
+    - _Progress: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _GlowColor: {r: 7.1297374, g: 0, b: 0, a: 1}
+    - _GlowColor: {r: 9.51876, g: 9.51876, b: 9.51876, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &4213856599396446889

@@ -41,7 +41,7 @@ public class LevelLoader : MonoBehaviour
         backgrounds.SetActive(true);
 
         mainCam.transform.DOMove(cameraPos, centerDuration);
-        mainCam.DOOrthoSize(orthographicSize, centerDuration);
+        mainCam.orthographicSize = orthographicSize;
     }
 
 
