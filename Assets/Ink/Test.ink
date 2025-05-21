@@ -2,12 +2,19 @@ EXTERNAL LoadScene(string)
 EXTERNAL LoadVFX(string)
 INCLUDE 2d_api.ink
 
-~playSound("Son5")
 ~show("Grethel")
 ~show("Carreau")
 aaaa
-~fadeBg("Casino", 1.0)
+~fadeBg("Coeur", 1.0)
 Grethel: Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+~changeBg("Carreau")
+aaaaa
+~changeBg("Sous-sol")
+aaaa
+~changeBg("Casino")
+aaaa
+~playSound("FinGood")
+~LoadScene("KeySceneGood")
 Grethel: sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 Grethel: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 Carreau:Feurs

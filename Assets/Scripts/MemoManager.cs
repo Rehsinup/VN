@@ -55,7 +55,7 @@ public class MemoManager : MonoBehaviour
         {
             int row = i / 6;
             int col = i % 6;
-            Vector2 pos = startPosition + new Vector2(col * spacing.x, -row * spacing.y);
+            Vector2 pos = startPosition + new Vector2(col * 2f, -row * 3.5f);
 
             GameObject cardObj = Instantiate(cardPrefab, pos, Quaternion.identity);
             Card card = cardObj.GetComponent<Card>();

@@ -21,21 +21,13 @@ VAR InfoCroupierCCO = false
 VAR InfoCroupierT = false
 
 VAR DejaVenuCroupierCarreau = false
+VAR DejaVenuCroupierCoeur = false
+VAR DejaVenuCroupiertrefle = false
 
 VAR DéblocageInfoMajordomeCarreau = false
 VAR DéblocageInfoMajordomeCCO = false
 VAR DéblocageInfoMajordometrefle = false
 
-
-En l'an 2087, dans les bas-fonds de Neo-Berlin, 
-deux jeunes ados n'ayant connu que l'amour inconditionnel de leur père se retrouvent dans l'impasse. 
-Lorsque celui-ci tomba gravement malade, ils furent mis à la porte par leur détestable belle-mère.\
-->Scene1
-==Scene1 
-HORS DE MA VUE !!! 
-Ne cherchez pas à revenir ici, votre père est dans cette situation par votre faute. 
-Vous ne le méritez pas !
-->Ruelle
 
 ==Ruelle
 /*Conversation entre Hansel et Grethel, pose la dynamique entre les deux
@@ -291,6 +283,7 @@ Hansel2:  D'accord sœurette j'ouvrirai l'œil.
 ~show("Majordome")
 ~show("Hansel")
 ~hide("Grethel")
+~hide("Hansel2")
 Majordome: Alors, vous avez pris votre décision ?
 Hansel: En avant.->MiseEnGardeMajordome
 
@@ -307,7 +300,8 @@ Majordome: Absolument pas, nous fonctionnons comme ça depuis des années et nou
 ~hide("Hansel")
 Hansel: Allez Greth, on y va.
 Majordome: Par contre comme vous êtes deux je vais avoir besoin de vous synchronyser via un petit test, rien de bien compliqué pour des jeunes comme vous.
-Hansel: Par de problème, envoie le test. ->Hall_Casino
+Hansel: Par de problème, envoie le test. 
+->Hall_Casino
 
 /*Hansel et grethel découvre l'endroit (contemplation avec possibilité de regarder les objets autour de nous)
 Le majordome arrive ensuite et se présente à H et G, leur explique le lieu de manière avenante, qui il est etc (façade)
@@ -319,13 +313,15 @@ le majordome emphatique leur propose de s'interlink dans son casino dont il fait
 {Hansel >= 10 && Grethel <=1:
 ->CurseurHansel
 - else:
-->hubMajordome
+->CheckVariablePourFin2
 }
-{Hansel >= 6 && Grethel >=2:
+===CheckVariablePourFin2
+{Hansel > 5 && Grethel >=2:
 ->CurseurMid
 - else:
-->hubMajordome
+->CheckVariablePourFin3
 }
+===CheckVariablePourFin3
 {Grethel >=3:
 ->CurseurGrethel
 - else:
@@ -356,7 +352,7 @@ Majordome: Bravo pour le test ! Ce n'était qu'une formalité évidemment, rien 
 Majordome: Le retour au casino est un peu déroutant au début, ne vous en faites pas... 
 Majordome: Ca change de mon antre, n'est-ce pas ?
 
-
+~hide("Grethel")
 ~show("Hansel")
 Hansel: Wow, le contraste est flagrant. Vous ne mentiez en parlant de votre prestigieuse institution.
 Majordome: Pourquoi l'aurais-je fait, vous êtes mes invités, c'est un plaisir pour moi de vous accueillir.
@@ -381,6 +377,7 @@ Majordome: Très bien, ce sera des métadonnées pour notre binôme.->suite2
 
 -
 -(suite2)
+~hide("Grethel")
 ~show("Hansel")
 Hansel: On peut rester autant qu'on veut ?
 Majordome: Evidemment, jouez autant que vous le souhaitez, si vous avez la moindre question je reste à votre disposition.
@@ -397,30 +394,31 @@ Grethel: Vas-y joues, moi je vais essayer d'en apprendre plus sur cet endroit.
 ~hide("Coeur")
 ~hide("Carreau")
 ~hide("Trefle")
+~hide("Hansel2")
 {etreAlleVoirUnCroupier:
 Majordome: {~Vous revoila, j'espère que tout ce passe bien. De quelle table venez-vous ?|Alors, vous vous amusez ? J'espère que tout ce déroule comme vous le souhaitez|Déjà de retour, vous avez l'air en veine !}
 }
 /*Le majordome présente la salle de jeu et les récompenses possible, hansel et grethel sont enjoué à l'idée de pouvoir, il présente les différentes salle et propose à H/G de commencer à jouer.*/
 //*[G- Parler]
-*[Question de H/G] ->Gquestion
+*["Et pour les mises ?"] ->Gquestion
 
 *{InfoCroupierCarreau}[Poser des question sur le croupier Carreau]->MajordomeCarreau
 
 *{InfoCroupierCCO}[Poser des question sur la croupière Coeur]->MajordomeCoeur
 
-*{InfoCroupierT}[Poser des question sur la croupière Trefle]->MajordomeTrefle
+*{InfoCroupierT}[Poser des question sur le croupier Trefle]->MajordomeTrefle
 
-+[Se diriger ver la table de la roulette]->CroupierCarreaux 
++[Aller vers la Roulette]->CroupierCarreaux 
 
-+[Se diriger vers la table du memory]->CroupierCoeur
++[Aller vers le Mémory]->CroupierCoeur
 
-+[Se diriger vers la table du Blackjack]->CroupierTrefle
++[Aller vers le Blackjack]->CroupierTrefle
 
 -(Gquestion)
 
 ~hide("Hansel")
 ~show("Grethel")
-Grethel: Et comment se passe les mises ? Nous n'avons pas un rond sur nous.
+Grethel: Comment se passe les mises ? Nous n'avons pas un rond sur nous.
 Majordome: Il n'y a pas de contrepartie, ici vous jouez pour gagner et seulement gagner vous ne pouvez pas perdre d'argent.
 Grethel: Mais alors, comment fonctionne le casino ?
 
@@ -462,16 +460,6 @@ Majordome: Si c'est le cas je vous invite à repartir sur une de nos table.->hub
 
 
 ->hubMajordome
--
-
-
-{~curseur = 0 && CroupierCarreaux && CroupierCoeur && CroupierTrefle }->CurseurGrethel
-
-{~curseur = 2 && CroupierCarreaux && CroupierCoeur && CroupierTrefle }->CurseurHansel
-
-{~curseur = 1 && CroupierCarreaux && CroupierCoeur && CroupierTrefle }->CurseurMid
-
-
 
 
 
@@ -490,7 +478,7 @@ Carreau: ...
 
 ~hide("Hansel")
 ~show("Grethel")
-Hansel: euh bonjour ?
+Hansel: Euh bonjour ?
 Carreau: Oups, excusez moi j'étais perdu dans mes pensées, faut croire qu'on ne voit pas souvent du monde par ici..
 
 Grethel:  Ah bon? je croyais que le casino était populaire dans le milieu.
@@ -539,19 +527,18 @@ Carreau: Alors, vous jouez ?
 ->HubCC
 
 ===HubCC
-Carreau: Si la partie vous a plu n'hésitez pas à rejouer.
+Carreau: {Si la partie vous a plu n'hésitez pas à rejouer.|N'hésitez pas a rejouer, je reste à votre disposition si vous avez des questions.}
 +[Demander à rejouer]->jouerCarr
 +[Converser avec le croupier]->Conversation1
 
 
 
 ===Conversation1
-Grethel: (dans sa tête) Il a de lourdes cicatrices sur le visages et des implants, il a surement vécu une vie pleine d'aventures. 
-Grethel: (dans sa tête) Les implants de son avant bras n'ont pas l'air de venir d'Europe non plus.
+{!Grethel: (dans sa tête) Il a de lourdes cicatrices sur le visages et des implants, il a surement vécu une vie pleine d'aventures. }
+{!Grethel: (dans sa tête) Les implants de son avant bras n'ont pas l'air de venir d'Europe non plus.}
 *[Demander quel âge il a]->age
 *[Demander si il est né dans ce pays]->plat
 +[Retourner voir le Majordome]->CheckVariablePourFin
-*{DéblocageInfoCroupierCoeur < 2}[origine]->origine
 
 *{DéblocageInfoMajordomeCarreau}[Lui parler de ses voyages]->InfoMajordome 
 
@@ -605,16 +592,11 @@ Carreau: Il y a des choses qu'on ne peut échapper dans la vie mais je n'ai pas 
 
 ~DéblocageInfoCroupierCoeur += 1
 ->Conversation1
--
 
--(origine)
-blabla
-~DéblocageInfoCroupierCoeur += 1
-->Conversation1
 
 ===InfoMajordome
 *[Évoquer son passé au sein de la milice corpo durant la guerre.]->badChoiceCarr
-*[Lui demander comment il connait le croupier trèfle.]->goodChoiceCarr
+*[Demander comment il connait le croupier trèfle.]->goodChoiceCarr
 
 -(badChoiceCarr)
 
@@ -721,8 +703,9 @@ JEU
 ~hide("Hansel2")
 Coeur: Bienvenue, bienvenue, asseyez-vous.
 Coeur: Vous êtes la pour jouer c'est ça ?
-+[H-Oui]->Oui
-+[G-Non]->Non
++[Oui]->Oui
++[Non]->Non
+
 -(Non)
 Coeur: Allons allons pourquoi êtes vous ici alors *bruit de carte qui se distribue* ->suite3
 -
@@ -750,6 +733,7 @@ Grethel: Ca va ? Vous avez l'air d'avoir eu une absence.
 
 Coeur: Excusez-moi, ça m'arrive de temps en temps. 
 Coeur: Vous êtes prêt pour le jeu ? 
+~DejaVenuCroupierCoeur =true
 ->jouerCCO
 
 ===jouerCCO
@@ -758,7 +742,7 @@ Coeur: Vous êtes prêt pour le jeu ?
 ->HubCC0
 
 ===HubCC0
-{! "Coeur: J'espère que vous vous amusez bien, dites moi s'il vous faut quoi que se soit, je serais heureux de vous aider"}
+{! "Coeur: J'espère que vous vous amusez bien, dites moi s'il vous faut quoi que se soit, je serais heureuse de vous aider"}
 +[Demander à rejouer]->jouerCCO
 +[Converser avec le croupier]->Conversation2
 
@@ -770,7 +754,7 @@ Coeur: Vous êtes prêt pour le jeu ?
 
 *{DéblocageInfoCroupierTrèfle < 2 && not DéblocageInfoMajordomeCCO}[La croupière fredonne un air]->musique
 
-*{DéblocageInfoMajordomeCCO}[lui parler du groupe Synthex Virga]->InfoMajordome 
+*{DéblocageInfoMajordomeCCO}[Parler du groupe Synthex Virga]->InfoMajordomeviaCCO
 
 
 
@@ -949,6 +933,7 @@ Coeur: Revenons au jeu voulez-vous.
 ~etreAlleVoirUnCroupier = true
 ~show("Trefle")
 ~hide("Grethel")
+~hide("Hansel2")
 ~show("Hansel")
 ~hide("Majordome")
 ~changeBg("Trefle")
@@ -1118,6 +1103,9 @@ Trefle: Merci pour ces mots et veillez bien l'un sur l'autre.
 
 
 ==CurseurGrethel
+~hide("Coeur")
+~hide("Carreau")
+~hide("Trefle")
 ~hide("Majordome")
 ~show("Grethel")
 ~hide("Hansel")
@@ -1208,8 +1196,9 @@ Grethel: Et les croupiers ? Ce sont de véritables personnes ?
 Majordome: Pourquoi ne le seraient-ils pas.
 Grethel: Alors ils sont en vie...
 Majordome: Vous pensez ? Libre à vous.
-Majordome: Merci de votre visite, vous connaissez le chemin.
+Majordome: Merci de votre visite, vous connaissez le chemin.->Fingood
 
+===Fingood
 ~changeBg("Ruelle")
 ~hide("Majordome")
 ~hide("Hansel")
@@ -1226,11 +1215,14 @@ Grethel: Bah tu sais c'est pas la première fois que je te sauve la mise et sûr
 Hansel: Oh que oui ! Bon on va chez Max ?
 Grethel: Ça va encore être une sacré histoire je le sens...
 
-
-Scène clé Léa + Musique de fou "Fancy Kids" - Emmanuel Lipszyc
+~LoadScene("KeySceneGood")
+//Scène clé Léa + Musique de fou "Fancy Kids" - Emmanuel Lipszyc
 ->END
 
 ==CurseurHansel
+~hide("Coeur")
+~hide("Carreau")
+~hide("Trefle")
 ~hide("Majordome")
 ~show("Hansel2")
 ~show("Grethel")
@@ -1279,11 +1271,16 @@ Majordome: Et on y reste !
 ->END
 
 ==CurseurMid
+~hide("Hansel")
+~hide("Coeur")
+~hide("Carreau")
+~hide("Trefle")
 ~show("Hansel2")
 ~show("Grethel")
 Hansel2: Wow, j'suis on fire !!
 Hansel2: J'y retourne tout de suite !!
-Grethel: Hé, Hans attends, c'est n'importe quoi ce casino. T'as vu ce que les croupiers nous on dit ?! Tout pointe en défaveur du majordome, je ne sais pas ce qu'il souhaitait réellement de nous.
+Grethel: Hé, Hans attends, c'est n'importe quoi ce casino. T'as vu ce que les croupiers nous on dit ?! 
+Grethel: Tout pointe en défaveur du majordome, je ne sais pas ce qu'il souhaitait réellement de nous.
 Hansel2: Tu dis n'importe quoi Greth à ce rythme là on pourra sauver papa en un rien de temps !
 Hansel2: Bon, je vais jouer reste la si tu veux.
 ~hide("Hansel2")
@@ -1346,6 +1343,7 @@ Majordome: Que vous le vouliez ou non.
 Majordome: Je dois m'avouer battu cette fois-ci.
 Majordome: Vous pouvez aller chercher votre frère.
 Grethel: Comme ça ? Sans entourloupe ? Je ne vous crois pas.
-Majordome: Que vous me croyez ou non ça ne change rien, jugez moi autant que vous le voulez mais ici tout est régi par des règle, il faut les respecter sinon je le jeu perd de la valeur même pour moi.
+Majordome: Que vous me croyez ou non ça ne change rien, jugez moi autant que vous le voulez mais ici tout est régi par des règles.
+Majordome: il faut les respecter sinon je le jeu perd de la valeur même pour moi.->Fingood
 
 ->END

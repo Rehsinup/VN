@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class test : MonoBehaviour
 {
+    [SerializeField] SpriteRenderer spriteRenderer;
     private float offSet = 0.0f;
     // Start is called before the first frame update
     void Start()
     {
-        SpriteRenderer Render = GetComponent<SpriteRenderer>();
+        SpriteRenderer Render = spriteRenderer;
         Material mat = Render.material;
         mat.SetFloat("_Intensity", 0.5f);
         offSet = Random.value * 5f;
