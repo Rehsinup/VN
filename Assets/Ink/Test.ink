@@ -9,6 +9,7 @@ aaaa
 Grethel: Lorem ipsum dolor sit amet, consectetur adipiscing elit,
 ~changeBg("Carreau")
 aaaaa
+~LoadScene("KeySceneBranchement")
 ~changeBg("Sous-sol")
 aaaa
 ~changeBg("Casino")

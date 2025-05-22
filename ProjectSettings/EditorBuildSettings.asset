@@ -36,6 +36,9 @@ EditorBuildSettings:
     path: Assets/Scenes/KeySceneGood.unity
     guid: 6e5b52c6fd217a444ab40336a4d0f0e4
   - enabled: 1
+    path: Assets/Scenes/KeySceneBranchement.unity
+    guid: 77e4f8dce8905264a95c60216b9e9fff
+  - enabled: 1
     path: Assets/Scenes/Puzzle 1.unity
     guid: 790fa2860ba9d7344a3b02a2cfb7c0cf
   - enabled: 1
