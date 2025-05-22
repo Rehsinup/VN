@@ -231,10 +231,10 @@ MonoBehaviour:
   textImageNormal: {fileID: 1671576577}
   textImageShake: {fileID: 1068824591}
   delayBeforeChange: 3
-  fadeDuration: 1
+  fadeDuration: 0.5
   shakeDuration: 0.5
   shakeStrength: 15
-  delayAfterScene: 2
+  delayAfterScene: 1
   isEnded: 0
 --- !u!4 &802577667
 Transform:
@@ -667,7 +667,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &2080919330
 AudioListener:
   m_ObjectHideFlags: 0

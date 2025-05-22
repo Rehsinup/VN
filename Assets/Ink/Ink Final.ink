@@ -28,8 +28,6 @@ VAR DéblocageInfoMajordomeCarreau = false
 VAR DéblocageInfoMajordomeCCO = false
 VAR DéblocageInfoMajordometrefle = false
 
-
-==Ruelle
 /*Conversation entre Hansel et Grethel, pose la dynamique entre les deux
 showbg ruelle On puis scene clef, on revient ensuite sur H et G dans la ruelle avec les neon on dans la ruelle, qui decident d'y aller.*/
 Après quelques heures à errer sous la pluie, 

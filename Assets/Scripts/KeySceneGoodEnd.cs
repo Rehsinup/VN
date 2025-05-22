@@ -3,14 +3,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class SceneKeyController : MonoBehaviour
+public class GoodEndceneKeyController : MonoBehaviour
 {
     [Header("Backgrounds")]
     public Image backgroundOld;
-    public Image backgroundNew;
+    //public Image backgroundNew;
 
     [Header("Text Sprites")]
-    public Image textImageNormal;
+    //public Image textImageNormal;
     public Image textImageShake;
 
     [Header("Timings")]
@@ -29,10 +29,10 @@ public class SceneKeyController : MonoBehaviour
 
     private void Start()
     {
-        //Initial setup
-        textImageNormal.color = new Color(1, 1, 1, 0);
+        // Initial setup
+        //textImageNormal.color = new Color(1, 1, 1, 0);
         textImageShake.color = new Color(1, 1, 1, 0);
-        backgroundNew.gameObject.SetActive(false);
+        //backgroundNew.gameObject.SetActive(false);
         levelLoader = FindObjectOfType<LevelLoader>();
         StartCoroutine(PlayScene());
     }
@@ -43,16 +43,16 @@ public class SceneKeyController : MonoBehaviour
         yield return new WaitForSeconds(delayBeforeChange);
 
         // Fade out old background
-        backgroundOld.DOFade(0f, fadeDuration)
-            .OnComplete(() =>
-            {
-                backgroundOld.gameObject.SetActive(false);
-            });
+        //  backgroundOld.DOFade(0f, fadeDuration)
+        //    .OnComplete(() =>
+        //  {
+        //    backgroundOld.gameObject.SetActive(false);
+        //});
 
-         //Activate and fade in new background
-        backgroundNew.gameObject.SetActive(true);
-        backgroundNew.color = new Color(1, 1, 1, 0);
-        backgroundNew.DOFade(1f, fadeDuration);
+        // Activate and fade in new background
+        // backgroundNew.gameObject.SetActive(true);
+        //backgroundNew.color = new Color(1, 1, 1, 0);
+        //backgroundNew.DOFade(1f, fadeDuration);
 
         // Wait for fade
         yield return new WaitForSeconds(fadeDuration);
@@ -80,12 +80,12 @@ public class SceneKeyController : MonoBehaviour
             fadeOut: true
         );
 
-        // Optionally wait a bit before showing the normal text
+        /*// Optionally wait a bit before showing the normal text
         yield return new WaitForSeconds(1f);
 
         // Then fade in the normal text
         textImageNormal.DOFade(1f, fadeDuration);
-        
+        */
         // Wait before ending scene
         yield return new WaitForSeconds(delayAfterScene);
         isEnded = true;

@@ -5,8 +5,18 @@ INCLUDE 2d_api.ink
 ~show("Grethel")
 ~show("Carreau")
 aaaa
+~changeBg("Sous-sol")
+aaa
 ~fadeBg("Coeur", 1.0)
 Grethel: Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+HOHOHO
+~changeBg("Ruelle")
+HAHAHAHA
+HUHUHU
+HEHEHE
+~changeBg("Sous-sol")
+HYHYHY
+HIHIHI
 ~changeBg("Carreau")
 aaaaa
 ~LoadScene("KeySceneBranchement")
