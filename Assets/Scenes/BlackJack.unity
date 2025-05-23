@@ -385,6 +385,7 @@ MonoBehaviour:
   messageText: {fileID: 445085909}
   imagePlayerCard: {fileID: 1141227191}
   imageDealerCard: {fileID: 2049877085}
+  cardPrefab: {fileID: 21300000, guid: 48af45926e9dcc84caf829d70a110f90, type: 3}
   sprites2:
   - {fileID: 21300000, guid: 69ac625bd76f864438ccf182d63ec9bb, type: 3}
   - {fileID: 21300000, guid: 7b56d4b324568e440a2a551d575b5a30, type: 3}
@@ -953,7 +954,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 48af45926e9dcc84caf829d70a110f90, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1169,7 +1170,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 97cbbb31411ba33459500c9922f21663, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3161bea9a65866442b66aa8088539a66, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1867,7 +1868,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 48af45926e9dcc84caf829d70a110f90, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

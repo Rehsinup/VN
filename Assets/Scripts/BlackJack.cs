@@ -11,6 +11,7 @@ public class BlackjackGame : MonoBehaviour
 
     public Image imagePlayerCard;
     public Image imageDealerCard;
+    [SerializeField] private Sprite cardPrefab;
 
     [Header("Cartes par valeur (4 sprites par carte)")]
     public List<Sprite> sprites2;
@@ -70,8 +71,8 @@ public class BlackjackGame : MonoBehaviour
 
         messageText.text = "Nouvelle partie ! Votre score : 0 | Score du croupier : 0";
 
-        imagePlayerCard.sprite = null;
-        imageDealerCard.sprite = null;
+        imagePlayerCard.sprite = cardPrefab;
+        imageDealerCard.sprite = cardPrefab;
 
         imagePlayerCard.transform.localScale = Vector3.one;
         imageDealerCard.transform.localScale = Vector3.one;

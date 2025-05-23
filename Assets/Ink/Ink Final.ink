@@ -330,7 +330,6 @@ le majordome emphatique leur propose de s'interlink dans son casino dont il fait
 
 ===Hall_Casino
 ~LoadScene("Puzzle 1")
-~changeBg("Casino")
 ~hide("Majordome")
 ~hide("Grethel")
 ~hide("Hansel")
@@ -343,6 +342,7 @@ le majordome emphatique leur propose de s'interlink dans son casino dont il fait
 ~show("Grethel")
 
 H+G *air étonné*
+~changeBg("Casino")
 ~hide("Hansel2")
 ~show("Majordome")
 

@@ -5,11 +5,16 @@ INCLUDE 2d_api.ink
 ~show("Grethel")
 ~show("Carreau")
 aaaa
+~playSound("FinGood")
 ~changeBg("Sous-sol")
 aaa
 ~fadeBg("Coeur", 1.0)
 Grethel: Lorem ipsum dolor sit amet, consectetur adipiscing elit,
 HOHOHO
+*aaaa
+*aaaa
+*aaaa
+*aaaa
 ~changeBg("Ruelle")
 HAHAHAHA
 HUHUHU
@@ -22,6 +27,10 @@ aaaaa
 ~LoadScene("KeySceneBranchement")
 ~changeBg("Sous-sol")
 aaaa
+~changeBg("Trefle")
+aaaa
+bbbb
+ccc
 ~changeBg("Casino")
 aaaa
 ~playSound("FinGood")
