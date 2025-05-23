@@ -3052,7 +3052,7 @@ MonoBehaviour:
     volumeRange: {x: 0, y: 1}
     pitchRange: {x: 1, y: 1}
     clips:
-    - {fileID: 8300000, guid: 988dc22814873c943b5d381ed209549a, type: 3}
+    - {fileID: 8300000, guid: 3f2c29763ed74d44fa190370dcd5b9f3, type: 3}
     playSource: {fileID: 1321903418}
 --- !u!4 &1248323251
 Transform:
@@ -6678,8 +6678,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characters:
   - {fileID: 1539580892}
+  - {fileID: 1466927971}
+  - {fileID: 1540326439}
+  - {fileID: 1674542101}
+  - {fileID: 1894464755}
+  - {fileID: 116466077}
+  - {fileID: 1144814783}
   charactersDefinitions:
   - {fileID: 11400000, guid: f60e853997b93094a9c4c5fcc7eac671, type: 2}
+  - {fileID: 11400000, guid: 3a11ec8208ec6b841bdeb29ca40fb206, type: 2}
+  - {fileID: 11400000, guid: 9a7ccbd8bfd47c048987fa33efce5b72, type: 2}
+  - {fileID: 11400000, guid: f05b75d5d42dc554281e78ba6a791f8e, type: 2}
+  - {fileID: 11400000, guid: 0283ba24624fbd14a80debc1f874e8a9, type: 2}
+  - {fileID: 11400000, guid: cf6454b45c7a06d41aee4c0f4627ef9b, type: 2}
+  - {fileID: 11400000, guid: 98ff9599004605d458255b215f986fd5, type: 2}
   backgrounds: []
   anchors: []
   transitionAnim: {fileID: 123144270}

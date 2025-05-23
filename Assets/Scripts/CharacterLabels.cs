@@ -41,7 +41,7 @@ public class CharacterLabels : MonoBehaviour
             b.characterSprite.material.SetFloat("_Saturation", 1);
 
             // remettre l'ordre par défaut
-            b.characterSprite.sortingOrder = 2;
+            b.characterSprite.sortingOrder = 4;
         }
 
         if (banniereView == null)

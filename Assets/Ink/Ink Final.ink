@@ -30,10 +30,10 @@ VAR DéblocageInfoMajordometrefle = false
 
 /*Conversation entre Hansel et Grethel, pose la dynamique entre les deux
 showbg ruelle On puis scene clef, on revient ensuite sur H et G dans la ruelle avec les neon on dans la ruelle, qui decident d'y aller.*/
+~LoadScene("KeySceneStart")
+~changeBg("Ruelle")
 Après quelques heures à errer sous la pluie, 
 Hansel et Grethel désormais démunis se regardent dans le blanc des yeux, d'un air livide signe de leur désespoir.
-
-~changeBg("Ruelle")
 ~show("Grethel")
 ~show("Hansel2")
 Grethel: Mon frère comment allons nous faire, papa est mourant et nous ne pouvons plus rentrer chez nous.
@@ -156,7 +156,7 @@ Hansel2: L'endroit semblait plus attrayant de l'extérieur.
 Grethel: C'est quoi cet endroit ? Il y a que du vieux matos.
 
 Hansel2: Hum... je doute qu'on y trouve quoi que ce soit d'intéressant. 
-Hansel2: Tout est poussiéreux et délabré, mais ça à l'air de fonctionner. 
+Hansel2: C'est des vieux modèles de neurolink, mais ça à l'air de fonctionner. 
 Hansel2: Jetons quand même un coup d'oeil autour, on sait jamais sur quoi on peut tomber.
 
 Grethel: Ouais ça tu l'as dis, j'ai l'impression d'être observé... 
@@ -299,6 +299,7 @@ Majordome: Absolument pas, nous fonctionnons comme ça depuis des années et nou
 Hansel: Allez Greth, on y va.
 Majordome: Par contre comme vous êtes deux je vais avoir besoin de vous synchronyser via un petit test, rien de bien compliqué pour des jeunes comme vous.
 Hansel: Par de problème, envoie le test. 
+~LoadScene("KeySceneBranchement")
 ->Hall_Casino
 
 /*Hansel et grethel découvre l'endroit (contemplation avec possibilité de regarder les objets autour de nous)
@@ -329,6 +330,8 @@ le majordome emphatique leur propose de s'interlink dans son casino dont il fait
 
 
 ===Hall_Casino
+~show("Grethel")
+Grethel: Allez c'est parti Hansel ! 
 ~LoadScene("Puzzle 1")
 ~hide("Majordome")
 ~hide("Grethel")
@@ -732,22 +735,22 @@ Grethel: Ca va ? Vous avez l'air d'avoir eu une absence.
 Coeur: Excusez-moi, ça m'arrive de temps en temps. 
 Coeur: Vous êtes prêt pour le jeu ? 
 ~DejaVenuCroupierCoeur =true
-->jouerCCO
+->jouerCC0
 
-===jouerCCO
-~Hansel +=1
+===jouerCC0
+//~Hansel +=1
 ~LoadScene("MemoryCards")
 ->HubCC0
 
 ===HubCC0
 {! "Coeur: J'espère que vous vous amusez bien, dites moi s'il vous faut quoi que se soit, je serais heureuse de vous aider"}
-+[Demander à rejouer]->jouerCCO
++[Demander à rejouer]->jouerCC0
 +[Converser avec le croupier]->Conversation2
++[Retourner voir le Majordome]->CheckVariablePourFin
 
 ===Conversation2
 *[Complimenter sa maîtrise des cartes]->cartes
 *[Demander pourquoi elle est si rapide]->speed
-+[Retourner voir le Majordome]->CheckVariablePourFin
 *{DéblocageInfoCroupierTrèfle >= 2}[Demander comment se passe le travail avec ses collègues]->InfoCroupiertrefle
 
 *{DéblocageInfoCroupierTrèfle < 2 && not DéblocageInfoMajordomeCCO}[La croupière fredonne un air]->musique
@@ -810,7 +813,7 @@ Hansel: On rejoue ! Je veux assister à une nouvelle démonstration de vos talen
 
 -(Oui)
 Coeur: Avec plaisir, c'est reparti.
-->jouerCCO
+->jouerCC0
 
 -(Non)
 ~hide("Hansel")
