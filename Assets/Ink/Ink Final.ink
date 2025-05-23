@@ -331,7 +331,6 @@ le majordome emphatique leur propose de s'interlink dans son casino dont il fait
 
 ===Hall_Casino
 ~show("Grethel")
-Grethel: Allez c'est parti Hansel ! 
 ~LoadScene("Puzzle 1")
 ~hide("Majordome")
 ~hide("Grethel")
@@ -344,8 +343,8 @@ Grethel: Allez c'est parti Hansel !
 ~hide("Trefle")
 ~show("Grethel")
 
-H+G *air étonné*
 ~changeBg("Casino")
+H+G *air étonné*
 ~hide("Hansel2")
 ~show("Majordome")
 
@@ -372,7 +371,7 @@ Majordome: Les divers croupiers du casino expliqueront bien mieux que moi les je
 Majordome: Comme promis vous pourrez gagner des Neumark ou des métadonnées pour chaque manche remportée.
 ~show("Grethel")
 ~hide("Hansel")
-Grethel: On aimerai des métadonnées si possible. 
+Grethel: On aimerait des métadonnées si possible. 
 
 Majordome: Très bien, ce sera des métadonnées pour notre binôme.->suite2
 
@@ -435,7 +434,7 @@ Majordome: ...
 Majordome: Ca m'a surpris de le voir se présenter à mon bureau, nous n'étions pas vraiment ami à proprement parler, plus des collègues de travail. Mais ça m'a fait plaisir de voir une vieille connaissance.
 Grethel: C'est pour ça que vous l'avez embauché alors ?
 Majordome: Oui, je connais ses capacités de travail, l'avoir sous mon aile m'a permit de consolider mon casino.
-Majordome: Mais assez parlé de ça, avez-vous gagné quelque chose pour le moment ?
+Majordome: Mais assez parlé de ça, jeune homme est-ce que vous avez gagné quelque chose pour le moment ?
 *[Oui]->Oui
 *[Non]->Non
 
@@ -459,7 +458,12 @@ Majordome: Si c'est le cas je vous invite à repartir sur une de nos table.->hub
 
 -(MajordomeTrefle)
 
-
+Grethel: Vous...
+Majordome: Alors jeune homme, vous vous plaisez ? 
+Majordome: J'espère que la chance vous sourit.
+Hansel: Ouais, je m'en sort pas trop mal.
+Grethel: Je pense qu'on pourr...
+Majordome: Je te conseille de retourner jouer peut-être que vous pourriez tout rafler sur la prochaine partie.
 ->hubMajordome
 
 
@@ -544,7 +548,7 @@ Carreau: {Si la partie vous a plu n'hésitez pas à rejouer.|N'hésitez pas a re
 *{DéblocageInfoMajordomeCarreau}[Lui parler de ses voyages]->InfoMajordome 
 
 
-*{DéblocageInfoCroupierCoeur >= 2}[Ambiance du caisno]->InfoCroupierCoeur
+*{DéblocageInfoCroupierCoeur >= 2}[Ambiance du casino]->InfoCroupierCoeur
 
 
 -(plat)
@@ -738,9 +742,12 @@ Coeur: Vous êtes prêt pour le jeu ?
 ->jouerCC0
 
 ===jouerCC0
-//~Hansel +=1
+~Hansel +=1
 ~LoadScene("MemoryCards")
 ->HubCC0
+
+
+
 
 ===HubCC0
 {! "Coeur: J'espère que vous vous amusez bien, dites moi s'il vous faut quoi que se soit, je serais heureuse de vous aider"}
@@ -749,92 +756,15 @@ Coeur: Vous êtes prêt pour le jeu ?
 +[Retourner voir le Majordome]->CheckVariablePourFin
 
 ===Conversation2
-*[Complimenter sa maîtrise des cartes]->cartes
-*[Demander pourquoi elle est si rapide]->speed
-*{DéblocageInfoCroupierTrèfle >= 2}[Demander comment se passe le travail avec ses collègues]->InfoCroupiertrefle
 
-*{DéblocageInfoCroupierTrèfle < 2 && not DéblocageInfoMajordomeCCO}[La croupière fredonne un air]->musique
+*[Demander comment se passe le travail avec ses collègues]->InfoCroupiertrefle
+
 
 *{DéblocageInfoMajordomeCCO}[Parler du groupe Synthex Virga]->InfoMajordomeviaCCO
 
 
 
-===musique
-La croupière fredonne un air*
 
-Grethel: J'ai l'impression d'avoir déjà entendu cet air, vous aimez la musique ?
-
-Coeur: Oui elle rythme ma vie. Dès que j'en ai la possibilité j'attrape mon RadioLink.
-
-Grethel: Je suis une grande fan du groupe "Synthex Virga", peut-être que vous connaissez ?
-
-Coeur: Evidemment.
-
-Grethel: J'aimerais vraiment voir les visages derrière leurs masques, dommage que le groupe se soit séparé.
-
-Coeur: Ouais, j'ai entendu dire qu'il y avait des conflits internes entre les musiciens.
-
-Grethel:C'était les rumeurs oui, personnellement je pense qu'il y a eu plus que ça. 
-Grethel: Le groupe était à son apogée.
-Grethel: Même certains groupe comme les Beatles ont réussi à rester formé alors qu'il y avait de fortes tension entre les musiciens.
-
-Coeur: Vous savez certaines personnes choisissent parfois de finir sur une note positive pour ne pas avoir de regrets plus tard, c'était peut-être leur cas.
-
-Grethel: Alors pourquoi leur séparation avait un arrière goût amer, leur bassiste a disparu sans dire un mot.
-
-Coeur: ...
-Coeur: Ca ne nous regarde pas si vous voulez mon avis. Ils restent tous des humains, on ne pourra jamais comprendre leur décision à moins d'être à leur place.
-
-Hansel: On peut rejouer ou pas... 
-Hansel: Je meurs d'envie de retenter ma chance !
-~DéblocageInfoCroupierTrèfle +=1
-->Conversation2
-
-===cartes
-~DéblocageInfoCroupierTrèfle +=1
-~hide("Hansel")
-~show("Grethel")
-Grethel: On voit que vous maîtrisez les cartes, j'imagine que ça demande une certaine expertise ?
-
-~hide("Grethel")
-~show("Hansel")
-Hansel: Ca veut dire qu'on va pouvoir jouer plus rapidement.
-Coeur: On peut dire ça oui, ça fait quelque temps que je suis là.
-~hide("Hansel")
-~show("Grethel")
-Grethel: J'imagine oui, vous sauriez dire depuis combien de temps ?
-
-Coeur: Depuis 2 ans à peu près, si on s'investit, on progresse plutôt rapidement dans le métier.
-~hide("Grethel")
-~show("Hansel")
-Hansel: On rejoue ! Je veux assister à une nouvelle démonstration de vos talents.
-*[Oui]->Oui
-*[Non]->Non
-
--(Oui)
-Coeur: Avec plaisir, c'est reparti.
-->jouerCC0
-
--(Non)
-~hide("Hansel")
-~show("Grethel")
-Grethel:  Attends Hans, on peut discuter un peu avant de rejouer, non ?
-->Conversation2
-
-===speed
-~hide("Hansel")
-~show("Grethel")
-Grethel: Vous êtes super rapide, il y a une raison particulière ?
-
-Coeur: Pas vraiment j'aime me concentrer sur mon travail et rester active.
-
-Grethel: Vous aimez ce que vous faites ?
-
-Coeur: Je pense que oui, ça me permet de m'évader et d'oublier certaines choses.
-
-Grethel: (dans la tête) C'est peut-être pour ça qu'elle est rapide...
-~DéblocageInfoCroupierTrèfle +=1
-->Conversation2
 
 
 ===InfoCroupiertrefle
@@ -1137,7 +1067,7 @@ Hansel2: Et merde...
 Grethel: Je pense pas qu'on ai assez gagné pour survivre dehors.
 Grethel: Mais Hans, tu comprends pas ?
 Grethel: Il y a rien a gagné ici, on ne mise même pas.
-Grethel:C'est juste pour nous amadouer.
+Grethel: C'est juste pour nous amadouer.
 
 Hansel2: Okay je te crois mais par où on sort ?
 
