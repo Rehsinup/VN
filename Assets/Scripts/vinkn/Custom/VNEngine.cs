@@ -129,10 +129,12 @@ namespace vinkn
         }
              IEnumerator QuitterBG()
         {
-            AnimCanvas.sortingOrder = 1;
+            AnimCanvas.sortingOrder = 5;
             transitionAnim.SetTrigger("BgOut");
             yield return new WaitForSeconds(1f);
             transitionAnim.SetTrigger("BgIn");
+            yield return new WaitForSeconds(1f);
+            AnimCanvas.sortingOrder = 1;
         }
 
         public virtual void FlipXChar(string item)

@@ -66,12 +66,12 @@ Material:
     m_Ints: []
     m_Floats:
     - _EnableExternalAlpha: 0
-    - _Intensity: 0.152
+    - _Intensity: 1
     - _Progress: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _GlowColor: {r: 7.9066987, g: 7.9066987, b: 7.9066987, a: 1}
+    - _GlowColor: {r: 2.7954402, g: 2.7954402, b: 2.7954402, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &5095527211105090879

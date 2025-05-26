@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -43,7 +44,7 @@ public class MenuEchap : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("Start");
     }
 
-    public void SetVolume(float volume)
+    public void SetVolume(Single volume)
     {
         audioSource.volume = volume;
         volume = 0.5f; 

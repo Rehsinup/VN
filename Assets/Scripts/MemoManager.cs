@@ -25,7 +25,7 @@ public class MemoManager : MonoBehaviour
     private int matchedCards = 0;
     private LevelLoader levelLoader;
     private List<GameObject> instantiatedCards = new List<GameObject>();
-
+    private InkVarMoney inkVarMoney;
 
     private void Start()
     {
@@ -33,6 +33,7 @@ public class MemoManager : MonoBehaviour
         totalCardsToMatch = 12;
         matchedCards = 0;
         levelLoader = FindObjectOfType<LevelLoader>();
+        inkVarMoney = FindObjectOfType<InkVarMoney>();
     }
 
     void SetupCards()
@@ -93,7 +94,8 @@ public class MemoManager : MonoBehaviour
             if (matchedCards >= totalCardsToMatch)
             {
                 Debug.Log("Toutes les paires ont été trouvées !");
-                ClearAllCards();          
+                ClearAllCards();
+                inkVarMoney.SetMoney(+50, true);
                 levelLoader.ExitLevel(); 
             }
         }

@@ -12,6 +12,7 @@ public class BlackjackGame : MonoBehaviour
     public Image imagePlayerCard;
     public Image imageDealerCard;
     [SerializeField] private Sprite cardPrefab;
+    private InkVarMoney inkVarMoney;
 
     [Header("Cartes par valeur (4 sprites par carte)")]
     public List<Sprite> sprites2;
@@ -31,12 +32,22 @@ public class BlackjackGame : MonoBehaviour
 
     int playerScore = 0, dealerScore = 0;
     bool playerTurn = true, gameOver = false;
+    int playerDrawCount = 0; // Ajout du compteur de tirages
     private LevelLoader LevelLoader;
 
     void Start()
     {
+        inkVarMoney = FindObjectOfType<InkVarMoney>();
         btnTirer.onClick.AddListener(() => PlayTurn());
-        btnStop.onClick.AddListener(EndGame);
+        btnStop.onClick.AddListener(() =>
+        {
+            if (playerDrawCount < 2)
+            {
+                messageText.text = "Vous devez tirer au moins deux cartes avant de vous arrêter !";
+                return;
+            }
+            EndGame();
+        });
         btnRejouer.onClick.AddListener(StartGame);
         LevelLoader = FindObjectOfType<LevelLoader>();
 
@@ -68,6 +79,7 @@ public class BlackjackGame : MonoBehaviour
         playerScore = dealerScore = 0;
         playerTurn = true;
         gameOver = false;
+        playerDrawCount = 0; // Reset du compteur
 
         messageText.text = "Nouvelle partie ! Votre score : 0 | Score du croupier : 0";
 
@@ -88,6 +100,7 @@ public class BlackjackGame : MonoBehaviour
 
         int value = RandomCardValue();
         playerScore += GetCardPoints(value);
+        playerDrawCount++; // Incrément du nombre de tirages
         Sprite newSprite = GetCardSprite(value);
 
         StartCoroutine(FlipCard(imagePlayerCard, newSprite));
@@ -137,7 +150,6 @@ public class BlackjackGame : MonoBehaviour
     {
         float duration = 0.15f;
 
-        // Réduction de l'échelle X (vers 0)
         for (float t = 0; t < duration; t += Time.deltaTime)
         {
             float scale = Mathf.Lerp(1f, 0f, t / duration);
@@ -145,10 +157,8 @@ public class BlackjackGame : MonoBehaviour
             yield return null;
         }
 
-        // Changement de sprite à mi-flip
         cardImage.sprite = newSprite;
 
-        // Expansion de l'échelle X (de 0 à 1)
         for (float t = 0; t < duration; t += Time.deltaTime)
         {
             float scale = Mathf.Lerp(0f, 1f, t / duration);
@@ -156,13 +166,12 @@ public class BlackjackGame : MonoBehaviour
             yield return null;
         }
 
-        // Sécurité : reset la scale
         cardImage.transform.localScale = Vector3.one;
     }
 
     int RandomCardValue()
     {
-        int[] values = new int[] { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 }; // 11=J, 12=Q, 13=K
+        int[] values = new int[] { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
         return values[Random.Range(0, values.Length)];
     }
 
@@ -184,10 +193,27 @@ public class BlackjackGame : MonoBehaviour
     {
         gameOver = true;
 
-        if (playerScore > 21) messageText.text = "Vous avez dépassé 21 ! Défaite !";
-        else if (dealerScore > 21) messageText.text = "Le croupier a dépassé 21 ! Vous gagnez !";
-        else if (playerScore > dealerScore) messageText.text = "Vous gagnez !";
-        else if (playerScore < dealerScore) messageText.text = "Le croupier gagne !";
+        if (playerScore > 21)
+        {
+            messageText.text = "Vous avez dépassé 21 ! Défaite !";
+            inkVarMoney.SetMoney(-50, false);
+        }
+
+        else if (dealerScore > 21)
+        {
+            messageText.text = "Le croupier a dépassé 21 ! Vous gagnez !";
+            inkVarMoney.SetMoney(+50, true);
+        }
+        else if (playerScore > dealerScore)
+        {
+            messageText.text = "Vous gagnez !";
+            inkVarMoney.SetMoney(+50, true);
+        }
+        else if (playerScore < dealerScore)
+        {
+            messageText.text = "Le croupier gagne !";
+            inkVarMoney.SetMoney(-50, false);
+        }
         else messageText.text = "Égalité !";
 
         btnTirer.gameObject.SetActive(false);

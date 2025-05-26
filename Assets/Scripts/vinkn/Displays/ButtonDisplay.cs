@@ -21,6 +21,11 @@ public class ButtonDisplay : MonoBehaviour
 
     public void SetChoice(Choice choice, Action<Choice> callback)
     {
+        if (btn == null)
+        {
+            Debug.LogError("Button is null");
+            return;
+        }
         content.text = choice.text;
         buttonChoice = choice;
 

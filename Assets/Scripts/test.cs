@@ -1,25 +1,49 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class test : MonoBehaviour
+public class NeonPulse : MonoBehaviour
 {
-    [SerializeField] SpriteRenderer spriteRenderer;
-    private float offSet = 0.0f;
-    // Start is called before the first frame update
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private float minIntensity = 0.4f;
+    [SerializeField] private float maxIntensity = 0.8f;
+    [SerializeField] private float pulseDuration = 0.8f;
+
+    private Material mat;
+    private bool increasing = true;
+
     void Start()
     {
-        SpriteRenderer Render = spriteRenderer;
-        Material mat = Render.material;
-        mat.SetFloat("_Intensity", 0.5f);
-        offSet = Random.value * 5f;
+        if (spriteRenderer == null)
+            spriteRenderer = GetComponent<SpriteRenderer>();
+
+        mat = spriteRenderer.material;
+        mat.SetFloat("_Intensity", minIntensity);
+        StartCoroutine(PulseSmooth());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator PulseSmooth()
     {
-        SpriteRenderer Render = GetComponent<SpriteRenderer>();
-        Material mat = Render.material;
-        mat.SetFloat("_Intensity", Mathf.Clamp(Mathf.Sin(Time.time + offSet), 0f, 0.5f ) + 0.5f);
+        while (true)
+        {
+            float start = increasing ? minIntensity : maxIntensity;
+            float end = increasing ? maxIntensity : minIntensity;
+
+            float elapsed = 0f;
+
+            while (elapsed < pulseDuration)
+            {
+                float t = elapsed / pulseDuration;
+                float intensity = Mathf.Lerp(start, end, t);
+                mat.SetFloat("_Intensity", intensity);
+
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+
+            // S'assurer que l’intensité finale est bien appliquée
+            mat.SetFloat("_Intensity", end);
+
+            increasing = !increasing;
+        }
     }
 }

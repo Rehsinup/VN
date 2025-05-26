@@ -10,12 +10,14 @@ public class RouletteColor : MonoBehaviour
     private string chosenColor = "";
     [SerializeField] Canvas canvas;
     [SerializeField] private SpriteRenderer glowSpriteRenderer;
-
+    private InkVarMoney inkVarMoney;
     private string colorResult = "";
     private Material _glowMaterialInstance;
+    private bool hasSpun = false; // Empêche les clics multiples
 
     private void Start()
     {
+        inkVarMoney = FindObjectOfType<InkVarMoney>();
         Debug.Log("==> Start() appelé");
         vfxLoader = FindObjectOfType<VFXLoader>();
 
@@ -31,7 +33,6 @@ public class RouletteColor : MonoBehaviour
 
         if (glowSpriteRenderer != null)
         {
-            // Instancie le matériel pour éviter de modifier le sharedMaterial
             _glowMaterialInstance = glowSpriteRenderer.material;
         }
         else
@@ -60,6 +61,12 @@ public class RouletteColor : MonoBehaviour
     {
         Debug.Log("==> OnButtonClick() appelé");
 
+        if (hasSpun)
+        {
+            Debug.Log("Le bouton a déjà été cliqué, action ignorée.");
+            return;
+        }
+
         if (string.IsNullOrEmpty(chosenColor))
         {
             Debug.Log("Aucune couleur n’a été choisie !");
@@ -69,6 +76,8 @@ public class RouletteColor : MonoBehaviour
                 Debug.LogError("messageText est NULL au moment de vérifier la couleur !");
             return;
         }
+
+        hasSpun = true;
 
         float randomValue = Random.Range(0f, 1f);
         Debug.Log("randomValue généré : " + randomValue);
@@ -96,7 +105,10 @@ public class RouletteColor : MonoBehaviour
         {
             Debug.Log("Résultat : BONNE couleur !");
             if (messageText != null)
+            {
                 messageText.text += "\nBravo ! Vous avez deviné la bonne couleur !";
+                inkVarMoney.SetMoney(+50, true);
+            }
             else
                 Debug.LogError("messageText est NULL à la victoire");
 
@@ -116,7 +128,10 @@ public class RouletteColor : MonoBehaviour
         {
             Debug.Log("Résultat : MAUVAISE couleur.");
             if (messageText != null)
+            {
                 messageText.text += "\nDommage ! Ce n'était pas la bonne couleur.";
+                inkVarMoney.SetMoney(-50, false);
+            }
             else
                 Debug.LogError("messageText est NULL à l’échec");
 
@@ -159,13 +174,13 @@ public class RouletteColor : MonoBehaviour
                 break;
         }
 
-        float intensity = 5f; // Intensité HDR dans la couleur
+        float intensity = 5f;
         Color colorWithIntensity = newColor * intensity;
 
         _glowMaterialInstance.SetColor("_GlowColor", colorWithIntensity);
 
-        // Toujours fixer glowIntensity à 3
         if (_glowMaterialInstance.HasProperty("_Intensity"))
             _glowMaterialInstance.SetFloat("_Intensity", 3f);
     }
+
 }
