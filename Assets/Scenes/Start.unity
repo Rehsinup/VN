@@ -2412,8 +2412,8 @@ ParticleSystem:
         m_NumAlphaKeys: 2
   UVModule:
     serializedVersion: 2
-    enabled: 0
-    mode: 0
+    enabled: 1
+    mode: 1
     timeMode: 0
     fps: 30
     frameOverTime:
@@ -2531,7 +2531,7 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 0}
+    - sprite: {fileID: -2413806693520163455, guid: e074a9b4b276847b0b578d2c96d2c1db, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
@@ -5809,7 +5809,7 @@ Transform:
   m_GameObject: {fileID: 945249824}
   serializedVersion: 2
   m_LocalRotation: {x: -0.56583273, y: 0.42406765, z: -0.42406765, w: 0.56583273}
-  m_LocalPosition: {x: 5.45, y: -7.1, z: 0.67}
+  m_LocalPosition: {x: 5.45, y: -6.53, z: 0.67}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12680,8 +12680,8 @@ ParticleSystem:
         m_NumAlphaKeys: 2
   UVModule:
     serializedVersion: 2
-    enabled: 0
-    mode: 0
+    enabled: 1
+    mode: 1
     timeMode: 0
     fps: 30
     frameOverTime:
@@ -12799,7 +12799,7 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 0}
+    - sprite: {fileID: -2413806693520163455, guid: e074a9b4b276847b0b578d2c96d2c1db, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
@@ -16077,7 +16077,7 @@ Transform:
   m_GameObject: {fileID: 1930792569}
   serializedVersion: 2
   m_LocalRotation: {x: -0.03084362, y: 0.7064338, z: -0.7064338, w: 0.03084362}
-  m_LocalPosition: {x: -4.12, y: -8.42, z: 0.67}
+  m_LocalPosition: {x: -4.12, y: -7.31, z: 0.67}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

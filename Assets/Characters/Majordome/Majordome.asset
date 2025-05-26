@@ -10,12 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5b0085f48ca7d04287357fce0768021, type: 3}
-  m_Name: Hansel2
+  m_Name: Majordome
   m_EditorClassIdentifier: 
-  tag: Hansel2
-  characterName: Hansel2
+  tag: Majordome
+  characterName: Majordome
   characterColor: {r: 1, g: 1, b: 1, a: 1}
   defaultExpression: Idle
   expressions:
   - expressionName: Idle
-    expressionSprite: {fileID: 21300000, guid: 1a6b41591738f71488a505240d19c644, type: 3}
+    expressionSprite: {fileID: 21300000, guid: 058960f7ffe0f1f4aa09d84522ec48ef, type: 3}
+  - expressionName: Mesquin
+    expressionSprite: {fileID: 21300000, guid: eec71c2952057b04391c50560078a50a, type: 3}
+  - expressionName: Enjoue
+    expressionSprite: {fileID: 21300000, guid: ba0c96a4c9c443141b894d314b6cf745, type: 3}

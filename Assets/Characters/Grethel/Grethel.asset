@@ -18,4 +18,10 @@ MonoBehaviour:
   defaultExpression: Idle
   expressions:
   - expressionName: Idle
-    expressionSprite: {fileID: 21300000, guid: 385ea386ee74b0343b6b230d38a19ad2, type: 3}
+    expressionSprite: {fileID: 21300000, guid: 1eefad39b9f050b4db55f68ae1305119, type: 3}
+  - expressionName: Inquiete
+    expressionSprite: {fileID: 21300000, guid: 2cbc16938327d084b915b796c2c13ba2, type: 3}
+  - expressionName: Pensive
+    expressionSprite: {fileID: 21300000, guid: e2ff2050c03db584da310a554050680e, type: 3}
+  - expressionName: Enervee
+    expressionSprite: {fileID: 21300000, guid: 02ad24ec473aef9429fc2a569ed81cef, type: 3}
