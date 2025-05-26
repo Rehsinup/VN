@@ -1,33 +1,20 @@
 EXTERNAL LoadScene(string)
 EXTERNAL LoadVFX(string)
 INCLUDE 2d_api.ink
-VAR gameWin = false
-VAR money = 0
-Money = {money}
 
 ~show("Grethel")
 ~show("Carreau")
 aaaa
-~changeBg("Trefle")
-aaaaa
-aaaaa
-aaaa
-~changeBg("Casino")
-aaaa
-aaaa
-aaaa
-aaaaa
+~playSound("FinGood")
 ~changeBg("Sous-sol")
 aaa
 ~fadeBg("Coeur", 1.0)
 Grethel: Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-~show("GrethelG")
-~show("HanselH")
 HOHOHO
 *aaaa
 *aaaa
-~hide("GrethelG")
-~hide("HanselH")
+*aaaa
+*aaaa
 ~changeBg("Ruelle")
 HAHAHAHA
 HUHUHU
