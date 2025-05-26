@@ -54,6 +54,15 @@ public class Simple2DDisplay : MonoBehaviour
         Color c = spr.color;
         c.a = Mathf.Lerp(start, final, t);
         spr.color = c;
+
+        if (UnityEngine.Mathf.Approximately(t, 1) && UnityEngine.Mathf.Approximately(0, final))
+        {
+            gameObject.SetActive(false);
+        }
+        else if (UnityEngine.Mathf.Approximately(t, 0))
+        {
+            gameObject.SetActive(true);
+        }
     }
 
     public void Move(Vector3 worldPos, float duration)

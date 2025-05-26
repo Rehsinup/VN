@@ -5,7 +5,6 @@ INCLUDE 2d_api.ink
 ~show("Grethel")
 ~show("Carreau")
 aaaa
-~playSound("FinGood")
 ~changeBg("Sous-sol")
 aaa
 ~fadeBg("Coeur", 1.0)
