@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   redBackground: {fileID: 3870393580327658573}
+  shakeSoundID: Button
 --- !u!65 &3384198102899601817
 BoxCollider:
   m_ObjectHideFlags: 0

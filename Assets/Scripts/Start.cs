@@ -11,11 +11,21 @@ public class StartScript : MonoBehaviour // Renamed the class to avoid conflict 
     [SerializeField] private Button leaveButton;
     public LevelLoader levelLoader;
 
+    [Header("Sound")]
+    [SerializeField] private string startSoundID = "Start";
+
 
     // Start is called before the first frame update
     void Start()
     {
-
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlaySound(startSoundID);
+        }
+        else
+        {
+            Debug.LogWarning("AudioManager instance not found.");
+        }
     }
 
     // Update is called once per frame

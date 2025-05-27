@@ -5,6 +5,9 @@ public class UIButtonHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointer
 {
     [SerializeField] private GameObject redBackground;
 
+    [Header("Sound")]
+    [SerializeField] private string shakeSoundID = "ShakeSFX";
+
     public void Awake()
     {
         if (redBackground != null)
@@ -14,6 +17,16 @@ public class UIButtonHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointer
     {
         if (redBackground != null)
             redBackground.SetActive(true);
+
+        // Une fois que toutes les images sont affichées, jouer le son
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlaySound(shakeSoundID);
+        }
+        else
+        {
+            Debug.LogWarning("AudioManager instance not found.");
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -21,4 +34,6 @@ public class UIButtonHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointer
         if (redBackground != null)
             redBackground.SetActive(false);
     }
+
+
 }

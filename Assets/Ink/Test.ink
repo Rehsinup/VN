@@ -1,6 +1,8 @@
 EXTERNAL LoadScene(string)
 EXTERNAL LoadVFX(string)
 INCLUDE 2d_api.ink
+VAR neonOn = false
+VAR money = 0
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 ~show("Coeur")
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -19,6 +21,8 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 ~hide("Grethel")
 ~show("Hansel")
 ~show("Hansel2")
+~hide("Hansel")
+~hide("Hansel2")
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaa
 aaaa
@@ -38,6 +42,10 @@ HOHOHO
 ~changeBg("Ruelle")
 HAHAHAHA
 HUHUHU
+AAAAAAAAAAAA
+AAAAAAAAAAAAA
+AAAAAAAAAAAA
+~neonOn = true
 HEHEHE
 ~changeBg("Sous-sol")
 HYHYHY
