@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using System.Collections;
 
 public class CubeSpawnerBg : MonoBehaviour
 {
@@ -13,10 +14,26 @@ public class CubeSpawnerBg : MonoBehaviour
     private Vector3 spawnPos2 = new Vector3(-1.58f, 2.88f, 2.2f);
     private Vector3 endPos2 = new Vector3(2.75f, 2.88f, 2.2f);
 
+    private Coroutine spawnCoroutine;
 
-    private void Start()
+    private void OnEnable()
     {
-        InvokeRepeating(nameof(SpawnRandomCube), 0f, spawnInterval);
+        spawnCoroutine = StartCoroutine(SpawnLoop());
+    }
+
+    private void OnDisable()
+    {
+        if (spawnCoroutine != null)
+            StopCoroutine(spawnCoroutine);
+    }
+
+    IEnumerator SpawnLoop()
+    {
+        while (true)
+        {
+            SpawnRandomCube();
+            yield return new WaitForSeconds(spawnInterval);
+        }
     }
 
     void SpawnRandomCube()
@@ -33,3 +50,4 @@ public class CubeSpawnerBg : MonoBehaviour
             .OnComplete(() => Destroy(newCube));
     }
 }
+
