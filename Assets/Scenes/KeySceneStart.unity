@@ -249,7 +249,7 @@ MonoBehaviour:
   shakeStrength: 15
   delayAfterScene: 2
   isEnded: 0
-  shakeSoundID: ShakeSFX
+  shakeSoundID: Door
 --- !u!1 &843302771
 GameObject:
   m_ObjectHideFlags: 0
