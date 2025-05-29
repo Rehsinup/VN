@@ -16,7 +16,7 @@ VAR DéblocageInfoCroupierCoeur = 0
 VAR DéblocageInfoCroupierTrèfle = 0
 VAR DéblocageInfoCroupierCarreau = 0
 
-VAR InfoCroupierCarreau = false
+VAR InfoCroupierCarr = false
 VAR InfoCroupierCCO = false
 VAR InfoCroupierT = false
 
@@ -31,11 +31,10 @@ VAR DéblocageInfoMajordometrefle = false
 VAR TropJouerCoeur = false
 VAR Question1CCO = 0
 VAR money = 0
-VAR gameWin = false 
-VAR neonOn = false
+VAR gameWin = false
 
 
-->Hall_Casino
+->hubMajordome
 ===CheckVariablePourFin
 {Hansel >= 10 && Grethel <=1:
 ->CurseurHansel
@@ -43,30 +42,34 @@ VAR neonOn = false
 ->CheckVariablePourFin2
 }
 ===CheckVariablePourFin2
-{Hansel >= 7 && Grethel >=2:
+{Grethel >=3:
 ->CurseurMid
 - else:
 ->CheckVariablePourFin3
 }
 ===CheckVariablePourFin3
-{Grethel >=3:
+{Hansel >= 8 && Grethel >=2:
 ->CurseurGrethel
 - else:
-->hubMajordome
+->prehubMajordome
 }
 
+
+
 ===prehubMajordome
-{InfoCroupiercarreau:
+{InfoCroupierCarr:
 ->MajordomeCarreau
 -else:
 ->prehubMajordome2
 }
+
 ==prehubMajordome2
 {InfoCroupierCCO:
 ->MajordomeCoeur
 -else:
 ->prehubMajordome3
 }
+
 ==prehubMajordome3
 {InfoCroupierT:
 ->MajordomeTrefle
@@ -77,70 +80,29 @@ VAR neonOn = false
 
 
 
-===Hall_Casino
 
-~changeBg("Casino")
 
-~show("Majordome")
-
-Majordome: Bravo pour le test ! Ce n'était qu'une formalité évidemment, rien de très compliqué. 
-Majordome: L'arrivée au casino est un peu déroutante au début, ne vous en faites pas... 
-Majordome: Ça change de mon antre, n'est-ce pas ?
-
-~show("Grethel")
-Grethel: C'est... impressionnant en effet.
-
-Majordome: Effectivement, mes visiteurs sont souvent ébahis en arrivant. 
-Majordome: J'en suis plutôt fier d'ailleurs, ça veut dire que mon casino fait une bonne première impression.
-~hide("Grethel")
-
-~show("Hansel")
-Majordome: Comme vous pouvez le constater, nous nous trouvons à l'entrée. 
-Majordome: C'est d'ici que vous pouvez accéder à nos différents jeux. 
-Majordome: Malheureusement, je n'ai que 3 jeux à vous proposer aujourd'hui. 
-Majordome: Les divers croupiers du casino expliqueront bien mieux que moi les jeux auxquels ils sont attribués. 
-
-Hansel: Le croupier Trèfle travaille toujours ici ?
-
-Majordome: Oh oui il s'occupe du Blackjack.
-Majordome: Comme promis vous pourrez gagner des Neumark pour chaque manche remportée.
-
-Hansel: Très bien. 
-~hide("Hansel")
-~show("Grethel")
-Grethel: Comment se passe les mises ? Nous n'avons pas un rond sur nous.
-Majordome: Il n'y a pas de contrepartie, ici vous jouez pour gagner et seulement gagner vous ne pouvez pas perdre d'argent.
-Grethel: Mais alors, comment fonctionne le casino ?
-
-Majordome: Il tourne sur les fonds d'investissement de grandes entreprises, telles que Bargeld et Endlos Netz. 
-Majordome: Malheureusement à cause de la crise économique, nous avons dû fermer une partie des jeux à disposition.
-->suite2
--
--(suite2)
-~hide("Grethel")
-~show("Hansel")
-Hansel: On peut rester autant qu'on veut ?
-
-Majordome: Evidemment, jouez autant que vous le souhaitez, si vous avez la moindre question je reste à votre disposition.
-
-Hansel: Parfait, alors allons jouer.
-~hide("Hansel")
-~show("Grethel")
-~show("Hansel2")
-~hide("Majordome")
-Hansel: On devrait peut-être aller voir Trèfle en premier je le connais un peu.
-Hansel: Et je suis plutôt bon au Blackjack.
-
-Grethel: D'accord joues, moi je vais essayer d'en apprendre plus.
-->hubMajordome
 
 ===MajordomeCarreau
+~show("Majordome")
+~changeBg("Casino")
+~hide("Coeur")
+~hide("Carreau")
+~hide("Trefle")
+~hide("Hansel2")
+~show("Grethel")
+~InfoCroupierCarr = false
 Grethel: Apparemment vous travailliez avec le croupier Carreau au Kristal Kugel avant sa fermeture, c'est un bon ami à vous ?
 Majordome: Le croupier...
 Majordome: Carreau ?
 Majordome: ...
- Majordome: Ah oui, ça remonte à longtemps effectivement.
-Majordome: Ca m'a surpris de le voir se présenter à mon bureau, nous n'étions pas vraiment ami à proprement parler, plus des collègues de travail. Mais ça m'a fait plaisir de voir une vieille connaissance.
+Majordome: Ah oui, ça remonte à longtemps effectivement.
+~face("Grethel", "Inquiete")
+Majordome: Ca m'a surpris de le voir se présenter à mon bureau, nous n'étions pas vraiment ami à proprement parler, plus des collègues de travail. 
+Majordome: Mais ça m'a fait plaisir de voir une vieille connaissance.
+~face("Grethel", "Idle")
+~hide("Grethel")
+~show("Hansel")
 Hansel: C'est pour ça que vous l'avez embauché alors ?
 Majordome: Oui, je connais ses capacités de travail, l'avoir sous mon aile m'a permit de consolider mon casino.
 Majordome: Mais assez parlé de ça, jeune homme est-ce que vous avez gagné quelque chose pour le moment ?
@@ -148,31 +110,96 @@ Majordome: Mais assez parlé de ça, jeune homme est-ce que vous avez gagné que
 *[Non]->Non
 
 -(Non)
-Majordome: Eh bien c'est quand même ce pourquoi vous-êtes ici allez donc à une table et revenez quand ce sera fait.->ChoixHubMajordome
+Majordome: Eh bien c'est quand même ce pourquoi vous-êtes ici allez donc à une table et revenez quand ce sera fait.
+{Hansel >=6:
+~show("Hansel2")
+~hide("Hansel")
+~show("Grethel")
+Grethel: Eh Hans, tu tiens le coup ? 
+Grethel: Je commence à avoir des infos je pense que si on continue comme ça on va pouvoir le faire chanter.
+Hansel2: Ouais t'inquiète faut juste que tu ailles droit au but.
+}
+->ChoixHubMajordome
 -
 
 -(Oui)
-Majordome: Vous m'en voyez ravi, j'espère que les tables sont à votre goût et que mes employés veillent à tenir un comportement irréprochable.->ChoixHubMajordome
+Majordome: Vous m'en voyez ravi, j'espère que les tables sont à votre goût et que mes employés veillent à tenir un comportement irréprochable.
+{Hansel >=6:
+~show("Hansel2")
+~hide("Hansel")
+~show("Grethel")
+Grethel: Eh Hans, tu tiens le coup ? 
+Grethel: Je commence à avoir des infos je pense que si on continue comme ça on va pouvoir le faire chanter.
+Hansel2: Ouais t'inquiète faut juste que tu ailles droit au but.
+}
+->ChoixHubMajordome
 
 
 ===MajordomeCoeur
+~show("Majordome")
+~changeBg("Casino")
+~hide("Coeur")
+~hide("Carreau")
+~hide("Trefle")
+~hide("Hansel2")
+~show("Grethel")
+~InfoCroupierCCO = false
 Grethel: Vous saviez que la croupière cœur était la chanteuse du groupe Synthex Virga ?? 
 Grethel: Comment est-elle arrivée ici ?
 Majordome: Oui, c'est un honneur de l'avoir ici.
 Majordome: Mais je ne peux pas vous révéler comment elle est arrivée ici, c'est un secret professionnel.
 Majordome: J'espère néanmoins que tout s'est bien passé à sa table ?
-Majordome: Si c'est le cas je vous invite à repartir sur une de nos table.->ChoixHubMajordome
+Majordome: Si c'est le cas je vous invite à repartir sur une de nos table.
+{Hansel >=6:
+~show("Hansel2")
+~hide("Hansel")
+~show("Grethel")
+Hansel2: Allez c'est reparti, on va tout peter. 
+Grethel: Calme-toi, on est pas ici pour s'amuser je te rappelle.
+~face("Hansel2", "Triste")
+Hansel2: Je...
+Hansel2: C'est vrai excuse-moi.
+Grethel: Je vais essayer de faire vite je sens que ça pourrait dégénérer.
+}
+~face("Grethel", "Idle")
+~face("Hansel2", "Idle")
+->ChoixHubMajordome
 
 
 
 ===MajordomeTrefle
-
+~show("Majordome")
+~changeBg("Casino")
+~hide("Coeur")
+~hide("Carreau")
+~hide("Trefle")
+~hide("Hansel2")
+~show("Grethel")
+~InfoCroupierT = false
 Grethel: Vous...
+~face("Grethel", "Enervee")
+~face("Majordome", "Mesquin")
 Majordome: Alors jeune homme, vous vous plaisez ? 
 Majordome: J'espère que la chance vous sourit.
+~hide("Grethel")
+~show("Hansel")
 Hansel: Ouais, je m'en sort pas trop mal.
+~show("Grethel")
+~hide("Hansel")
 Grethel: Je pense qu'on pourr...
 Majordome: Je te conseille de retourner jouer peut-être que vous pourriez tout rafler sur la prochaine partie.
+{Hansel >=6:
+~show("Hansel2")
+~hide("Hansel")
+~show("Grethel")
+Hansel2: Ouais il a raison, allez viens on va faire peter la banque. 
+~face("Grethel", "Inquiete")
+Grethel: On va y aller.
+Grethel: Mais resaisit toi, on doit rester concentré.
+Hansel2: C'est vrai excuse moi, je sens que ça commence.
+}
+~face("Grethel", "Idle")
+~face("Majordome", "Idle")
 ->ChoixHubMajordome
 
 
@@ -184,9 +211,7 @@ Majordome: Je te conseille de retourner jouer peut-être que vous pourriez tout 
 ~hide("Carreau")
 ~hide("Trefle")
 ~hide("Hansel2")
-{etreAlleVoirUnCroupier:
-Majordome: {~Vous revoila, j'espère que tout ce passe bien.|Alors, vous vous amusez ? J'espère que tout ce déroule comme vous le souhaitez|Déjà de retour, vous avez l'air en veine !}
-}
+
 {TropJouerCoeur:
 ~hide("Hansel")
 ~show("Grethel")
@@ -195,20 +220,25 @@ Majordome: {~Vous revoila, j'espère que tout ce passe bien.|Alors, vous vous am
 Grethel: Te revoila Hans tout va bien ?
 Hansel2: Ouais c'est nickel j'ai encore gagné.
 }
+
+
+{etreAlleVoirUnCroupier:
+Majordome: {~Vous revoila, j'espère que tout ce passe bien.|Alors, vous vous amusez ? J'espère que tout ce déroule comme vous le souhaitez.|Déjà de retour, vous avez l'air en veine !}
+}
 ->ChoixHubMajordome
 
 ===ChoixHubMajordome
 
 
 
-*[Aller vers la Roulette]->CroupierCarreaux 
-+{CroupierCarreaux}[Aller vers la Roulette]->CroupierCarreaux2
+*[Aller vers le Croupier Carreau, Roulette]->CroupierCarreaux 
++{CroupierCarreaux}[Aller vers le Croupier Carreau, Roulette]->CroupierCarreaux2
 
-*[Aller vers le Mémory]->CroupierCoeur
-+{CroupierCoeur}[Aller vers le Mémory]->CroupierCoeur2
+*[Aller vers la Croupière Coeur, Memory]->CroupierCoeur
++{CroupierCoeur}[Aller vers la Croupière Coeur, Memory]->CroupierCoeur2
 
-*[Aller vers le Blackjack]->CroupierTrefle
-+{CroupierTrefle}[Aller vers le Blackjack]->CroupierTrefle2
+*[Aller vers le Croupier Trèfle, Blackjack]->CroupierTrefle
++{CroupierTrefle}[Aller vers le Croupier Trèfle, Blackjack]->CroupierTrefle2
 
 
 
@@ -272,7 +302,10 @@ Grethel: On aimerait vous poser des questions d'abord si possible.
 *[Demander d'ou il vient]->PasEncoreJouer
 
 ===CroupierCarreaux2
-
+~hide("Majordome")
+~show("Carreau")
+~hide("Hansel")
+~changeBg("Carreau")
 {ConvTresNul && ConvNul && InfoCroupierCoeur && InfoMajordome:
 Carreau: Il semblerait que je n'ai plus quand chose à vous dire les jeunes. 
 ->TropDeQuestion
@@ -303,11 +336,18 @@ Grethel: Changeons de table.
 {ConvTresNul && ConvNul && InfoCroupierCoeur && InfoMajordome:
 Carreau: Il semblerait que je n'ai plus quand chose à vous dire les jeunes. 
 ->TropDeQuestion
--else:
+}
+{ConvTresNul && ConvNul && InfoCroupierCoeur && not DéblocageInfoMajordomeCarreau:
+Carreau: Je crois que je vous ai tout dis pour le moment.
+Carreau:: Vous devriez aller voir ma collègue coeur, elle s'occupe du memory.
+Grethel: D'accord on y va de ce pas.
+->hubMajordome
+}
 ~Hansel +=1
 ~LoadScene("VFXRoulette")
 ->QuestionPourCarreau
-}
+
+
 ===QuestionPourCarreau
 ~hide("Hansel2")
 ~hide("Hansel")
@@ -341,7 +381,7 @@ Carreau: Par ici vous voulez dire en Allemagne ?
 
 Grethel: Oui.
 
-Carreau : Malheureusement oui, comme beaucoup de gens.
+Carreau: Malheureusement oui, comme beaucoup de gens.
 
 ~hide("Grethel")
 ~show("Hansel")
@@ -477,7 +517,7 @@ Carreau: C'est facile pour eux d'amadouer des joueurs.
 
 Grethel: D'accord, on fera attention en sa présence. Merci pour l'info.
 ~Grethel +=1
-~InfoCroupierCarreau = true
+~InfoCroupierCarr = true
 *[Jouer pour reposer une question]->JouerCarreau
 +[Changer de table de jeu]->retourmajorCarr
 
@@ -537,14 +577,14 @@ Coeur: Allons allons pourquoi êtes vous ici alors.
 ->suite3
 -
 -(Oui)
-Coeur: Alors jouons 
+Coeur: Alors jouons.
 ~playSound("Shuffle2")
 ->suite3
 -
 -(suite3)
+Grethel: On dirait qu'elle veut nous dépecher.
 ~hide("Coeur")
 ~show("Hansel2")
-Grethel: Elle est très rapide dis donc.
 
 Hansel: C'est clair.
 ~hide("Hansel2")
@@ -552,8 +592,10 @@ Hansel: C'est clair.
 Coeur: Ici vous jouerez au memory. 
 Coeur: Le jeu est simple, 
 Coeur: Il vous faut constituez des paires de cartes, 
-Coeur: Vous retournez deux cartes, si les elles sont identiques alors vous les laissez faces retournées,
+Coeur: Vous retournez deux cartes, si les elles sont identiques alors vous les laissez faces retournées.
+~face("Coeur", "Pensive")
 Coeur: ...
+~face("Coeur", "Idle")
 Coeur: Sinon vous les retournez face cachée. L'objectif est de trouver toutes les paires.
 
 Grethel: Ca va ? Vous avez l'air d'avoir eu une absence.
@@ -570,7 +612,12 @@ Coeur: Vous êtes prêt pour le jeu ?
 
 
 ===CroupierCoeur2
-
+~hide("Majordome")
+~show("Coeur")
+~show("Grethel")
+~changeBg("Coeur")
+~hide("Hansel")
+~hide("Hansel2")
 {Question1Coeur && Question2Coeur && InfoCroupiertrefle && InfoMajordomeviaCCO:
 Coeur: Vous feriez mieux d'aller voir mes collègues. 
 ->UnepartieDePlus
@@ -604,11 +651,18 @@ Grethel: Bon on dirait qu'il va falloir jouer Hans.
 {Question1Coeur && Question2Coeur && InfoCroupiertrefle && InfoMajordomeviaCCO:
 Coeur: Vous feriez mieux d'aller voir mes collègues. 
 ->UnepartieDePlus
--else:
+}
+{Question1Coeur && Question2Coeur && InfoCroupiertrefle && not DéblocageInfoMajordomeCCO:
+Coeur: Je crois que je vous ai tout dis pour le moment.
+Coeur: Vous devriez aller voir mon collègue trefle, il s'occupe du blackjack.
+Grethel: D'accord on y va de ce pas.
+->hubMajordome
+}
 ~Hansel +=1
 ~LoadScene("MemoryCards")
 ->HubCC0
-}
+
+
 
 
 
@@ -619,12 +673,17 @@ Coeur: Vous feriez mieux d'aller voir mes collègues.
 ~show("Grethel")
 {! Grethel: On peut vous poser une question maintenant ?}
 
-{! Coeur: Oui bien sûr, mais une seulement.}
+{! Coeur: Oui bien sûr, mais question une seulement.}
 
 {Question1Coeur || Question2Coeur || InfoCroupiertrefle || InfoMajordomeviaCCO:
 Grethel: {~On a le droit à une autre question maintenant ?| Je peux vous poser une autre question ?|J'aimerais vous poser une autre question.}
 }
-
+{Question1Coeur && Question2Coeur && InfoCroupiertrefle && not DéblocageInfoMajordomeCCO:
+Coeur: Je crois que je vous ai tout dis pour le moment.
+Coeur: Vous devriez aller voir mon collègue trefle, il s'occupe du blackjack.
+Grethel: D'accord on y va de ce pas.
+->hubMajordome
+}
 {Question1Coeur && Question2Coeur && InfoCroupiertrefle && InfoMajordomeviaCCO:
 Coeur: Vous feriez mieux d'aller voir mes collègues. 
 ->UnepartieDePlus
@@ -691,8 +750,9 @@ Hansel: On rejoue ! Je veux assister à une nouvelle démonstration de vos talen
 -(Non)
 ~hide("Hansel")
 ~show("Grethel")
+~face("Grethel","Pensive")
 Grethel: Attends Hans, on peut discuter un peu avant de rejouer, non ?
-
+~face("Grethel","Idle")
 Coeur: Malheureusement on ne peut pas déroger aux règles vous devez rejouez avant.
 {Question1CCO >=2:
 ~Question1CCO -=2
@@ -765,17 +825,18 @@ Coeur: C'est vrai que c'était une époque magnifique, on était libre, passionn
 Grethel: Mais... 
 Grethel: Pourquoi avoir mit fin au groupe si tout se passait si bien ?
 Grethel: Une tournée était annoncée en plus.
-
+~face("Coeur","Pensive")
 Coeur: ...
 Coeur: C'est compliqué.
 
 Grethel: Comment ça ?
 
 Coeur: C'est en lien avec mon mari... et ce maudit accident.
-
+~face("Grethel","inquiete")
 Grethel: Ah désolé, ne vous sentez pas obligée d'en parler.
 
 Coeur: Non, ça va. C'est juste que...
+~face("Grethel","Idle")
 Coeur: Avec le travail j'arrive à me distraire mais ça fait bientôt un an que c'est arrivé.
 Coeur: Mais cet événement reste ancré en moi. Maudites corpos... 
 Grethel: Quelles corpos ?
@@ -785,16 +846,15 @@ Coeur: Il était contre l'idée de supporter ces corpos, mais l'occasion était 
 Coeur: Je me sens tellement responsable de sa mort.
 
 Grethel: Vous vous faites du mal, on ne peut tout contrôler.
-Grethel: Ce qui doit arriver arrivera...
 Grethel: Je ne pense pas que votre mari aurait voulu que vous remmetiez la faute sur vous.
-
+~face("Coeur", "Idle")
 Coeur: Oui vous avez sûrement raison...
 Coeur: Merci pour ces mots réconfortants, dites moi si je peux vous aider d'une quelquonque manière.
 
 Grethel: J'aimerais vous poser une question justement.
 Grethel: Le Majordome nous a dit que le casino était financé par des corpos ce qui explique qu'on ne mise rien.
 Coeur: Quelles corporations ? Bergeld et EndlosNetz ?
-Grethel : Oui c'est ce qu'il a dit.
+Grethel: Oui c'est ce qu'il a dit.
 Coeur: Il me semble qu'avec la crise ces corporations ont fait faillite. 
 Coeur: Si c'est vraiment le cas ce casino aurait dû fermer comme tous les autres. 
 Grethel: C'est étrange qu'il soit encore fonctionnel. Et d'où viennent les finances alors ?
@@ -817,6 +877,7 @@ Hansel: Puisqu'on doit rejouer, pose une question pendant que je fait une partie
 }
 
 -(badChoicecoeur)
+~face("Coeur", "Enervee")
 
 Grethel:J'ai entendu dire que, vous aviez un groupe de musique avec votre mari.
 
@@ -826,6 +887,8 @@ Coeur: Merci de ne pas me reposer de question là-dessus.
 Grethel: Excusez-nous,
 Grethel: ....
 Coeur: Revenons au jeu voulez-vous.
+~face("Coeur", "Idle")
+
 {Question1CCO >=2:
 ~Question1CCO -=2
 ->FinDeQuestionCoeur
@@ -906,7 +969,13 @@ Hansel: Bon, c'est parti jouons.
 
 
 ===CroupierTrefle2
-{Question1Trefle && Question2Trefle && InfoCroupiercarreau && DéblocageInfoMajordometrefle:
+~show("Trefle")
+~hide("Grethel")
+~hide("Hansel2")
+~show("Hansel")
+~hide("Majordome")
+~changeBg("Trefle")
+{Question1Trefle && Question2Trefle && InfoCroupiercarreau && InfoMajordometrefle:
 Trefle: Je crois que je vous ai tout dis, vous devriez jouer aux autres tables. 
 ->UneDernierePartieTrefle
 }
@@ -917,7 +986,7 @@ Trefle: Puisque vous connaissez les règles, nous pouvons directement jouer.
 
 
 ===retourmajorTrefle
-{Question1Trefle && Question2Trefle && InfoCroupiercarreau && DéblocageInfoMajordometrefle:
+{Question1Trefle && Question2Trefle && InfoCroupiercarreau && InfoMajordometrefle:
 Trefle: Je crois que je vous ai tout dis, vous devriez jouer aux autres tables. 
 ->UneDernierePartieTrefle
 }
@@ -925,6 +994,16 @@ Grethel: Changeons de table.
 ->CheckVariablePourFin
 
 ===Jouertrefle
+{Question1Trefle && Question2Trefle && InfoCroupiercarreau && InfoMajordometrefle:
+Trefle: Je crois que je vous ai tout dis, vous devriez jouer aux autres tables. 
+->UneDernierePartieTrefle
+}
+{Question1Trefle && Question2Trefle && InfoCroupiercarreau && not DéblocageInfoMajordometrefle:
+Trefle: Je crois que je vous ai tout dis pour le moment.
+Trefle: Vous devriez aller voir mon collègue carreau, il s'occupe de la roulette.
+Grethel: D'accord on y va de ce pas.
+->hubMajordome
+}
 ~Hansel +=1
 ~LoadScene("Blackjack") 
 ->Hubtrefle
@@ -944,14 +1023,20 @@ Grethel: Changeons de table.
 {Question1Trefle || Question2Trefle || InfoCroupiercarreau || InfoMajordometrefle:
 Grethel: {~On a le droit à une autre question maintenant ?| Je peux vous poser une autre question ?|J'aimerais vous poser une autre question.}
 }
-{Question1Trefle && Question2Trefle && InfoCroupiercarreau && DéblocageInfoMajordometrefle:
+{Question1Trefle && Question2Trefle && InfoCroupiercarreau && not DéblocageInfoMajordometrefle:
+Trefle: Je crois que je vous ai tout dis pour le moment.
+Trefle: Vous devriez aller voir mon collègue carreau, il s'occupe de la roulette.
+Grethel: D'accord on y va de ce pas.
+->hubMajordome
+}
+{Question1Trefle && Question2Trefle && InfoCroupiercarreau && InfoMajordometrefle:
 Trefle: Je crois que je vous ai tout dis, vous devriez jouer aux autres tables. 
 ->UneDernierePartieTrefle
 }
 
-*{not Question1Trefle}[Question 1]->Question1Trefle
-*{not Question2Trefle}[Question 2]->Question2Trefle
-*{not InfoCroupiercarreau}[Question 3]->InfoCroupiercarreau
+*{not Question1Trefle}[Pourquoi est-il le croupier trèfle]->Question1Trefle
+*{not Question2Trefle}[Parler du blackjack]->Question2Trefle
+*{not InfoCroupiercarreau}[Poser une question sur le Croupier Carreau]->InfoCroupiercarreau
 *{not  InfoMajordometrefle && DéblocageInfoMajordometrefle}[Evoquer son passé]->InfoMajordometrefle
 +[Retourner voir le Majordome]->CheckVariablePourFin
 
@@ -972,6 +1057,9 @@ Hansel: Alors vous....
 ~show("Grethel")
 Grethel: Il vaut mieux qu'on passe à autre chose.
 Trefle: Comme convenu si vous avez une autre question, une partie s'impose.
+{not InfoCroupiercarreau:
+Grethel: Je pense qu'on va vous reposer une question alors. 
+}
 *[Jouer pour reposer une question]->Jouertrefle
 +[Changer de table de jeu]->retourmajorTrefle
 
@@ -987,10 +1075,12 @@ Trefle: Ça me parait évident, meilleur vous êtes plus vos chances de gagner s
 ~hide("Hansel")
 ~show("Grethel")
 Grethel: Effectivement, vu comme ça, ça fait sens.
-
-
-*{not Question1Trefle}[Question 1]->paspossiblequesttrefle
-*{not InfoCroupiercarreau}[Question 3]->paspossiblequesttrefle
+{not InfoCroupiercarreau:
+Grethel: Ca ne nous a pas fait avancer je pense qu'il faudrait poser une autre question.
+Grethel: Désolé Hans...
+}
+*{not Question1Trefle}[Pourquoi est-il le croupier trèfle]->paspossiblequesttrefle
+*{not InfoCroupiercarreau}[Poser une question sur le Croupier Carreau]->paspossiblequesttrefle
 *{not  InfoMajordometrefle && DéblocageInfoMajordometrefle}[Evoquer son passé]->paspossiblequesttrefle
 
 -(paspossiblequesttrefle)
@@ -998,29 +1088,32 @@ Trefle: Vous vous rappellez des règles ?
 Trefle: Pas de question sans une partie.
 
 Grethel: Excuse-moi Hans, j'aurais du poser une meilleure question.
-
+~hide("Grethel")
+~show("Hansel")
 Hansel: C'est pas un problème. 
 Hansel: Tu viseras juste la prochaine fois.
 
 ~Hansel +=1
 ~LoadScene("Blackjack") 
 -
+~hide("Hansel")
+~show("Grethel")
 Grethel: Réfléchissons avant de poser une question.
 
-*{not Question1Trefle}[Question 1]->Question1Trefle
-*{not InfoCroupiercarreau}[Question 3]->InfoCroupiercarreau
+*{not Question1Trefle}[Pourquoi est-il le croupier trèfle]->Question1Trefle
+*{not InfoCroupiercarreau}[Poser une question sur le Croupier Carreau]->InfoCroupiercarreau
 *{not  InfoMajordometrefle && DéblocageInfoMajordometrefle}[Evoquer son passé]->InfoMajordometrefle
 
 
 
 ===InfoCroupiercarreau
-~DéblocageInfoMajordomeCarreau =true
+~DéblocageInfoMajordomeCarreau = true
 ~hide("Hansel")
 ~show("Grethel")
 Grethel: Par hasard, vous auriez des infos sur le croupier carreau ?
-Grethel: Il m'intrigue, j'aimerez bien parler avec lui et apparemment vous le connaissez.
+Grethel: Il m'intrigue, j'aimerais bien parler avec lui et apparemment vous le connaissez.
 Trefle: Ce bon vieux Carreau, oh oui je le connais.
-Il était déjà là quand je suis arrivé, on a eu l'occasion de discuter un bon nombre de fois.
+Trefle: Il était déjà là quand je suis arrivé, on a eu l'occasion de discuter un bon nombre de fois.
 Grethel: Il y a des sujets qui l'intéresse particulièrement ?
 Trefle: Alors ça oui, notamment ses nombreux voyages, quand il en parle il a des étoiles pleins les yeux.
 Faut croire que ça lui remémore des bons souvenirs contrairement à son passage dans l'armée corporative...
@@ -1038,8 +1131,8 @@ Grethel: Oui ! Ça me dit quelque chose on a dû le voir avec papa...
 Grethel: En tout cas merci pour les infos.
 Grethel: On va sûrement aller lui parler après.
 Trefle: De rien mais n'oubliez pas que je suis là pour vous faire jouer aussi.
-->Hubtrefle
-
+*[Jouer pour reposer une question]->Jouertrefle
++[Changer de table de jeu]->retourmajorTrefle
 
 
 ===InfoMajordometrefle
@@ -1073,7 +1166,7 @@ Trefle: Merci, c'était le choix de mon épouse.
 ~hide("Hansel")
 ~show("Grethel")
 Grethel: Et quel âge ont ils ?
-Trefle : Ma fille doit avoir à peu près ton âge, quant à mon fils et bien... il devrait avoir 13 ans cette année.
+Trefle: Ma fille doit avoir à peu près ton âge, quant à mon fils et bien... Il devrait avoir 13 ans cette année.
 Grethel: Mais vous n'avez plus de nouvelles d'eux ?
 Trefle: En fait ils sont partis avec ma femme… enfin ex-femme.
 ~hide("Grethel")
@@ -1087,10 +1180,10 @@ Trefle: Je sais même pas si ils sont encore en ville.
 Grethel: Ça doit pas être facile pour vous j'en suis désolée... 
 Grethel: Je vous souhaite de retrouver vos enfants.
 Grethel: Si c'est dur pour vous ça doit l'être aussi pour eux.
-Trefle: Merci pour ces mots et si vous aviez quelque chose a me demander faites-le maintenant.
+Trefle: Merci pour ces mots et si vous aviez quelque chose à me demander faites-le maintenant.
 
 Grethel: Mon frère dit que le casino n'était pas ici avant. Pourquoi avoir changé ?
-Trefle : Hein ? Comment ça ?
+Trefle: Hein ? Comment ça ?
 Trefle: J'ai pas le souvenir de mettre déplacé.
 Trefle: Il faut dire que ça fait longtemps que je ne suis pas sorti à l'extérieur mais normalement le gérant nous dit quand nos horaires sont terminées.
 Grethel: C'est bizarre comme fonctionnement...
@@ -1099,16 +1192,29 @@ Grethel: Merci en tout cas.
  
 ~InfoCroupierT = true
 ~Grethel +=1
+
 *[Jouer pour reposer une question]->Jouertrefle
 +[Changer de table de jeu]->retourmajorTrefle
 
 
 ===UneDernierePartieTrefle
+~hide("Grethel")
+~show("Hansel")
 Hansel: On peut pas partir sans une dernière petite partie non ?
 ~Hansel +=1
 ~LoadScene("Blackjack") 
+
+~hide("Trefle")
+~hide("Hansel")
+~show("Hansel2")
+~show("Grethel")
 Grethel: Bon maintenant on s'en va il n'y plus rien a gagner ici.
-Hansel: C'est un casino il y a toujours quelque chose à gagner.
+~hide("Grethel")
+~show("Hansel2")
+Hansel2: C'est un casino il y a toujours quelque chose à gagner.
+~hide("Hansel2")
+~show("Grethel")
+Grethel: ...
 ->CheckVariablePourFin
 
 
@@ -1190,9 +1296,9 @@ Majordome: Si vous n'avez pas d'autres questions je vais vous sortir d'ici et vo
 ~hide("Grethel")
 Hansel: Pas d'entourloupes j'espère.
 Majordome: Je vous l'ai dit, je respecte les règles.
-Majordome: D'une certaine façon vous avez gagné, enfin vous n'avez pas perdu... je n'ai pas de raisons de vous garder ici.
+Majordome: D'une certaine façon vous avez gagné, enfin vous n'avez pas perdu... Je n'ai pas de raisons de vous garder ici.
 Grethel: Alors sortez nous.
-Majordome: ... "SFX numérique ? "
+Majordome: ... 
 
 ~changeBg("Sous_sol")
 
@@ -1218,7 +1324,7 @@ Majordome: Merci de votre visite, vous connaissez le chemin.->Fingood
 ~playSound("FinGood")
 Hansel: Bon...
 Hansel: Nous revoilà au point de départ.
-Grethel: Oui... mais au moins on est libre.
+Grethel: Oui... Mais au moins on est libre.
 Hansel: C'est sûr.
 Hansel: Au fait Greth. Je suis désolé...
 Grethel: Pourquoi ?
@@ -1245,11 +1351,11 @@ Grethel: Je vois que tu aimes ça mais on est là depuis longtemps déjà et ça
 Hansel: Qu'est-ce qui t'inquiètes ? Tu as des infos ?
 
 
-{not InfoCroupierCarreau && not InfoCroupierCCO && InfoCroupierT:
+{not InfoCroupierCarr && not InfoCroupierCCO && InfoCroupierT:
 Grethel: Aucune Info Non pas vraiment mais j'ai juste un mauvais pressentiment.
 }
 
-{InfoCroupierCarreau:
+{InfoCroupierCarr:
 Grethel: Le croupier Carreau m'a dit que le majordome s'appelait Herz, ils ont travaillé ensemble dans l'ancien Krystalkugell.
 Grethel: D'après lui le Majordome est bien différent de celui qu'il a connu et s'en méfie aussi.
 }
@@ -1324,10 +1430,10 @@ Majordome: Alors laissez moi vous inviter à résoudre cet énigme.
 ->enigme
 
 ===enigme
-Majordome: Je suis sans visage, mais on peut me compter.
-Majordome: Je suis au sommet de mon enseigne, mais certains vous dirons le contraire.
 Majordome: A ma table, nous sommes quatre, mais avons deux couleurs distincte.
+Majordome: Je suis sans visage, mais on peut me compter.
 Majordome: Parmis nous, je suis le plus aggresif.
+Majordome: Je suis au sommet de mon enseigne, mais certains vous dirons le contraire.
 Majordome: Qui suis-je?
 
 *[10 de Carreau]->midbad
@@ -1357,4 +1463,3 @@ Majordome: Vous pouvez aller chercher votre frère.
 Grethel: Comme ça ? Sans entourloupe ? Je ne vous crois pas.
 Majordome: Que vous me croyez ou non ça ne change rien, jugez moi autant que vous le voulez mais ici tout est régi par des règles.
 Majordome: il faut les respecter sinon je le jeu perd de la valeur même pour moi.->Fingood
-

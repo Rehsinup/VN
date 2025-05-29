@@ -28,11 +28,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Emissive:
-        m_Texture: {fileID: 2800000, guid: 62c53ab73243dc143b0f3f58232c63eb, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8acc2ce24baa68340bf708740c646936, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _GlowMask:
-        m_Texture: {fileID: 2800000, guid: b640b41af001dae4f8521a747f2ab94b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 37697b60f34a2994b868053b79c9c066, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:

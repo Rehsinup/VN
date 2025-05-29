@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: "Assets/Scenes/Apr\xE8s-Start.unity"
+    guid: 7b7a2df8a65bceb438ddd3b209b9115d
+  - enabled: 1
     path: Assets/Scenes/Start.unity
     guid: a0ffdd1aa9717ae41bf6ca61b11d592d
   - enabled: 1
@@ -15,35 +18,50 @@ EditorBuildSettings:
     path: Assets/Scenes/Main.unity
     guid: 59252f3611f46004f90554ddeb8d5b7b
   - enabled: 1
-    path: Assets/Scenes/VFXRoulette.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
-    path: Assets/Scenes/MemoryCards.unity
-    guid: c4cb271c8196b0a408894a2ed323f595
-  - enabled: 1
-    path: Assets/Scenes/KeySceneStart.unity
-    guid: a5538441ce39faa4abfea432a563fee0
-  - enabled: 1
     path: Assets/Scenes/BlackJack.unity
     guid: 5ea5e5eecf3166b45aa976be7ca7e684
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: d86f5d5f37249cb429b7ec19d763b9ac
   - enabled: 1
     path: Assets/Scenes/Hack.unity
     guid: a8482343442ec874d9479209cb2a2f6e
   - enabled: 1
-    path: Assets/Scenes/Memory.unity
-    guid: 603f722b24a20e049a1ca4f4f8f55002
+    path: Assets/Scenes/KeySceneBad.unity
+    guid: 9de7b5b28d9635743acb912a029bb9a9
   - enabled: 1
-    path: Assets/Scenes/Options.unity
-    guid: 4f35487a4d898ac438f30a82a511a8ee
-  - enabled: 1
-    path: Assets/Scenes/KeySceneGood.unity
-    guid: 6e5b52c6fd217a444ab40336a4d0f0e4
+    path: Assets/Scenes/KeySceneBadMid.unity
+    guid: 98d233334d3b24f4493d50a03a3a3b94
   - enabled: 1
     path: Assets/Scenes/KeySceneBranchement.unity
     guid: 77e4f8dce8905264a95c60216b9e9fff
   - enabled: 1
+    path: Assets/Scenes/KeySceneGood.unity
+    guid: 6e5b52c6fd217a444ab40336a4d0f0e4
+  - enabled: 1
+    path: Assets/Scenes/KeySceneSous-Sol.unity
+    guid: 1aaaec08f49860848afa616f643aa8dd
+  - enabled: 1
+    path: Assets/Scenes/KeySceneStart.unity
+    guid: a5538441ce39faa4abfea432a563fee0
+  - enabled: 1
+    path: Assets/Scenes/Memory.unity
+    guid: 603f722b24a20e049a1ca4f4f8f55002
+  - enabled: 1
+    path: Assets/Scenes/MemoryCards.unity
+    guid: c4cb271c8196b0a408894a2ed323f595
+  - enabled: 1
+    path: Assets/Scenes/Options.unity
+    guid: 4f35487a4d898ac438f30a82a511a8ee
+  - enabled: 1
     path: Assets/Scenes/Puzzle 1.unity
     guid: 790fa2860ba9d7344a3b02a2cfb7c0cf
+  - enabled: 1
+    path: Assets/Scenes/VFXGlow.unity
+    guid: e111af070db28dc47aa02265bd49ead4
+  - enabled: 1
+    path: Assets/Scenes/VFXRoulette.unity
+    guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
     path: Assets/Scenes/VFXTest.unity
     guid: a457f11a54f6132448238ad58a8d4aa0
