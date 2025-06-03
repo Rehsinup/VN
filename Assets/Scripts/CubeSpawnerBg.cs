@@ -8,11 +8,11 @@ public class CubeSpawnerBg : MonoBehaviour
     public float spawnInterval = 1f;
     public float moveDuration = 2f;
 
-    private Vector3 spawnPos1 = new Vector3(0.76f, -5.12f, -3.46f);
-    private Vector3 endPos1 = new Vector3(0.99f, -1.7f, -3.46f);
+    private Vector3 spawnPos1 = new Vector3(0.76f, -5.12f, 30f);
+    private Vector3 endPos1 = new Vector3(0.99f, -1.7f, 30f);
 
-    private Vector3 spawnPos2 = new Vector3(-1.58f, 2.88f, 2.2f);
-    private Vector3 endPos2 = new Vector3(2.75f, 2.88f, 2.2f);
+    private Vector3 spawnPos2 = new Vector3(-1.58f, 2.88f, 40f);
+    private Vector3 endPos2 = new Vector3(2.75f, 2.88f, 40f);
 
     private Coroutine spawnCoroutine;
 

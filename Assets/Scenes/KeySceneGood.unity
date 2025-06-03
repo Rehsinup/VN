@@ -195,7 +195,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.000030517578, y: 0}
-  m_SizeDelta: {x: 2500, y: 1500}
+  m_SizeDelta: {x: 1950, y: 1200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &297557692
 GameObject:
@@ -249,7 +249,7 @@ MonoBehaviour:
   shakeStrength: 15
   delayAfterScene: 2
   isEnded: 0
-  shakeSoundID: ShakeSFX
+  shakeSoundID: 
 --- !u!1 &843302771
 GameObject:
   m_ObjectHideFlags: 0

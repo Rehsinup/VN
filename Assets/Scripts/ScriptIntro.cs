@@ -3,11 +3,11 @@ using TMPro;
 using UnityEngine;
 using Febucci.UI;
 using UnityEngine.SceneManagement;
+
 public class TextAnimatorSequence : MonoBehaviour
 {
     public TypewriterByCharacter typewriter;
     public TextMeshProUGUI textComponent;
-    
 
     [TextArea(3, 10)]
     public string[] lines;
@@ -35,7 +35,7 @@ public class TextAnimatorSequence : MonoBehaviour
             textComponent.text = "";
         }
 
-        //  Tout le texte a été lu — on attend quelques secondes avant de faire une action
+        // Tout le texte a été lu — on attend quelques secondes avant de faire une action
         yield return new WaitForSeconds(waitAfterAllLines);
         yield return StartCoroutine(OnSequenceEnd());
     }
@@ -56,16 +56,10 @@ public class TextAnimatorSequence : MonoBehaviour
 
     IEnumerator OnSequenceEnd()
     {
-        //  Attente optionnelle, déjà faite avant l'appel
-        //  Remplace ceci par ce que tu veux (charger une scène, activer un GameObject, etc.)
+        // Remplace ceci par ce que tu veux (charger une scène, activer un GameObject, etc.)
         Debug.Log("Toute la séquence est terminée !");
         yield return new WaitForSeconds(4f);
-        LoadScene("Main");
-        // Exemple : on active un autre GameObject (fais attention à assigner dans l’éditeur si tu veux utiliser ça)
-        // yield return new WaitForSeconds(1f);
-        // myGameObject.SetActive(true);
-
-        yield break;
+        LoadScene("Start");
     }
 
     public void LoadScene(string sceneName)

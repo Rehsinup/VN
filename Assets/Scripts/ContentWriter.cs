@@ -12,7 +12,6 @@ public class ContentWriter : MonoBehaviour
     [SerializeField] StoryReader storyReader;
     private TypewriterCore typewriterCore;
     public string text { get => messageText.text; set => messageText.text = value; }
-    public bool isDone { get; set; }
     // Start is called before the first frame update
     void Start()
     {
@@ -27,14 +26,13 @@ public class ContentWriter : MonoBehaviour
 
     public void OnClick()
     {
-        if (isDone)
+        if (typewriterCore.isShowingText) 
         {
-            storyReader.Next();
+            typewriterCore.SkipTypewriter();
         }
         else
         {
-           typewriterCore.SkipTypewriter();
-            isDone = true;
+            storyReader.Next();
         }
     }
 }

@@ -18,8 +18,8 @@ MonoBehaviour:
   defaultExpression: Idle
   expressions:
   - expressionName: Idle
-    expressionSprite: {fileID: 21300000, guid: fea4553d437a5194d8c8bb3165fbf98c, type: 3}
+    expressionSprite: {fileID: 21300000, guid: 0f9def51961f30f43a486c849abb7aa2, type: 3}
   - expressionName: Angry
-    expressionSprite: {fileID: 21300000, guid: 9796ff2ebfd84a94ea0d54a898b7b49e, type: 3}
+    expressionSprite: {fileID: 21300000, guid: 6136ab0a84434ec4d8de226d7a8d1a62, type: 3}
   - expressionName: Smile
-    expressionSprite: {fileID: 21300000, guid: d288720142d2bac46bdc05c8b7162959, type: 3}
+    expressionSprite: {fileID: 21300000, guid: 866d678139e3f824d851e56bf389ae43, type: 3}

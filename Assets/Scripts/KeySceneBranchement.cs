@@ -90,5 +90,5 @@ public class SceneKeyController : MonoBehaviour
         yield return new WaitForSeconds(delayAfterScene);
         isEnded = true;
         levelLoader.ExitLevel();
-    }
+     }
 }

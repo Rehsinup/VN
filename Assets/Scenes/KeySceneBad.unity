@@ -404,7 +404,7 @@ MonoBehaviour:
   delayAfterScene: 1
   delayBetweenAppearances: 1
   isEnded: 0
-  shakeSoundID: ShakeSFX
+  shakeSoundID: 
 --- !u!1 &731440953
 GameObject:
   m_ObjectHideFlags: 0

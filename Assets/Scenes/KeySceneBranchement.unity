@@ -236,6 +236,7 @@ MonoBehaviour:
   shakeStrength: 15
   delayAfterScene: 1
   isEnded: 0
+  shakeSoundID: ShakeSFX
 --- !u!4 &802577667
 Transform:
   m_ObjectHideFlags: 0
@@ -388,10 +389,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 843302775}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 2500, y: 1500}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -375}
+  m_SizeDelta: {x: 1250, y: 750}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1068824591
 MonoBehaviour:
@@ -531,10 +532,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 843302775}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 2500, y: 1500}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 919.9, y: 35.1}
+  m_SizeDelta: {x: 1750, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1671576577
 MonoBehaviour:

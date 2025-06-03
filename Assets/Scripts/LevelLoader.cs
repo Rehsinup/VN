@@ -45,7 +45,7 @@ public class LevelLoader : MonoBehaviour
     }
 
 
-    public void ImportLevel(string levelName)
+    public void ImportLevel(string levelName, bool puzzle)
     {
         Debug.Log("LEVEL Import called for scene: " + levelName);
 
@@ -54,7 +54,11 @@ public class LevelLoader : MonoBehaviour
 
         inkCanvas.gameObject.SetActive(false);
         charas.SetActive(false);
-        backgrounds.SetActive(false);
+        if (puzzle)
+        {
+            backgrounds.SetActive(false);
+        }
+      
 
         SceneManager.LoadScene(levelName, LoadSceneMode.Additive);
     }
@@ -65,15 +69,39 @@ public class LevelLoader : MonoBehaviour
     }
 
     IEnumerator QuitterLevel()
+{
+    AnimCanvas.sortingOrder = 11;
+    transitionAnim.SetTrigger("End");
+    yield return new WaitForSeconds(2f);
+
+    // Avant de décharger la scène
+    string sceneName = lastlevel.name;
+
+    // Décharge la scène
+    yield return SceneManager.UnloadSceneAsync(lastlevel.buildIndex);
+
+    transitionAnim.SetTrigger("Start");
+    yield return new WaitForSeconds(2f);
+    AnimCanvas.sortingOrder = 1;
+
+    // Après déchargement, si la scène était une KeyScene, lance les crédits
+    if (IsKeyScene(sceneName))
     {
-        AnimCanvas.sortingOrder = 11;
-        transitionAnim.SetTrigger("End");
-        yield return new WaitForSeconds(2f);
-        SceneManager.UnloadSceneAsync(lastlevel.buildIndex);
-        transitionAnim.SetTrigger("Start");
-        yield return new WaitForSeconds(2f);
-        AnimCanvas.sortingOrder = 1;
+        LoadCredits();
     }
+}
+
+bool IsKeyScene(string sceneName)
+{
+    return sceneName == "KeySceneGood" || sceneName == "KeySceneBadMid";
+}
+
+void LoadCredits()
+{
+    // Par exemple, charge la scène "Credits" en mode single ou additive selon ton besoin
+    SceneManager.LoadScene("Credits", LoadSceneMode.Single);
+}
+
 
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)

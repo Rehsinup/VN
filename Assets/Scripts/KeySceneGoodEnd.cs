@@ -24,8 +24,8 @@ public class GoodEndceneKeyController : MonoBehaviour
     [Header("State")]
     public bool isEnded = false;
 
-    [Header("Sound")]
-    [SerializeField] private string shakeSoundID = "ShakeSFX";
+    // [Header("Sound")]
+    // [SerializeField] private string shakeSoundID = "ShakeSFX";
 
     private void Start()
     {
@@ -60,16 +60,16 @@ public class GoodEndceneKeyController : MonoBehaviour
         // Fade in and shake the first text (SHAKE first)
         yield return textImageShake.DOFade(1f, fadeDuration).WaitForCompletion();
 
-        // Play sound
-        if (AudioManager.instance != null)
-        {
-            AudioManager.instance.PlaySound(shakeSoundID);
-        }
-        else
-        {
-            Debug.LogWarning("AudioManager instance not found.");
-        }
-
+        /*  // Play sound
+          if (AudioManager.instance != null)
+          {
+              AudioManager.instance.PlaySound(shakeSoundID);
+          }
+          else
+          {
+              Debug.LogWarning("AudioManager instance not found.");
+          }
+        */
         // Shake effect
         textImageShake.rectTransform.DOShakeAnchorPos(
             duration: shakeDuration,

@@ -27,6 +27,12 @@ public class MemoManager : MonoBehaviour
     private List<GameObject> instantiatedCards = new List<GameObject>();
     private InkVarMoney inkVarMoney;
 
+    private AudioManager audioManager;
+
+    [Header("Sound")]
+    [SerializeField] private string shakeSoundID1 = "LvlWin";
+    [SerializeField] private string shakeSoundID2 = "Lose";
+
     private void Start()
     {
         SetupCards();
@@ -34,6 +40,7 @@ public class MemoManager : MonoBehaviour
         matchedCards = 0;
         levelLoader = FindObjectOfType<LevelLoader>();
         inkVarMoney = FindObjectOfType<InkVarMoney>();
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     void SetupCards()
@@ -95,6 +102,10 @@ public class MemoManager : MonoBehaviour
             {
                 Debug.Log("Toutes les paires ont été trouvées !");
                 ClearAllCards();
+                if (AudioManager.instance != null)
+                {
+                    AudioManager.instance.PlaySound(shakeSoundID1);
+                }
                 inkVarMoney.SetMoney(+50, true);
                 levelLoader.ExitLevel(); 
             }

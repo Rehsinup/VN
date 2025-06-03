@@ -46,6 +46,8 @@ public class Simple2DDisplay : MonoBehaviour
         if (!spr.enabled)
             spr.enabled = true;
 
+        Debug.Log("FEUR");
+
         StartCoroutine(GameObjectUtility.TimedCall(spr.color.a, alpha, duration, ChangeAlpha));
     }
 

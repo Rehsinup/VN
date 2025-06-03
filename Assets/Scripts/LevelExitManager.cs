@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class LevelExitManager : MonoBehaviour
@@ -5,9 +6,13 @@ public class LevelExitManager : MonoBehaviour
     private bool player1Ready = false;
     private bool player2Ready = false;
     private LevelLoader levelLoader;
+    private AudioManager audioManager;
 
+    [Header("Sound")]
+    [SerializeField] private string shakeSoundID1 = "lvlWin";
     private void Start()
     {
+        audioManager = FindObjectOfType<AudioManager>();
         levelLoader = FindObjectOfType<LevelLoader>();
     }
     public void MarkPlayerReady(string tag)
@@ -23,7 +28,11 @@ public class LevelExitManager : MonoBehaviour
 
         if (player1Ready && player2Ready)
         {
-           levelLoader.ExitLevel();
+            if (AudioManager.instance != null)
+            {
+                AudioManager.instance.PlaySound(shakeSoundID1);
+            }
+            levelLoader.ExitLevel();
         }
     }
 }

@@ -14,42 +14,33 @@ public class BlackjackGame : MonoBehaviour
     [SerializeField] private Sprite cardPrefab;
     private InkVarMoney inkVarMoney;
 
-    [Header("Cartes par valeur (4 sprites par carte)")]
-    public List<Sprite> sprites2;
-    public List<Sprite> sprites3;
-    public List<Sprite> sprites4;
-    public List<Sprite> sprites5;
-    public List<Sprite> sprites6;
-    public List<Sprite> sprites7;
-    public List<Sprite> sprites8;
-    public List<Sprite> sprites9;
-    public List<Sprite> sprites10;
-    public List<Sprite> spritesJ;
-    public List<Sprite> spritesQ;
-    public List<Sprite> spritesK;
+    [Header("Cartes par valeur")]
+    public List<Sprite> sprites2, sprites3, sprites4, sprites5, sprites6,
+                        sprites7, sprites8, sprites9, sprites10,
+                        spritesJ, spritesQ, spritesK;
 
     private Dictionary<int, List<Sprite>> cardSpriteMap;
 
     int playerScore = 0, dealerScore = 0;
     bool playerTurn = true, gameOver = false;
-    int playerDrawCount = 0; // Ajout du compteur de tirages
+    int playerDrawCount = 0;
+
     private LevelLoader LevelLoader;
+    private AudioManager audioManager;
+
+    [Header("Sound")]
+    [SerializeField] private string shakeSoundID1 = "LvlWin";
+    [SerializeField] private string shakeSoundID2 = "Lose";
 
     void Start()
     {
+        audioManager = FindObjectOfType<AudioManager>();
         inkVarMoney = FindObjectOfType<InkVarMoney>();
-        btnTirer.onClick.AddListener(() => PlayTurn());
-        btnStop.onClick.AddListener(() =>
-        {
-            if (playerDrawCount < 2)
-            {
-                messageText.text = "Vous devez tirer au moins deux cartes avant de vous arrêter !";
-                return;
-            }
-            EndGame();
-        });
-        btnRejouer.onClick.AddListener(StartGame);
         LevelLoader = FindObjectOfType<LevelLoader>();
+
+        btnTirer.onClick.AddListener(PlayTurn);
+        btnStop.onClick.AddListener(HandleStop);
+        btnRejouer.onClick.AddListener(StartGame);
 
         InitCardSpriteMap();
         StartGame();
@@ -57,55 +48,48 @@ public class BlackjackGame : MonoBehaviour
 
     void InitCardSpriteMap()
     {
-        cardSpriteMap = new Dictionary<int, List<Sprite>>
-        {
-            { 2, sprites2 },
-            { 3, sprites3 },
-            { 4, sprites4 },
-            { 5, sprites5 },
-            { 6, sprites6 },
-            { 7, sprites7 },
-            { 8, sprites8 },
-            { 9, sprites9 },
-            { 10, sprites10 },
-            { 11, spritesJ },
-            { 12, spritesQ },
-            { 13, spritesK }
+        cardSpriteMap = new Dictionary<int, List<Sprite>> {
+            { 2, sprites2 }, { 3, sprites3 }, { 4, sprites4 }, { 5, sprites5 },
+            { 6, sprites6 }, { 7, sprites7 }, { 8, sprites8 }, { 9, sprites9 },
+            { 10, sprites10 }, { 11, spritesJ }, { 12, spritesQ }, { 13, spritesK }
         };
     }
 
     void StartGame()
     {
         playerScore = dealerScore = 0;
+        playerDrawCount = 0;
         playerTurn = true;
         gameOver = false;
-        playerDrawCount = 0; // Reset du compteur
 
         messageText.text = "Nouvelle partie ! Votre score : 0 | Score du croupier : 0";
 
         imagePlayerCard.sprite = cardPrefab;
         imageDealerCard.sprite = cardPrefab;
-
         imagePlayerCard.transform.localScale = Vector3.one;
         imageDealerCard.transform.localScale = Vector3.one;
 
         btnTirer.gameObject.SetActive(true);
         btnStop.gameObject.SetActive(true);
+        btnStop.interactable = false; // Inactif tant que < 2 cartes tirées
         btnRejouer.gameObject.SetActive(false);
     }
 
     void PlayTurn()
     {
-        if (gameOver || !playerTurn) return;
+        if (!playerTurn || gameOver) return;
 
         int value = RandomCardValue();
         playerScore += GetCardPoints(value);
-        playerDrawCount++; // Incrément du nombre de tirages
-        Sprite newSprite = GetCardSprite(value);
+        playerDrawCount++;
 
+        Sprite newSprite = GetCardSprite(value);
         StartCoroutine(FlipCard(imagePlayerCard, newSprite));
 
         messageText.text = $"Votre score total : {playerScore}";
+
+        if (playerDrawCount >= 2)
+            btnStop.interactable = true;
 
         if (playerScore > 21)
         {
@@ -119,6 +103,19 @@ public class BlackjackGame : MonoBehaviour
         }
     }
 
+    void HandleStop()
+    {
+        if (gameOver) return;
+
+        if (playerDrawCount < 2)
+        {
+            messageText.text = "Vous devez tirer au moins deux cartes avant de vous arrêter !";
+            return;
+        }
+
+        EndGame();
+    }
+
     IEnumerator DealerTurnCoroutine()
     {
         yield return new WaitForSeconds(2f);
@@ -130,8 +127,7 @@ public class BlackjackGame : MonoBehaviour
         Sprite newSprite = GetCardSprite(value);
 
         yield return StartCoroutine(FlipCard(imageDealerCard, newSprite));
-
-        messageText.text = $"Le croupier tire une carte, score total : {dealerScore}";
+        messageText.text = $"Le croupier tire une carte, score : {dealerScore}";
 
         yield return new WaitForSeconds(1f);
 
@@ -142,7 +138,7 @@ public class BlackjackGame : MonoBehaviour
         else
         {
             playerTurn = true;
-            messageText.text += "\nC'est à nouveau votre tour !";
+            messageText.text += "\nC'est à vous !";
         }
     }
 
@@ -171,56 +167,61 @@ public class BlackjackGame : MonoBehaviour
 
     int RandomCardValue()
     {
-        int[] values = new int[] { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
+        int[] values = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
         return values[Random.Range(0, values.Length)];
     }
 
     int GetCardPoints(int value)
     {
-        if (value >= 11 && value <= 13) return 10;
-        return value;
+        return (value >= 11 && value <= 13) ? 10 : value;
     }
 
     Sprite GetCardSprite(int value)
     {
         if (!cardSpriteMap.ContainsKey(value)) return null;
-
         List<Sprite> options = cardSpriteMap[value];
         return options[Random.Range(0, options.Count)];
     }
 
     void EndGame()
     {
+        if (gameOver) return;
         gameOver = true;
 
+        string result;
         if (playerScore > 21)
         {
-            messageText.text = "Vous avez dépassé 21 ! Défaite !";
+            result = "Vous avez dépassé 21 ! Défaite !";
             inkVarMoney.SetMoney(-50, false);
+            AudioManager.instance?.PlaySound(shakeSoundID2);
         }
-
         else if (dealerScore > 21)
         {
-            messageText.text = "Le croupier a dépassé 21 ! Vous gagnez !";
+            result = "Le croupier a dépassé 21 ! Vous gagnez !";
             inkVarMoney.SetMoney(+50, true);
+            AudioManager.instance?.PlaySound(shakeSoundID1);
         }
         else if (playerScore > dealerScore)
         {
-            messageText.text = "Vous gagnez !";
+            result = "Vous gagnez !";
             inkVarMoney.SetMoney(+50, true);
         }
         else if (playerScore < dealerScore)
         {
-            messageText.text = "Le croupier gagne !";
+            result = "Le croupier gagne !";
             inkVarMoney.SetMoney(-50, false);
         }
-        else messageText.text = "Égalité !";
+        else
+        {
+            result = "Égalité !";
+        }
+
+        messageText.text = result;
 
         btnTirer.gameObject.SetActive(false);
         btnStop.gameObject.SetActive(false);
         btnRejouer.gameObject.SetActive(false);
 
-        if (LevelLoader != null)
-            LevelLoader.ExitLevel();
+        LevelLoader?.ExitLevel();
     }
 }

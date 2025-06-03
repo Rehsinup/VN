@@ -91,7 +91,10 @@ namespace vinkn
 
                 if (levelLoader != null)
                 {
-                    levelLoader.ImportLevel(sceneName);
+                    if (story.currentTags.Contains("Puzzle"))
+                        levelLoader.ImportLevel(sceneName, true);
+                    else
+                        levelLoader.ImportLevel(sceneName, false);
                 }
                 else
                 {

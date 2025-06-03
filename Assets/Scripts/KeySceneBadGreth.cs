@@ -24,8 +24,8 @@ public class GoodEndSceneKeyController : MonoBehaviour
     [Header("State")]
     public bool isEnded = false;
 
-    [Header("Sound")]
-    [SerializeField] private string shakeSoundID = "ShakeSFX";
+   // [Header("Sound")]
+   // [SerializeField] private string shakeSoundID = "ShakeSFX";
 
     private void Start()
     {
@@ -51,7 +51,7 @@ public class GoodEndSceneKeyController : MonoBehaviour
         }
 
         // Une fois que toutes les images sont affichées, jouer le son
-        if (AudioManager.instance != null)
+        /*if (AudioManager.instance != null)
         {
             AudioManager.instance.PlaySound(shakeSoundID);
         }
@@ -59,7 +59,7 @@ public class GoodEndSceneKeyController : MonoBehaviour
         {
             Debug.LogWarning("AudioManager instance not found.");
         }
-
+        */
         // Puis lancer le shake sur toutes en même temps
         foreach (Image img in textImagesToShake)
         {

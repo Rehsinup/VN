@@ -10,13 +10,10 @@ public class MenuEchap : MonoBehaviour
     [SerializeField] GameObject Quit;
     [SerializeField] GameObject Restart;
     private bool isPaused = false;
-    [SerializeField] AudioSource audioSource;
-    [SerializeField] Slider volumeSlider;
     // Start is called before the first frame update
     void Start()
     {
         isPaused = false;
-        SetVolumeSlider();
     }
 
     // Update is called once per frame
@@ -44,16 +41,7 @@ public class MenuEchap : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("Start");
     }
 
-    public void SetVolume(Single volume)
-    {
-        audioSource.volume = volume;
-        volume = 0.5f; 
-    }
 
-    public void SetVolumeSlider()
-    {
-        volumeSlider.value = audioSource.volume;
-    }
 
     public void ShowMenu()
     {

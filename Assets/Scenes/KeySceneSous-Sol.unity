@@ -206,7 +206,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 297557694}
-  - component: {fileID: 297557695}
+  - component: {fileID: 297557696}
   m_Layer: 0
   m_Name: KeySceneManager
   m_TagString: Untagged
@@ -229,7 +229,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &297557695
+--- !u!114 &297557696
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -238,7 +238,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 297557692}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e279407866a572a4d800e78c20a33805, type: 3}
+  m_Script: {fileID: 11500000, guid: 0bbb69d0dd46ef64989fc17962092ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundOld: {fileID: 1430171154}
@@ -249,7 +249,7 @@ MonoBehaviour:
   shakeStrength: 15
   delayAfterScene: 2
   isEnded: 0
-  shakeSoundID: ShakeSFX
+  shakeSoundID: Stairs
 --- !u!1 &843302771
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,7 +410,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 72ee54fa389eea2488af7c1c9315bd92, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e364549a8a68c274aa054b8239fe1b1d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
